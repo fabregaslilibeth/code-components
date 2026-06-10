@@ -1,0 +1,17 @@
+{
+  "library": {
+    "name": "Intouch Tech Components",
+    "components": [
+      "./src/**/*.webflow.@(js|jsx|mjs|ts|tsx)"
+    ],
+    "description": "",
+    "id": "intouch-tech-components"
+  },
+  "telemetry": {
+    "global": {
+      "allowTelemetry": false,
+      "lastPrompted": 1765882381766,
+      "version": "1.9.0"
+    }
+  }
+}

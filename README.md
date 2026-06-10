@@ -68,3 +68,64 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Webflow Deployment
+
+This project contains React components that can be published to Webflow and used in your Webflow sites.
+
+### Step 1: Publish Components to Webflow
+
+1. **Login to Webflow CLI** (first time only):
+   ```bash
+   npm run webflow:login
+   ```
+   This will open a browser window for authentication.
+
+2. **Publish your components**:
+   ```bash
+   npm run webflow:publish
+   ```
+   This publishes your component library (defined in `webflow.json`) to Webflow. Your components will be available in the Webflow Designer under the "Components" panel.
+
+3. **Development mode** (optional):
+   ```bash
+   npm run webflow:dev
+   ```
+   This runs the components in development mode with hot-reloading for testing.
+
+### Step 2: Publish Your Site to Live
+
+After your components are published and added to your Webflow site:
+
+1. **In Webflow Designer:**
+   - Open your site in the Webflow Designer
+   - Make sure all your custom components are added and configured
+   - Review your site to ensure everything looks correct
+
+2. **Publish to Live:**
+   - Click the **"Publish"** button in the top-right corner of the Designer
+   - Select **"Publish to Webflow"** (or your custom domain if configured)
+   - Click **"Publish"** to deploy your site live
+
+3. **Custom Domain (optional):**
+   - Go to **Project Settings** → **Hosting**
+   - Add your custom domain
+   - Update DNS records as instructed
+   - Publish to your custom domain
+
+### Component Library
+
+Your component library is configured in `webflow.json`:
+- **Library Name:** Intouch Tech Components
+- **Components:** All files matching `./src/**/*.webflow.@(js|jsx|mjs|ts|tsx)`
+
+Current components:
+- `Card.webflow.tsx`
+- `Icon.webflow.tsx`
+- `PricingCalculator.webflow.tsx`
+
+### Troubleshooting
+
+- If `webflow:publish` fails, make sure you're logged in: `npm run webflow:login`
+- Ensure your `webflow.json` configuration is correct
+- Check that all component files follow the `.webflow.tsx` naming convention
