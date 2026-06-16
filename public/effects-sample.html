@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hover Effects Sample — Vanilla CSS + JS</title>
+  <style>
+    /* ── Design tokens (same idea as the React components) ── */
+    :root {
+      --ink: #04060D;
+      --field: #070C18;
+      --panel: #0A1325;
+      --line: rgba(125, 170, 215, 0.14);
+      --line-strong: rgba(16, 200, 229, 0.34);
+      --txt-dim: rgba(221, 233, 249, 0.56);
+      --head: #ffffff;
+      --cyan: #10C8E5;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 200vh; /* extra height so you can scroll to trigger reveal */
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--ink);
+      color: var(--head);
+      padding: 48px 24px 120px;
+    }
+
+    .page-intro {
+      max-width: 640px;
+      margin: 0 auto 48px;
+      color: var(--txt-dim);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .page-intro h1 {
+      color: var(--head);
+      font-size: 22px;
+      margin: 0 0 12px;
+    }
+
+    /* ── The sample box (one mini delivery-process row) ── */
+    .sample-box {
+      max-width: 900px;
+      margin: 40vh auto 0;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      /* Scroll reveal: hidden until JS adds .is-visible */
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+
+    .sample-box.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Unified hover: hovering anywhere in the box triggers all child effects */
+    .sample-box.is-visible:hover {
+      transform: translateX(2px);
+    }
+
+    /* ── Left: step indicator + title ── */
+    .sample-nav {
+      padding: 28px 26px;
+      border-right: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .sample-num-wrap {
+      position: relative;
+      overflow: hidden;
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      border-radius: 3px;
+      border: 1px solid var(--line-strong);
+      background: var(--field);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 16px rgba(16, 200, 229, 0.22);
+      transition:
+        border-color 0.6s var(--ease),
+        box-shadow 0.6s var(--ease),
+        transform 0.6s var(--ease),
+        background 0.6s var(--ease);
+    }
+
+    /* Shine layer: a skewed gradient that slides across on hover */
+    .sample-num-shine,
+    .sample-photo-shine {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(
+        105deg,
+        transparent 38%,
+        rgba(255, 255, 255, 0.1) 46%,
+        rgba(16, 200, 229, 0.28) 50%,
+        rgba(255, 255, 255, 0.1) 54%,
+        transparent 62%
+      );
+      transform: translateX(-140%) skewX(-14deg);
+      transition: transform 0.95s var(--ease);
+    }
+
+    .sample-num {
+      position: relative;
+      z-index: 1;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--cyan);
+      font-variant-numeric: tabular-nums;
+      transition: color 0.6s var(--ease);
+    }
+
+    .sample-copy { min-width: 0; }
+
+    .sample-title {
+      margin: 0;
+      font-weight: 800;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      transition:
+        transform 0.65s var(--ease),
+        letter-spacing 0.65s var(--ease),
+        color 0.65s var(--ease),
+        text-shadow 0.65s var(--ease);
+    }
+
+    /* Underline grows via width transition on a ::after pseudo-element */
+    .sample-title::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 2px;
+      margin-top: 7px;
+      background: linear-gradient(90deg, var(--cyan), rgba(15, 99, 243, 0.45));
+      transition: width 0.7s var(--ease);
+    }
+
+    .sample-text {
+      margin: 9px 0 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--txt-dim);
+      transition:
+        transform 0.7s var(--ease) 0.05s,
+        color 0.7s var(--ease) 0.05s;
+    }
+
+    /* ── Right: photo + detail text ── */
+    .sample-detail {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sample-photo-wrap {
+      position: relative;
+      min-height: 200px;
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .sample-photo-glow {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      opacity: 0;
+      box-shadow:
+        inset 0 0 0 1px rgba(16, 200, 229, 0.45),
+        inset 0 0 28px rgba(16, 200, 229, 0.12);
+      transition: opacity 0.6s var(--ease);
+    }
+
+    .sample-photo-wrap img {
+      position: absolute;
+      top: -8%;
+      left: 0;
+      width: 100%;
+      height: 116%;
+      object-fit: cover;
+      /* JS sets --parallax-y; CSS combines it with hover scale */
+      transform: translateY(var(--parallax-y, 0px)) scale(1);
+      transition: transform 0.85s var(--ease);
+      will-change: transform;
+    }
+
+    .sample-photo-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(180deg, rgba(0, 27, 65, 0.2), rgba(0, 27, 65, 0.82));
+      mix-blend-mode: multiply;
+      transition: background 0.6s var(--ease);
+    }
+
+    .sample-body {
+      padding: 24px 26px 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .sample-body .sample-title { font-size: 20px; }
+
+    /* ── HOVER: one parent selector drives everything ── */
+    .sample-box.is-visible:hover .sample-num-wrap {
+      border-color: rgba(16, 200, 229, 0.85);
+      background: rgba(16, 200, 229, 0.1);
+      transform: scale(1.08);
+      box-shadow:
+        0 0 0 1px rgba(16, 200, 229, 0.45),
+        0 0 32px rgba(16, 200, 229, 0.32),
+        inset 0 0 22px rgba(16, 200, 229, 0.12);
+    }
+
+    .sample-box.is-visible:hover .sample-num { color: #fff; }
+    .sample-box.is-visible:hover .sample-num-shine,
+    .sample-box.is-visible:hover .sample-photo-shine { transform: translateX(140%) skewX(-14deg); }
+
+    .sample-box.is-visible:hover .sample-title {
+      transform: translateX(8px);
+      letter-spacing: 0.01em;
+      color: #fff;
+      text-shadow: 0 0 24px rgba(16, 200, 229, 0.18);
+    }
+
+    .sample-box.is-visible:hover .sample-title::after { width: 52px; }
+
+    .sample-box.is-visible:hover .sample-text {
+      transform: translateX(8px);
+      color: rgba(234, 241, 251, 0.82);
+    }
+
+    .sample-box.is-visible:hover .sample-photo-wrap img {
+      transform: translateY(calc(var(--parallax-y, 0px) - 4px)) scale(1.08);
+    }
+
+    .sample-box.is-visible:hover .sample-photo-overlay {
+      background: linear-gradient(
+        180deg,
+        rgba(0, 17, 43, 0.08) 0%,
+        rgba(0, 17, 43, 0.45) 55%,
+        rgba(15, 99, 243, 0.22) 100%
+      );
+    }
+
+    .sample-box.is-visible:hover .sample-photo-glow { opacity: 1; }
+
+    @media (max-width: 680px) {
+      .sample-box { grid-template-columns: 1fr; }
+      .sample-nav { border-right: none; border-bottom: 1px solid var(--line); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .sample-box { opacity: 1; transform: none; transition: none; }
+      .sample-box.is-visible:hover { transform: none; }
+      .sample-box.is-visible:hover .sample-num-wrap { transform: none; }
+      .sample-box.is-visible:hover .sample-title,
+      .sample-box.is-visible:hover .sample-text { transform: none; }
+      .sample-photo-wrap img { transform: none !important; }
+      .sample-num-shine, .sample-photo-shine, .sample-photo-glow { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-intro">
+    <h1>Hover effects sample</h1>
+    <p>Scroll down to reveal the box, then hover it. Open this file in a browser and view source — CSS handles all hover animation; JS only handles scroll reveal and photo parallax.</p>
+  </div>
+
+  <!--
+    ONE SAMPLE BOX
+    Structure mirrors DeliveryProcess / HowTimeline:
+      - number box + shine layer
+      - title with ::after underline
+      - photo with overlay + shine + glow
+      - detail text with staggered transition-delay
+  -->
+  <article class="sample-box" data-reveal>
+    <div class="sample-nav">
+      <span class="sample-num-wrap">
+        <span class="sample-num-shine" aria-hidden="true"></span>
+        <span class="sample-num">02</span>
+      </span>
+      <div class="sample-copy">
+        <h2 class="sample-title">App design &amp; build</h2>
+      </div>
+    </div>
+
+    <div class="sample-detail">
+      <div class="sample-photo-wrap">
+        <img
+          data-parallax
+          src="https://cdn.prod.website-files.com/6900d0af5ebb1f2065599d70/69679cfbbf405bbcbe42bb2d_timeline2.avif"
+          alt="App design and build"
+          loading="lazy"
+        />
+        <div class="sample-photo-overlay" aria-hidden="true"></div>
+        <span class="sample-photo-shine" aria-hidden="true"></span>
+        <div class="sample-photo-glow" aria-hidden="true"></div>
+      </div>
+      <div class="sample-body">
+        <h3 class="sample-title">App design &amp; build</h3>
+        <p class="sample-text">We design the experience and build your canvas or model-driven app with low-code best practice.</p>
+      </div>
+    </div>
+  </article>
+
+  <script>
+    (function () {
+      var box = document.querySelector('[data-reveal]');
+      var img = document.querySelector('[data-parallax]');
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* ── 1. Scroll reveal (IntersectionObserver) ── */
+      function reveal() {
+        box.classList.add('is-visible');
+      }
+
+      if (reduceMotion) {
+        reveal();
+      } else if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              reveal();
+              io.disconnect();
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+        io.observe(box);
+      } else {
+        reveal();
+      }
+
+      /* ── 2. Photo parallax (scroll → CSS variable) ── */
+      /* We write --parallax-y on the img; CSS uses it in transform.
+         On hover, CSS adds scale() to the same transform — no conflict. */
+      function updateParallax() {
+        if (reduceMotion || !img) return;
+        var wrap = img.parentElement;
+        var rect = wrap.getBoundingClientRect();
+        var vh = window.innerHeight;
+        if (rect.bottom < 0 || rect.top > vh) return;
+        var progress = (rect.top + rect.height * 0.5 - vh * 0.5) / vh;
+        img.style.setProperty('--parallax-y', (progress * 12) + 'px');
+      }
+
+      window.addEventListener('scroll', updateParallax, { passive: true });
+      window.addEventListener('resize', updateParallax, { passive: true });
+      updateParallax();
+    })();
+  </script>
+</body>
+</html>

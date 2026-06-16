@@ -38,7 +38,10 @@ export const deliveryProcessCss = `
     --dp-gradient-brand: linear-gradient(135deg, #0F63F3 0%, #00D4FF 50%, #10C8E5 100%);
     --dp-gradient-brand-h: linear-gradient(90deg, #0F63F3 0%, #00D4FF 50%, #10C8E5 100%);
     --dp-dur-base: 200ms;
+    --dp-dur-smooth: 650ms;
     --dp-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --dp-line-strong: rgba(16, 200, 229, 0.34);
+    --dp-field: #070C18;
     width: 100%;
     max-width: 100%;
     overflow-x: clip;
@@ -117,6 +120,16 @@ export const deliveryProcessCss = `
     border: 1px solid var(--dp-line);
     width: 100%;
     min-width: 0;
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.7s var(--dp-ease-out),
+      transform 0.7s var(--dp-ease-out);
+  }
+
+  .delivery-process-root .dp-grid.is-visible {
+    opacity: 1;
+    transform: none;
   }
 
   .delivery-process-root .dp-nav {
@@ -138,7 +151,13 @@ export const deliveryProcessCss = `
     align-items: center;
     gap: 20px;
     font-family: inherit;
-    transition: background var(--dp-dur-base);
+    transition:
+      background var(--dp-dur-base),
+      transform var(--dp-dur-smooth) var(--dp-ease-out);
+  }
+
+  .delivery-process-root .dp-step-btn.is-hovered {
+    transform: translateX(3px);
   }
 
   .delivery-process-root .dp-step-btn:last-child {
@@ -173,20 +192,82 @@ export const deliveryProcessCss = `
     transform: scaleY(1);
   }
 
+  .delivery-process-root .dp-step-num-wrap {
+    position: relative;
+    overflow: hidden;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 3px;
+    border: 1px solid var(--dp-line-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--dp-field);
+    transition:
+      border-color 0.6s var(--dp-ease-out),
+      box-shadow 0.6s var(--dp-ease-out),
+      transform 0.6s var(--dp-ease-out),
+      background 0.6s var(--dp-ease-out);
+  }
+
+  .delivery-process-root .dp-step-num-shine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 38%,
+      rgba(255, 255, 255, 0.1) 46%,
+      rgba(16, 200, 229, 0.28) 50%,
+      rgba(255, 255, 255, 0.1) 54%,
+      transparent 62%
+    );
+    transform: translateX(-140%) skewX(-14deg);
+    pointer-events: none;
+    transition: transform 0.95s var(--dp-ease-out);
+  }
+
   .delivery-process-root .dp-step-num {
+    position: relative;
+    z-index: 1;
     font-weight: 800;
-    font-size: 22px;
+    font-size: 18px;
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.02em;
     color: var(--dp-faint);
-    transition: all var(--dp-dur-base);
-    width: 44px;
-    flex-shrink: 0;
+    transition:
+      color 0.6s var(--dp-ease-out),
+      font-size 0.6s var(--dp-ease-out),
+      transform 0.6s var(--dp-ease-out);
+    width: auto;
+  }
+
+  .delivery-process-root .dp-step-btn.is-active .dp-step-num-wrap {
+    border-color: var(--dp-cyan);
+    box-shadow: 0 0 16px rgba(16, 200, 229, 0.22);
   }
 
   .delivery-process-root .dp-step-btn.is-active .dp-step-num {
-    font-size: 30px;
+    font-size: 20px;
     color: var(--dp-cyan);
+  }
+
+  .delivery-process-root .dp-step-btn.is-hovered .dp-step-num-wrap {
+    border-color: rgba(16, 200, 229, 0.85);
+    background: rgba(16, 200, 229, 0.1);
+    transform: scale(1.08);
+    box-shadow:
+      0 0 0 1px rgba(16, 200, 229, 0.45),
+      0 0 32px rgba(16, 200, 229, 0.32),
+      inset 0 0 22px rgba(16, 200, 229, 0.12);
+  }
+
+  .delivery-process-root .dp-step-btn.is-hovered .dp-step-num {
+    color: #ffffff;
+  }
+
+  .delivery-process-root .dp-step-btn.is-hovered .dp-step-num-shine {
+    transform: translateX(140%) skewX(-14deg);
   }
 
   .delivery-process-root .dp-step-title {
@@ -197,15 +278,40 @@ export const deliveryProcessCss = `
     text-transform: uppercase;
     letter-spacing: -0.02em;
     color: var(--dp-txt-dim);
-    transition: all var(--dp-dur-base);
+    transition:
+      transform 0.65s var(--dp-ease-out),
+      letter-spacing 0.65s var(--dp-ease-out),
+      color 0.65s var(--dp-ease-out),
+      text-shadow 0.65s var(--dp-ease-out);
     line-height: 1.1;
     overflow-wrap: anywhere;
     word-break: break-word;
   }
 
+  .delivery-process-root .dp-step-title::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    margin-top: 7px;
+    background: linear-gradient(90deg, var(--dp-cyan) 0%, rgba(15, 99, 243, 0.45) 100%);
+    transition: width 0.7s var(--dp-ease-out);
+  }
+
   .delivery-process-root .dp-step-btn.is-active .dp-step-title {
     font-size: 19px;
     color: var(--dp-head);
+  }
+
+  .delivery-process-root .dp-step-btn.is-hovered .dp-step-title {
+    transform: translateX(6px);
+    letter-spacing: 0.01em;
+    color: #ffffff;
+    text-shadow: 0 0 24px rgba(16, 200, 229, 0.18);
+  }
+
+  .delivery-process-root .dp-step-btn.is-hovered .dp-step-title::after {
+    width: 44px;
   }
 
   .delivery-process-root .dp-detail-col {
@@ -223,6 +329,27 @@ export const deliveryProcessCss = `
     min-width: 0;
     overflow: hidden;
     background: var(--dp-panel);
+    transition: box-shadow 0.6s var(--dp-ease-out);
+  }
+
+  .delivery-process-root .dp-photo-glow {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    opacity: 0;
+    box-shadow:
+      inset 0 0 0 1px rgba(16, 200, 229, 0.45),
+      inset 0 0 28px rgba(16, 200, 229, 0.12);
+    transition: opacity 0.6s var(--dp-ease-out);
+  }
+
+  .delivery-process-root .dp-detail-col.is-hovered .dp-photo-glow {
+    opacity: 1;
+  }
+
+  .delivery-process-root .dp-detail-col.is-hovered .dp-photo-wrap {
+    box-shadow: inset 0 -40px 60px rgba(0, 0, 0, 0.25);
   }
 
   .delivery-process-root .dp-photo-inner {
@@ -235,11 +362,19 @@ export const deliveryProcessCss = `
 
   .delivery-process-root .dp-photo-img {
     position: absolute;
-    inset: 0;
+    top: -8%;
+    left: 0;
     width: 100%;
-    height: 100%;
+    height: 116%;
     object-fit: cover;
     display: block;
+    will-change: transform;
+    transform: translateY(var(--dp-parallax-y, 0px)) scale(1);
+    transition: transform 0.85s var(--dp-ease-out);
+  }
+
+  .delivery-process-root .dp-detail-col.is-hovered .dp-photo-frame.is-visible .dp-photo-img {
+    transform: translateY(calc(var(--dp-parallax-y, 0px) - 4px)) scale(1.08);
   }
 
   .delivery-process-root .dp-photo-overlay {
@@ -247,6 +382,37 @@ export const deliveryProcessCss = `
     inset: 0;
     background: linear-gradient(180deg, rgba(0,27,65,0.20) 0%, rgba(0,27,65,0.82) 100%);
     mix-blend-mode: multiply;
+    transition: background 0.6s var(--dp-ease-out);
+  }
+
+  .delivery-process-root .dp-detail-col.is-hovered .dp-photo-frame.is-visible .dp-photo-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 17, 43, 0.08) 0%,
+      rgba(0, 17, 43, 0.45) 55%,
+      rgba(15, 99, 243, 0.22) 100%
+    );
+  }
+
+  .delivery-process-root .dp-photo-shine {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(
+      105deg,
+      transparent 38%,
+      rgba(255, 255, 255, 0.07) 46%,
+      rgba(16, 200, 229, 0.18) 50%,
+      rgba(255, 255, 255, 0.07) 54%,
+      transparent 62%
+    );
+    transform: translateX(-130%) skewX(-12deg);
+    pointer-events: none;
+    transition: transform 1s var(--dp-ease-out);
+  }
+
+  .delivery-process-root .dp-detail-col.is-hovered .dp-photo-frame.is-visible .dp-photo-shine {
+    transform: translateX(130%) skewX(-12deg);
   }
 
   .delivery-process-root .dp-photo-counter {
@@ -280,6 +446,21 @@ export const deliveryProcessCss = `
     margin: 0;
     overflow-wrap: anywhere;
     word-break: break-word;
+    transition:
+      transform 0.65s var(--dp-ease-out),
+      letter-spacing 0.65s var(--dp-ease-out),
+      color 0.65s var(--dp-ease-out),
+      text-shadow 0.65s var(--dp-ease-out);
+  }
+
+  .delivery-process-root .dp-detail-title::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    margin-top: 8px;
+    background: linear-gradient(90deg, var(--dp-cyan) 0%, rgba(15, 99, 243, 0.45) 100%);
+    transition: width 0.7s var(--dp-ease-out);
   }
 
   .delivery-process-root .dp-detail-text {
@@ -289,6 +470,25 @@ export const deliveryProcessCss = `
     margin: 10px 0 0;
     min-height: 50px;
     overflow-wrap: anywhere;
+    transition:
+      transform 0.7s var(--dp-ease-out) 0.05s,
+      color 0.7s var(--dp-ease-out) 0.05s;
+  }
+
+  .delivery-process-root .dp-detail-col.is-hovered .dp-detail-title {
+    transform: translateX(8px);
+    letter-spacing: 0.01em;
+    color: #ffffff;
+    text-shadow: 0 0 24px rgba(16, 200, 229, 0.18);
+  }
+
+  .delivery-process-root .dp-detail-col.is-hovered .dp-detail-title::after {
+    width: 52px;
+  }
+
+  .delivery-process-root .dp-detail-col.is-hovered .dp-detail-text {
+    transform: translateX(8px);
+    color: rgba(234, 241, 251, 0.82);
   }
 
   .delivery-process-root .dp-progress-row {
@@ -397,12 +597,16 @@ export const deliveryProcessCss = `
     }
 
     .delivery-process-root .dp-step-num {
-      width: 32px;
-      font-size: 18px;
+      font-size: 16px;
+    }
+
+    .delivery-process-root .dp-step-num-wrap {
+      width: 40px;
+      height: 40px;
     }
 
     .delivery-process-root .dp-step-btn.is-active .dp-step-num {
-      font-size: 22px;
+      font-size: 17px;
     }
 
     .delivery-process-root .dp-step-title {
@@ -424,6 +628,38 @@ export const deliveryProcessCss = `
 
     .delivery-process-root .dp-detail-text {
       font-size: 14px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .delivery-process-root .dp-grid {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .delivery-process-root .dp-step-btn.is-hovered {
+      transform: none;
+    }
+
+    .delivery-process-root .dp-step-btn.is-hovered .dp-step-num-wrap {
+      transform: none;
+    }
+
+    .delivery-process-root .dp-step-btn.is-hovered .dp-step-title,
+    .delivery-process-root .dp-detail-col.is-hovered .dp-detail-title,
+    .delivery-process-root .dp-detail-col.is-hovered .dp-detail-text {
+      transform: none;
+    }
+
+    .delivery-process-root .dp-photo-img {
+      transform: none !important;
+    }
+
+    .delivery-process-root .dp-step-num-shine,
+    .delivery-process-root .dp-photo-shine,
+    .delivery-process-root .dp-photo-glow {
+      display: none;
     }
   }
 `;

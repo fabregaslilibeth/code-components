@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>3CX Phone System | Intouch Tech</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+:root {
+  --blue: #0F63F3;
+  --red: #D92B45;
+  --navy: #001B41;
+  --navy-deep: #00112B;
+  --black: #020307;
+  --light-blue: #E9F4FF;
+  --border-blue: #10C8E5;
+  --cyan: #00D4FF;
+  --white: #FFFFFF;
+  --gradient-brand: linear-gradient(135deg,#0F63F3 0%,#00D4FF 50%,#10C8E5 100%);
+  --gradient-brand-h: linear-gradient(90deg,#0F63F3 0%,#00D4FF 50%,#10C8E5 100%);
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --dur-base: 200ms;
+  --ease-standard: cubic-bezier(0.4,0,0.2,1);
+  --k-ink: #04060D;
+  --k-field: #070C18;
+  --k-panel: #0A1325;
+  --k-panel-2: #0C1730;
+  --k-line: rgba(125,170,215,0.14);
+  --k-line-strong: rgba(16,200,229,0.34);
+  --k-txt: #EAF1FB;
+  --k-txt-dim: rgba(221,233,249,0.56);
+  --k-head: #ffffff;
+  --k-faint: rgba(234,241,251,0.30);
+  --k-cyan: #10C8E5;
+  --k-blue: #0F63F3;
+  --accent: #D92B45;
+  --accent-hover: #C21F38;
+}
+*,*::before,*::after { box-sizing: border-box; }
+html,body { margin:0; padding:0; }
+body { font-family:var(--font-body); color:var(--k-txt); background:var(--k-ink); -webkit-font-smoothing:antialiased; }
+body::after {
+  content:""; position:fixed; inset:0; z-index:1; pointer-events:none; opacity:0.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;
+}
+#app { position:relative; z-index:2; }
+a { -webkit-tap-highlight-color:transparent; text-decoration:none; }
+::selection { background:var(--k-cyan); color:#04060D; }
+.text-gradient {
+  background:var(--gradient-brand-h);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+.k-container { width:100%; max-width:1200px; margin:0 auto; padding:0 40px; }
+
+/* Nav */
+.nav-bar { position:sticky; top:0; z-index:100; background:rgba(4,6,13,0.88); backdrop-filter:blur(16px); border-bottom:1px solid var(--k-line); }
+.nav-inner { display:flex; align-items:center; justify-content:space-between; height:64px; }
+.nav-logo { display:flex; align-items:center; gap:10px; }
+.nav-logo-mark { width:32px; height:32px; background:var(--gradient-brand); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:13px; color:#fff; }
+.nav-logo-text { font-weight:800; font-size:17px; letter-spacing:-0.03em; color:var(--k-head); text-transform:uppercase; }
+.nav-links { display:flex; align-items:center; gap:28px; }
+.nav-links a { font-size:13px; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; color:var(--k-txt-dim); transition:color var(--dur-base); }
+.nav-links a:hover,.nav-links a.active { color:var(--k-head); }
+.nav-cta { display:inline-flex; align-items:center; gap:8px; padding:11px 22px; background:var(--accent); color:#fff; font-family:var(--font-body); font-weight:700; font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase; border-radius:999px; border:none; cursor:pointer; transition:background var(--dur-base); }
+.nav-cta:hover { background:var(--accent-hover); }
+
+/* Eyebrow */
+.eyebrow { display:inline-flex; align-items:center; gap:10px; font-weight:700; font-size:11.5px; letter-spacing:0.26em; text-transform:uppercase; color:var(--k-cyan); margin-bottom:16px; }
+.eyebrow-dot { width:6px; height:6px; background:var(--k-cyan); box-shadow:0 0 8px var(--k-cyan); flex-shrink:0; }
+
+/* Rule */
+.rule { height:1px; width:100%; background:linear-gradient(90deg,var(--k-cyan) 0%,rgba(15,99,243,0.35) 40%,transparent 100%); }
+
+/* Hero */
+.hero { padding:100px 0 80px; background:var(--k-field); border-bottom:1px solid var(--k-line); position:relative; overflow:hidden; }
+.hero-grid-bg { position:absolute; inset:0; pointer-events:none; background-image:linear-gradient(rgba(16,200,229,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(16,200,229,0.04) 1px,transparent 1px); background-size:60px 60px; }
+.hero-glow { position:absolute; top:-200px; right:-200px; width:700px; height:700px; border-radius:50%; background:radial-gradient(circle,rgba(15,99,243,0.12) 0%,transparent 65%); pointer-events:none; }
+.hero-inner { position:relative; display:grid; grid-template-columns:1fr 400px; gap:60px; align-items:center; }
+.hero-badge { display:inline-flex; align-items:center; gap:8px; padding:7px 14px; border:1px solid var(--k-line-strong); background:rgba(16,200,229,0.07); font-size:11.5px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--k-cyan); margin-bottom:24px; }
+.hero h1 { font-size:clamp(36px,4.5vw,58px); font-weight:800; line-height:1.06; letter-spacing:-0.03em; color:var(--k-head); margin:0 0 20px; text-transform:uppercase; }
+.hero-sub { font-size:17px; line-height:1.65; color:var(--k-txt-dim); margin:0 0 36px; max-width:480px; }
+.hero-btns { display:flex; gap:12px; flex-wrap:wrap; }
+.btn-solid { display:inline-flex; align-items:center; gap:9px; padding:15px 28px; background:var(--accent); color:#fff; font-family:var(--font-body); font-weight:700; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; border-radius:999px; border:none; cursor:pointer; transition:background var(--dur-base),box-shadow var(--dur-base); }
+.btn-solid:hover { background:var(--accent-hover); box-shadow:0 0 0 1px var(--accent),0 10px 30px rgba(217,43,69,0.30); }
+.btn-line { display:inline-flex; align-items:center; gap:9px; padding:15px 28px; background:transparent; color:var(--k-txt); font-family:var(--font-body); font-weight:700; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; border-radius:999px; border:1px solid rgba(16,200,229,0.32); cursor:pointer; transition:background var(--dur-base),border-color var(--dur-base),color var(--dur-base); }
+.btn-line:hover { background:rgba(16,200,229,0.08); border-color:var(--k-cyan); color:#fff; }
+.hero-specs { display:flex; gap:20px; margin-top:40px; }
+.spec-item { display:flex; flex-direction:column; gap:3px; }
+.spec-val { font-size:22px; font-weight:800; letter-spacing:-0.03em; color:var(--k-head); line-height:1; }
+.spec-label { font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--k-txt-dim); }
+.spec-divider { width:1px; background:var(--k-line); align-self:stretch; }
+
+/* Hero panel */
+.hero-panel { background:var(--k-panel); border:1px solid var(--k-line-strong); padding:28px; position:relative; }
+.panel-row { display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-top:1px solid var(--k-line); font-size:13px; font-weight:600; color:var(--k-head); transition:background var(--dur-base); }
+.panel-row:hover { background:var(--k-panel-2); }
+.panel-badge { font-size:10.5px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:4px 10px; border-radius:999px; }
+.badge-green { background:rgba(18,183,106,0.12); color:#12B76A; border:1px solid rgba(18,183,106,0.25); }
+.badge-cyan { background:rgba(16,200,229,0.10); color:var(--k-cyan); border:1px solid rgba(16,200,229,0.25); }
+
+/* Stats */
+.stats-bar { background:var(--k-panel); border-top:1px solid var(--k-line); border-bottom:1px solid var(--k-line); }
+.stats-inner { display:grid; grid-template-columns:repeat(4,1fr); }
+.stat-cell { padding:32px; border-right:1px solid var(--k-line); display:flex; flex-direction:column; gap:6px; }
+.stat-cell:last-child { border-right:none; }
+.stat-num { font-size:42px; font-weight:800; letter-spacing:-0.04em; line-height:1; color:var(--k-head); }
+.stat-desc { font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--k-txt-dim); }
+
+/* Section */
+.section { padding:96px 0; border-bottom:1px solid var(--k-line); }
+.section-head { margin-bottom:56px; max-width:640px; }
+.section-head h2 { font-size:clamp(28px,3.5vw,44px); font-weight:800; letter-spacing:-0.03em; line-height:1.1; color:var(--k-head); text-transform:uppercase; margin:0 0 14px; }
+.section-intro { font-size:16px; line-height:1.65; color:var(--k-txt-dim); margin:0; }
+
+/* Ledger */
+.ledger { border:1px solid var(--k-line-strong); background:var(--k-field); }
+.ledger-row { display:grid; grid-template-columns:56px auto 1fr auto; align-items:center; gap:22px; padding:24px 26px; border-top:1px solid var(--k-line); position:relative; transition:background var(--dur-base); cursor:default; }
+.ledger-row:first-child { border-top:none; }
+.ledger-row:hover { background:var(--k-panel); }
+.ledger-num { font-weight:800; font-size:32px; line-height:1; letter-spacing:-0.03em; color:var(--k-faint); font-variant-numeric:tabular-nums; width:50px; transition:color var(--dur-base); }
+.ledger-row:hover .ledger-num { color:var(--k-cyan); }
+.ledger-icon { width:44px; height:44px; flex-shrink:0; border:1px solid var(--k-line); border-radius:3px; display:flex; align-items:center; justify-content:center; color:var(--k-cyan); transition:border-color var(--dur-base); }
+.ledger-row:hover .ledger-icon { border-color:var(--k-cyan); }
+.ledger-title { font-weight:800; font-size:15px; letter-spacing:-0.01em; text-transform:uppercase; color:var(--k-head); margin-bottom:3px; }
+.ledger-body { font-size:13.5px; line-height:1.55; color:var(--k-txt-dim); }
+.ledger-arrow { color:var(--k-faint); transition:color var(--dur-base),transform var(--dur-base); }
+.ledger-row:hover .ledger-arrow { color:var(--k-cyan); transform:translateX(4px); }
+
+/* CRM pills */
+.crm-cloud { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+.crm-pill { display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid var(--k-line); background:var(--k-field); font-weight:700; font-size:13px; letter-spacing:-0.01em; color:var(--k-head); }
+.crm-pill.featured { border-color:var(--k-line-strong); color:var(--k-cyan); background:rgba(16,200,229,0.06); }
+
+/* Bento */
+.bento-grid { display:grid; grid-template-columns:repeat(3,1fr); grid-auto-rows:minmax(180px,auto); gap:14px; }
+.bento-cell { background:var(--k-panel); border:1px solid var(--k-line); padding:28px; position:relative; display:flex; flex-direction:column; gap:12px; transition:border-color var(--dur-base),background var(--dur-base); }
+.bento-cell:hover { border-color:var(--k-line-strong); background:var(--k-panel-2); }
+.bento-cell.span2 { grid-column:span 2; }
+.bento-val { font-size:48px; font-weight:800; letter-spacing:-0.04em; line-height:1; }
+.bento-title { font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--k-head); }
+.bento-desc { font-size:13px; line-height:1.55; color:var(--k-txt-dim); flex:1; }
+
+/* FAQ */
+.faq-list { border:1px solid var(--k-line-strong); background:var(--k-field); }
+.faq-item { border-top:1px solid var(--k-line); }
+.faq-item:first-child { border-top:none; }
+.faq-q { display:flex; justify-content:space-between; align-items:center; padding:20px 26px; cursor:pointer; font-weight:700; font-size:14.5px; text-transform:uppercase; letter-spacing:-0.01em; color:var(--k-head); transition:color var(--dur-base); user-select:none; }
+.faq-q:hover { color:var(--k-cyan); }
+.faq-a { padding:0 26px 20px; font-size:14px; line-height:1.65; color:var(--k-txt-dim); display:none; }
+.faq-item.open .faq-a { display:block; }
+.faq-chevron { transition:transform var(--dur-base); color:var(--k-txt-dim); flex-shrink:0; }
+.faq-item.open .faq-chevron { transform:rotate(180deg); color:var(--k-cyan); }
+
+/* Contact */
+.contact-sec { padding:96px 0; background:var(--k-field); border-top:1px solid var(--k-line); }
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--k-line-strong); }
+.contact-left { padding:52px 48px; border-right:1px solid var(--k-line-strong); position:relative; }
+.contact-right { padding:52px 48px; background:var(--k-panel); }
+.contact-left h2 { font-size:36px; font-weight:800; letter-spacing:-0.03em; text-transform:uppercase; color:var(--k-head); line-height:1.1; margin:0 0 14px; }
+.contact-intro { font-size:15px; line-height:1.65; color:var(--k-txt-dim); margin:0 0 32px; }
+.contact-trust { display:flex; flex-direction:column; gap:12px; }
+.trust-item { display:flex; align-items:center; gap:10px; font-size:13px; color:var(--k-txt-dim); }
+.trust-dot { width:6px; height:6px; background:var(--k-cyan); box-shadow:0 0 6px var(--k-cyan); flex-shrink:0; border-radius:50%; }
+.form-field { display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
+.form-label { font-size:11px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--k-txt-dim); }
+.form-input { background:rgba(255,255,255,0.04); border:1px solid var(--k-line); color:var(--k-head); font-family:var(--font-body); font-size:14px; padding:12px 16px; transition:border-color var(--dur-base); outline:none; width:100%; }
+.form-input:focus { border-color:var(--k-cyan); }
+.form-input::placeholder { color:var(--k-faint); }
+.form-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.form-submit { width:100%; padding:16px; background:var(--accent); color:#fff; font-family:var(--font-body); font-weight:700; font-size:13px; letter-spacing:0.1em; text-transform:uppercase; border:none; cursor:pointer; margin-top:8px; transition:background var(--dur-base); display:flex; align-items:center; justify-content:center; gap:10px; }
+.form-submit:hover { background:var(--accent-hover); }
+
+/* Footer */
+.footer { background:var(--k-field); border-top:1px solid var(--k-line); padding:48px 0; }
+.footer-inner { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; margin-top:32px; }
+.footer-logo { font-weight:800; font-size:16px; letter-spacing:-0.02em; text-transform:uppercase; color:var(--k-head); }
+.footer-links { display:flex; gap:24px; }
+.footer-links a { font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--k-txt-dim); transition:color var(--dur-base); }
+.footer-links a:hover { color:var(--k-head); }
+.footer-copy { font-size:12px; color:var(--k-faint); }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+function Icon({ name, size = 18, strokeWidth = 1.7 }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    if (window.lucide && ref.current) {
+      ref.current.innerHTML = "";
+      const i = document.createElement("i");
+      i.setAttribute("data-lucide", name);
+      ref.current.appendChild(i);
+      window.lucide.createIcons({ attrs: { width: size, height: size, "stroke-width": strokeWidth } });
+    }
+  }, [name, size]);
+  return <span ref={ref} aria-hidden="true" style={{ display:"inline-flex", alignItems:"center", lineHeight:0 }} />;
+}
+
+function Ticks() {
+  const s = { position:"absolute", width:11, height:11, pointerEvents:"none" };
+  const c = "1px solid var(--k-line-strong)";
+  return (
+    <React.Fragment>
+      <span style={{...s, top:-1, left:-1, borderTop:c, borderLeft:c}} />
+      <span style={{...s, top:-1, right:-1, borderTop:c, borderRight:c}} />
+      <span style={{...s, bottom:-1, left:-1, borderBottom:c, borderLeft:c}} />
+      <span style={{...s, bottom:-1, right:-1, borderBottom:c, borderRight:c}} />
+    </React.Fragment>
+  );
+}
+
+function Rule() {
+  return <div className="rule" />;
+}
+
+function Eyebrow({ children }) {
+  return (
+    <div className="eyebrow">
+      <span className="eyebrow-dot" />
+      {children}
+    </div>
+  );
+}
+
+function Nav() {
+  return (
+    <nav className="nav-bar">
+      <div className="k-container">
+        <div className="nav-inner">
+          <div className="nav-logo">
+            <div className="nav-logo-mark">IT</div>
+            <span className="nav-logo-text">Intouch Tech</span>
+          </div>
+          <div className="nav-links">
+            <a href="#">Cyber Security</a>
+            <a href="#">Managed IT</a>
+            <a href="#" className="active" style={{color:"var(--k-head)"}}>Telecoms</a>
+            <a href="#">Microsoft</a>
+            <a href="#">Company</a>
+          </div>
+          <button className="nav-cta">
+            <Icon name="phone" size={13} strokeWidth={2.5} />
+            0333 370 7000
+          </button>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+function Hero() {
+  const rows = [
+    { label:"Voice & Video", status:"Active", green:true },
+    { label:"Live Chat Integration", status:"Active", green:true },
+    { label:"CRM Screen-Pop", status:"Active", green:true },
+    { label:"Call Recording", status:"Ready", green:false },
+    { label:"Contact Centre Queue", status:"Ready", green:false },
+  ];
+  return (
+    <section className="hero">
+      <div className="hero-grid-bg" />
+      <div className="hero-glow" />
+      <div className="k-container">
+        <div className="hero-inner">
+          <div>
+            <div className="hero-badge">
+              <Icon name="shield-check" size={12} strokeWidth={2.5} />
+              3CX Certified Partner · UK-Based
+            </div>
+            <h1>One platform<br/>for voice, video<br/><span className="text-gradient">and chat.</span></h1>
+            <p className="hero-sub">Cut telecom costs by up to 80% and bring calls, video, and chat into one system. We install, configure, and support 3CX for UK businesses of every size.</p>
+            <div className="hero-btns">
+              <button className="btn-solid">Get a free quote <Icon name="arrow-right" size={14} strokeWidth={2.5} /></button>
+              <button className="btn-line">Talk to an expert</button>
+            </div>
+            <div className="hero-specs">
+              <div className="spec-item">
+                <span className="spec-val">80<span style={{fontSize:20,color:"var(--k-cyan)"}}>%</span></span>
+                <span className="spec-label">Cost reduction</span>
+              </div>
+              <div className="spec-divider" />
+              <div className="spec-item">
+                <span className="spec-val">48<span style={{fontSize:20,color:"var(--k-cyan)"}}>hr</span></span>
+                <span className="spec-label">Go-live time</span>
+              </div>
+              <div className="spec-divider" />
+              <div className="spec-item">
+                <span className="spec-val">20<span style={{fontSize:20,color:"var(--k-cyan)"}}>+</span></span>
+                <span className="spec-label">CRM integrations</span>
+              </div>
+            </div>
+          </div>
+          <div className="hero-panel">
+            <Ticks />
+            <p style={{margin:"0 0 12px",fontSize:11,fontWeight:700,letterSpacing:"0.18em",textTransform:"uppercase",color:"var(--k-txt-dim)"}}>3CX system status</p>
+            <Rule />
+            <div style={{marginTop:4}}>
+              {rows.map((r,i) => (
+                <div key={i} className="panel-row" style={{borderTop:i===0?"none":"1px solid var(--k-line)"}}>
+                  <span>{r.label}</span>
+                  <span className={`panel-badge ${r.green?"badge-green":"badge-cyan"}`}>{r.status}</span>
+                </div>
+              ))}
+            </div>
+            <div style={{marginTop:16,padding:"14px 16px",background:"rgba(16,200,229,0.06)",border:"1px solid var(--k-line-strong)"}}>
+              <p style={{margin:0,fontSize:11,fontWeight:700,letterSpacing:"0.18em",textTransform:"uppercase",color:"var(--k-cyan)"}}>Trusted by UK businesses</p>
+              <p style={{margin:"4px 0 0",fontSize:13,color:"var(--k-txt-dim)"}}>4.9★ Trustpilot · 98% client satisfaction</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function StatsBar() {
+  const stats = [
+    { val:"80", unit:"%", label:"Telecom cost reduction" },
+    { val:"1", unit:" licence", label:"One admin portal" },
+    { val:"48", unit:"hr", label:"Average go-live" },
+    { val:"4.9", unit:"★", label:"Trustpilot rating" },
+  ];
+  return (
+    <div className="stats-bar">
+      <div className="k-container" style={{padding:0,maxWidth:"100%"}}>
+        <div className="stats-inner">
+          {stats.map((s,i) => (
+            <div key={i} className="stat-cell">
+              <div className="stat-num">{s.val}<span style={{fontSize:24,color:"var(--k-cyan)"}}>{s.unit}</span></div>
+              <div className="stat-desc">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FeaturesLedger() {
+  const items = [
+    ["mic","Call recording & reporting","Track performance and improve how your team handles calls. Real-time dashboards show wait times, missed calls, and agent activity."],
+    ["plug","CRM integration","Connect 3CX to Salesforce, HubSpot, NetSuite and more. Screen-pops, automatic call logging, and click-to-dial in the tools you already use."],
+    ["git-branch","Intelligent call management","Smart routing, queues, and forwarding rules so every customer reaches the right person first time, every time."],
+    ["message-circle","Live chat integration","Bring website chat directly into 3CX so sales and support have the full picture — voice, video, and chat in one place."],
+    ["video","Video conferencing","Unlimited meetings with screen share and chat, built in. No extra licence, no third-party tool needed."],
+    ["lock","Advanced security","Built-in encryption, secure tunnelling, and regular security updates protect your organisation's communications."],
+  ];
+  return (
+    <section className="section">
+      <div className="k-container">
+        <div style={{display:"grid",gridTemplateColumns:"0.9fr 1.1fr",gap:60,alignItems:"start"}}>
+          <div style={{position:"sticky",top:100}}>
+            <Eyebrow>3CX features</Eyebrow>
+            <h2 style={{fontSize:"clamp(28px,3.5vw,44px)",fontWeight:800,letterSpacing:"-0.03em",lineHeight:1.1,color:"var(--k-head)",textTransform:"uppercase",margin:"0 0 16px"}}>
+              Everything your business <span className="text-gradient">needs to communicate.</span>
+            </h2>
+            <p style={{fontSize:15,lineHeight:1.65,color:"var(--k-txt-dim)",margin:"0 0 32px"}}>3CX is a single platform for voice, video, chat, and contact centre — no more juggling separate systems or paying for tools you barely use.</p>
+            <button className="btn-solid">See full feature list <Icon name="arrow-right" size={14} strokeWidth={2.5} /></button>
+          </div>
+          <div className="ledger">
+            {items.map(([icon,title,body],i) => (
+              <div key={i} className="ledger-row">
+                <Ticks />
+                <span className="ledger-num">{String(i+1).padStart(2,"0")}</span>
+                <span className="ledger-icon"><Icon name={icon} size={20} /></span>
+                <div>
+                  <div className="ledger-title">{title}</div>
+                  <div className="ledger-body">{body}</div>
+                </div>
+                <span className="ledger-arrow"><Icon name="arrow-right" size={16} /></span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Integrations() {
+  const featured = ["Salesforce","HubSpot","NetSuite","Bullhorn"];
+  const rest = ["Active Campaign","Zendesk","Pipedrive","Monday","Gong.io","Clio","Odoo","Vincere","Reapit","ServiceTitan","Quickbase","Zoho","+ more"];
+  return (
+    <section className="section">
+      <div className="k-container">
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:60,alignItems:"center"}}>
+          <div>
+            <Eyebrow>CRM integrations</Eyebrow>
+            <h2 style={{fontSize:"clamp(26px,3vw,40px)",fontWeight:800,letterSpacing:"-0.03em",lineHeight:1.1,color:"var(--k-head)",textTransform:"uppercase",margin:"0 0 16px"}}>
+              Connect 3CX to the tools <span className="text-gradient">you already use.</span>
+            </h2>
+            <p style={{fontSize:15,lineHeight:1.65,color:"var(--k-txt-dim)",margin:"0 0 28px"}}>We build and support custom 3CX integrations so your team gets screen-pops, automatic call logging, and click-to-call — without changing how you work.</p>
+            <button className="btn-line">Explore all integrations <Icon name="arrow-right" size={14} /></button>
+          </div>
+          <div>
+            <p style={{fontSize:11,fontWeight:700,letterSpacing:"0.2em",textTransform:"uppercase",color:"var(--k-cyan)",marginBottom:14}}>Featured integrations</p>
+            <div className="crm-cloud">
+              {featured.map(n => (
+                <span key={n} className="crm-pill featured">
+                  <span style={{width:6,height:6,background:"var(--k-cyan)",boxShadow:"0 0 6px var(--k-cyan)",borderRadius:"50%",flexShrink:0}} />
+                  {n}
+                </span>
+              ))}
+              {rest.map(n => <span key={n} className="crm-pill">{n}</span>)}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WhyBento() {
+  const cells = [
+    { val:"3CX", unit:"", label:"Certified partner", desc:"We sell, install, and support 3CX every day — you get the product and the expert backup from a team that knows it inside out.", span2:false, cyan:true },
+    { val:"4.9", unit:"★", label:"Trustpilot rating", desc:"98% client satisfaction. Trusted by UK businesses taking communications seriously.", span2:false, cyan:false },
+    { val:"UK", unit:"", label:"Based support", desc:"Real people, real answers. Support and billing right here in the UK — no offshore call centres.", span2:false, cyan:false },
+    { val:"0", unit:"", label:"Hard sell", desc:"We'll recommend what genuinely fits your size and budget. If 3CX isn't right for you, we'll say so — no obligation, no pressure.", span2:true, cyan:false },
+    { val:"Days", unit:"", label:"Not weeks to go live", desc:"We handle number porting, provisioning, and training. Most businesses are live within 48 hours.", span2:false, cyan:false },
+  ];
+  return (
+    <section className="section">
+      <div className="k-container">
+        <div className="section-head">
+          <Eyebrow>Why Intouch Tech</Eyebrow>
+          <h2>The partner<br/><span className="text-gradient">behind the platform.</span></h2>
+          <p className="section-intro">You're not just buying 3CX — you're getting a certified UK partner who installs, configures, integrates, and supports it every day.</p>
+        </div>
+        <div className="bento-grid">
+          {cells.map((c,i) => (
+            <div key={i} className={`bento-cell${c.span2?" span2":""}`}>
+              <Ticks />
+              <div className="bento-val" style={{color:c.cyan?"var(--k-cyan)":"var(--k-head)"}}>
+                {c.val}{c.unit&&<span style={{fontSize:28,color:"var(--k-cyan)"}}>{c.unit}</span>}
+              </div>
+              <div className="bento-title">{c.label}</div>
+              <div className="bento-desc">{c.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FAQ() {
+  const [open,setOpen] = useState(null);
+  const faqs = [
+    ["What is 3CX?","A powerful, all-in-one business phone system and contact centre solution for companies of all sizes. It replaces traditional PBX hardware with software running on Windows, Linux, or in the cloud."],
+    ["Can I use 3CX remotely?","Yes. 3CX includes secure mobile apps for iOS and Android and a full web client, making remote and hybrid work effortless from any device."],
+    ["Does 3CX work with my existing hardware?","Absolutely. 3CX supports SIP phones, headsets, and gateways, so you can use much of your current equipment and avoid a costly hardware refresh."],
+    ["How long does setup take?","Most setups are live within a few days. We handle provisioning, number porting, and training. Complex or multi-site projects may take longer — we'll give you a clear timeline upfront."],
+    ["Do I need to change my phone numbers?","No. We can port your existing numbers to 3CX so customers keep calling the same numbers. We confirm porting options during your free discovery call."],
+    ["Is 3CX secure?","Yes. Built-in encryption, secure tunnelling, and regular updates protect your organisation's communications to enterprise standards."],
+  ];
+  return (
+    <section className="section">
+      <div className="k-container">
+        <div style={{display:"grid",gridTemplateColumns:"0.85fr 1.15fr",gap:60,alignItems:"start"}}>
+          <div style={{position:"sticky",top:100}}>
+            <Eyebrow>3CX FAQ</Eyebrow>
+            <h2 style={{fontSize:"clamp(26px,3vw,40px)",fontWeight:800,letterSpacing:"-0.03em",lineHeight:1.1,color:"var(--k-head)",textTransform:"uppercase",margin:"0 0 16px"}}>
+              3CX <span className="text-gradient">questions answered.</span>
+            </h2>
+            <p style={{fontSize:15,lineHeight:1.65,color:"var(--k-txt-dim)",margin:"0 0 28px"}}>The questions UK businesses ask us most before switching to 3CX.</p>
+            <button className="btn-line">Still have questions? <Icon name="arrow-right" size={14} /></button>
+          </div>
+          <div className="faq-list">
+            {faqs.map(([q,a],i) => (
+              <div key={i} className={`faq-item${open===i?" open":""}`}>
+                <div className="faq-q" onClick={()=>setOpen(open===i?null:i)}>
+                  {q}
+                  <span className="faq-chevron"><Icon name="chevron-down" size={16} strokeWidth={2.5} /></span>
+                </div>
+                <div className="faq-a">{a}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Contact() {
+  return (
+    <section className="contact-sec">
+      <div className="k-container">
+        <div style={{textAlign:"center",marginBottom:48}}>
+          <Eyebrow>Get started</Eyebrow>
+          <h2 style={{fontSize:"clamp(28px,4vw,50px)",fontWeight:800,letterSpacing:"-0.03em",textTransform:"uppercase",color:"var(--k-head)",margin:"0 0 14px"}}>
+            Book a free 3CX <span className="text-gradient">discovery call.</span>
+          </h2>
+          <p style={{fontSize:16,color:"var(--k-txt-dim)",maxWidth:520,margin:"0 auto"}}>Tell us about your business. We'll show you what 3CX could do — no obligation, no hard sell.</p>
+        </div>
+        <div className="contact-grid">
+          <div className="contact-left">
+            <Ticks />
+            <Eyebrow>Why talk to us</Eyebrow>
+            <h2>Direct access<br/>to experts.</h2>
+            <p className="contact-intro">You don't deal with call centres or generic scripts. You get experienced telecoms specialists who understand your business and act fast.</p>
+            <div className="contact-trust">
+              {[
+                "UK-based engineers — real people, real answers",
+                "Response within 1 business day, guaranteed",
+                "Free 30-min discovery call, no sales pressure",
+                "Custom proposal with transparent pricing",
+                "Number porting handled — keep your existing numbers",
+              ].map((t,i) => (
+                <div key={i} className="trust-item">
+                  <span className="trust-dot" />
+                  {t}
+                </div>
+              ))}
+            </div>
+            <div style={{marginTop:36,padding:"20px 0",borderTop:"1px solid var(--k-line)"}}>
+              <p style={{margin:"0 0 4px",fontSize:11,fontWeight:700,letterSpacing:"0.18em",textTransform:"uppercase",color:"var(--k-txt-dim)"}}>Prefer to call?</p>
+              <a href="tel:03333707000" style={{fontSize:22,fontWeight:800,letterSpacing:"-0.02em",color:"var(--k-head)"}}>0333 370 7000</a>
+              <p style={{margin:"4px 0 0",fontSize:12,color:"var(--k-faint)"}}>Mon–Fri 8am–6pm · 24/7 for managed clients</p>
+            </div>
+          </div>
+          <div className="contact-right">
+            <div className="form-grid-2">
+              <div className="form-field"><label className="form-label">Full name</label><input className="form-input" type="text" placeholder="Jane Smith" /></div>
+              <div className="form-field"><label className="form-label">Company name</label><input className="form-input" type="text" placeholder="Acme Ltd" /></div>
+            </div>
+            <div className="form-grid-2">
+              <div className="form-field"><label className="form-label">Email</label><input className="form-input" type="email" placeholder="jane@acme.co.uk" /></div>
+              <div className="form-field"><label className="form-label">Phone</label><input className="form-input" type="tel" placeholder="0333 000 0000" /></div>
+            </div>
+            <div className="form-field">
+              <label className="form-label">How can we help?</label>
+              <select className="form-input" style={{appearance:"none",cursor:"pointer"}}>
+                <option value="">Select one</option>
+                <option>New 3CX system</option>
+                <option>CRM integration</option>
+                <option>Migration from existing system</option>
+                <option>Pricing and licensing</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div className="form-field">
+              <label className="form-label">Message (optional)</label>
+              <textarea className="form-input" rows={4} placeholder="Tell us about your current setup and what you need..." style={{resize:"none"}} />
+            </div>
+            <button className="form-submit">Send my enquiry <Icon name="arrow-right" size={15} strokeWidth={2.5} /></button>
+            <p style={{marginTop:12,fontSize:11.5,color:"var(--k-faint)",textAlign:"center"}}>We respond within 1 business day · No obligation</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="footer">
+      <div className="k-container">
+        <Rule />
+        <div className="footer-inner">
+          <div>
+            <div className="footer-logo">Intouch <span className="text-gradient">Tech</span></div>
+            <p style={{margin:"6px 0 0",fontSize:12,color:"var(--k-faint)"}}>UK-wide Managed IT, Cyber Security and Business Telecoms since 2012.</p>
+          </div>
+          <div className="footer-links">
+            <a href="#">3CX Phone System</a>
+            <a href="#">Microsoft Teams Phone</a>
+            <a href="#">Yeastar</a>
+            <a href="#">Leased Lines</a>
+          </div>
+          <div className="footer-copy">© 2026 Intouch Tech Ltd · Fleet, Hampshire</div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function App() {
+  return (
+    <React.Fragment>
+      <Nav />
+      <Hero />
+      <StatsBar />
+      <FeaturesLedger />
+      <Integrations />
+      <WhyBento />
+      <FAQ />
+      <Contact />
+      <Footer />
+    </React.Fragment>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("app")).render(<App />);
+</script>
+</body>
+</html>

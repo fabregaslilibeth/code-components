@@ -20,8 +20,7 @@ export const howTimelineCss = `
     overflow-x: clip;
     font-family: inherit;
     background: var(--ht-ink);
-    padding: 112px 0;
-    border-top: 1px solid var(--ht-line);
+    padding: 1rem 0rem;
   }
 
   .how-timeline-root .ht-container {
@@ -332,12 +331,6 @@ export const howTimelineCss = `
   .how-timeline-root .ht-tl-item.is-visible:hover .ht-tl-line-fill {
     background: linear-gradient(180deg, var(--ht-cyan), rgba(16, 200, 229, 0.35));
     box-shadow: 0 0 12px rgba(16, 200, 229, 0.35);
-  }
-
-  @media (max-width: 860px) {
-    .how-timeline-root {
-      padding: 72px 0;
-    }
   }
 
   @media (max-width: 620px) {

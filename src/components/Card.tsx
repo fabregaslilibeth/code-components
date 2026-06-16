@@ -10,7 +10,7 @@ interface CardProps {
   descriptionClassName?: string;
 }
 
-export const Card = ({ icon, title, description, className, iconClassName, titleClassName, descriptionClassName }: CardProps) => {
+export const CardLegacy = ({ icon, title, description, className, iconClassName, titleClassName, descriptionClassName }: CardProps) => {
   // Convert empty strings to undefined so React doesn't add empty className attributes
   const containerClass = className?.trim() || undefined;
   const iconClass = iconClassName?.trim() || undefined;

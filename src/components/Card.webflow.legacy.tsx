@@ -1,9 +1,9 @@
-import { Card } from './Card';
+import { CardLegacy as Card } from './Card';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
 
 export default declareComponent(Card, {
-    name: 'Card',
+    name: 'Card Legacy',
     description: 'A card component with icon, title, and description',
     group: 'Content',
     props: {

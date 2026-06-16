@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la /home/beth/)",
+      "Bash(find //wsl.localhost/ubuntu/home/beth/code-components/src -type f | head -50)",
+      "Bash(tree -L 3 //wsl.localhost/ubuntu/home/beth/code-components/src/components -I node_modules)",
+      "Bash(find //wsl.localhost/ubuntu/home/beth/code-components/src/components -type d)",
+      "Bash(mkdir -p /home/beth/code-components/src/components/why-bento)",
+      "Bash(mkdir -p \\\\\\\\wsl.localhost\\\\ubuntu\\\\home\\\\beth\\\\code-components\\\\src\\\\components\\\\button)",
+      "Bash(cat \"\\\\\\\\wsl.localhost\\\\ubuntu\\\\home\\\\beth\\\\code-components\\\\webflow.json\")",
+      "Skill(deep-research)",
+      "Skill(deep-research:*)",
+      "WebSearch",
+      "WebFetch(domain:www.3cx.com)",
+      "WebFetch(domain:xecu.net)"
+    ]
+  }
+}
