@@ -105,8 +105,8 @@ export const ExpertCta = ({
         {/* Left: content */}
         <div style={S.contentCol} className="expert-cta-content">
           <p style={S.eyebrow}>{eyebrow}</p>
-          <h2 style={S.headline}>{headline}</h2>
-          <h3 style={S.name}>{expertName}</h3>
+          <h3 style={S.headline}>{headline}</h3>
+          <h4 style={S.name}>{expertName}</h4>
           <p style={S.tagline}>{tagline}</p>
           <p style={S.body}>{body}</p>
 
