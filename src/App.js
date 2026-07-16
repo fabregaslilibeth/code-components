@@ -9,6 +9,7 @@ import { HowTimeline } from 'components/timeline/HowTimeline';
 import { Bento } from 'components/bento/Bento';
 import { WhyBentoLight } from 'components/why-bento/WhyBentoLight';
 import { WhyBento } from 'components/why-bento/WhyBento';
+import { WhyBentoArray } from 'components/why-bento-array/WhyBentoArray';
 import { HeaderGroup } from 'components/header-group/HeaderGroup';
 import { Grid } from 'components/grid/Grid';
 import { GridArray } from 'components/grid-array/GridArray';
@@ -23,6 +24,7 @@ import { StatsGrid } from 'components/stats-grid/StatsGrid';
 import { NumberedList } from 'components/numbered-list/NumberedList';
 import { ServiceList } from 'components/service-list/ServiceList';
 import { CtaBanner } from 'components/cta-banner/CtaBanner';
+import { BulletList } from 'components/bullet-list/BulletList';
 
 function ComponentSection({ title, children }) {
   return (
@@ -37,6 +39,29 @@ function App() {
   return (
     <div className="App">
       <div className="app-container">
+        <ComponentSection title="BulletList (dark)">
+          <BulletList theme="dark" items={[
+            {title:"Reduce downtime and recurring IT issues", body:"Proactive monitoring catches issues before they impact your team."},
+            {title:"Cut wasted spend on licences and suppliers"},
+            {title:"Get a clear, prioritised IT roadmap"},
+          ]} />
+        </ComponentSection>
+        <ComponentSection title="BulletList (light, check-circle)">
+          <BulletList theme="light" icon="check-circle" items={[
+            {title:"Reduce downtime and recurring IT issues", body:"Proactive monitoring catches issues before they impact your team."},
+            {title:"Cut wasted spend on licences and suppliers"},
+            {title:"Get a clear, prioritised IT roadmap"},
+          ]} />
+        </ComponentSection>
+        <ComponentSection title="Button">
+          <Button />
+        </ComponentSection>
+        <ComponentSection title="Button">
+          <Button theme="dark" label="Get started" icon="arrow-right" />
+        </ComponentSection>
+        <ComponentSection title="Button">
+          <Button theme="light" label="Get started" icon="arrow-right" />
+        </ComponentSection>
         <ComponentSection title="Banner">
           <Banner />
         </ComponentSection>
@@ -54,6 +79,16 @@ function App() {
         </ComponentSection>
         <ComponentSection title="CtaBanner">
           <CtaBanner />
+        </ComponentSection>
+        <ComponentSection title="BulletList (dark)">
+          <BulletList />
+        </ComponentSection>
+        <ComponentSection title="BulletList (light, check-circle)">
+          <BulletList theme="light" icon="check-circle" items={[
+            {title:"Reduce downtime and recurring IT issues", body:"Proactive monitoring catches issues before they impact your team."},
+            {title:"Cut wasted spend on licences and suppliers"},
+            {title:"Get a clear, prioritised IT roadmap"},
+          ]} />
         </ComponentSection>
         <ComponentSection title="ServiceList">
           <ServiceList />
@@ -103,6 +138,12 @@ function App() {
         </ComponentSection>
         <ComponentSection title="HeaderGroup">
           <HeaderGroup />
+        </ComponentSection>
+        <ComponentSection title="WhyBentoArray (dark)">
+          <WhyBentoArray />
+        </ComponentSection>
+        <ComponentSection title="WhyBentoArray (light)">
+          <WhyBentoArray theme="light" />
         </ComponentSection>
         <ComponentSection title="WhyBento">
           <WhyBento />

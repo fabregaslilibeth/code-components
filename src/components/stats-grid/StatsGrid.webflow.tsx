@@ -1,4 +1,4 @@
-import { StatsGrid, StatItem, StatsGridTheme } from './StatsGrid';
+﻿import { StatsGrid, StatItem, StatsGridTheme } from './StatsGrid';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
 
@@ -43,8 +43,8 @@ export default declareComponent(StatsGridWebflow, {
   description: 'Grid of stat cards — value, optional unit superscript, and label',
   group: 'Content',
   props: {
-    theme:   props.Text({ name: 'Theme (light / dark)', defaultValue: 'light' }),
-    columns: props.Text({ name: 'Columns (1–6)',        defaultValue: '2' }),
+    theme:   props.Variant({ name: 'Theme', defaultValue: 'light', options: ['light', 'dark'] }),
+    columns: props.Variant({ name: 'Columns', defaultValue: '2', options: ['1', '2', '3', '4', '5', '6'] }),
     items:   props.Text({ name: 'Items (JSON array)',   defaultValue: DEFAULT_ITEMS_JSON }),
   },
 });

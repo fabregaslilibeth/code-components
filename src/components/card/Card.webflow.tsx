@@ -1,4 +1,4 @@
-import { Card, CardTheme } from './Card';
+﻿import { Card, CardTheme } from './Card';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
 
@@ -29,7 +29,7 @@ export default declareComponent(CardWebflow, {
   description: 'Single icon card with title and body — dark or light theme',
   group: 'Content',
   props: {
-    theme: props.Text({ name: 'Theme (dark / light)', defaultValue: 'dark' }),
+    theme: props.Variant({ name: 'Theme', defaultValue: 'dark', options: ['dark', 'light'] }),
     icon:  props.Text({ name: 'Icon (Lucide name)',   defaultValue: 'layers' }),
     title: props.Text({ name: 'Title',                defaultValue: 'TEST' }),
     body:  props.Text({ name: 'Body',                 defaultValue: 'TEST' }),

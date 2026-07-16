@@ -1,4 +1,4 @@
-import { PillList, PillItem, PillListTheme } from './PillList';
+﻿import { PillList, PillItem, PillListTheme } from './PillList';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
 
@@ -36,7 +36,7 @@ export default declareComponent(PillListWebflow, {
   description: 'Flex-wrap pill list — icon + label. Add "href" to make a pill a link.',
   group: 'Content',
   props: {
-    theme: props.Text({ name: 'Theme (light / dark)', defaultValue: 'light' }),
+    theme: props.Variant({ name: 'Theme', defaultValue: 'light', options: ['light', 'dark'] }),
     items: props.Text({ name: 'Items (JSON array)', defaultValue: DEFAULT_ITEMS_JSON }),
   },
 });

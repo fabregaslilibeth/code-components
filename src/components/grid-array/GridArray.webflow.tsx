@@ -1,4 +1,4 @@
-import { GridArray } from './GridArray';
+﻿import { GridArray } from './GridArray';
 import { GridItem } from '../grid/Grid';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
@@ -49,7 +49,7 @@ export default declareComponent(GridArrayWebflow, {
   description: 'Uniform icon-card grid — accepts items as a JSON array',
   group: 'Content',
   props: {
-    theme:   props.Text({ name: 'Theme (dark / light)', defaultValue: 'dark' }),
+    theme:   props.Variant({ name: 'Theme', defaultValue: 'dark', options: ['dark', 'light'] }),
     columns: props.Text({ name: 'Columns (desktop)',    defaultValue: '3' }),
     gap:     props.Text({ name: 'Grid gap (CSS value)', defaultValue: '14px' }),
     items:   props.Text({ name: 'Items (JSON array)',   defaultValue: DEFAULT_ITEMS_JSON }),

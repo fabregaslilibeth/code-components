@@ -1,4 +1,4 @@
-import { CompareCard, CompareCardTheme } from './CompareCard';
+﻿import { CompareCard, CompareCardTheme } from './CompareCard';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
 
@@ -45,7 +45,7 @@ export default declareComponent(CompareCardWebflow, {
   description: 'Pro vs con comparison card with icons and custom colours',
   group: 'Content',
   props: {
-    theme:        props.Text({ name: 'Theme (light / dark)',     defaultValue: 'light' }),
+    theme:        props.Variant({ name: 'Theme', defaultValue: 'light', options: ['light', 'dark'] }),
     title:        props.Text({ name: 'Title',                    defaultValue: 'Single source of truth' }),
     titleColor:   props.Text({ name: 'Title colour',             defaultValue: '' }),
     proIcon:      props.Text({ name: 'Pro icon',                 defaultValue: 'check-circle' }),

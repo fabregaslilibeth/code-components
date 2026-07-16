@@ -1,4 +1,4 @@
-import { Grid, GridItem, GridTheme } from './Grid';
+﻿import { Grid, GridItem, GridTheme } from './Grid';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
 
@@ -54,7 +54,7 @@ export default declareComponent(GridWebflow, {
   description: 'Uniform icon-card grid — dark or light theme',
   group: 'Content',
   props: {
-    theme:      props.Text({ name: 'Theme (dark / light)',  defaultValue: 'dark' }),
+    theme:      props.Variant({ name: 'Theme', defaultValue: 'dark', options: ['dark', 'light'] }),
     columns:    props.Text({ name: 'Columns (desktop)',     defaultValue: '4' }),
     gap:        props.Text({ name: 'Grid gap (CSS value)',  defaultValue: '14px' }),
     item1Icon:  props.Text({ name: 'Item 1 icon',  defaultValue: 'layers' }),

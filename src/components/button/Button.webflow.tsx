@@ -1,4 +1,4 @@
-import { Button, ButtonTheme } from './Button';
+﻿import { Button, ButtonTheme } from './Button';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
 
@@ -32,7 +32,7 @@ export default declareComponent(ButtonWebflow, {
   description: 'Pill CTA button — label, icon, link, dark/light theme',
   group: 'Content',
   props: {
-    theme:  props.Text({ name: 'Theme (light / dark)',    defaultValue: 'light' }),
+    theme:  props.Variant({ name: 'Theme', defaultValue: 'light', options: ['light', 'dark'] }),
     label:  props.Text({ name: 'Label',                   defaultValue: 'Ask about Power BI Training' }),
     icon:   props.Text({ name: 'Icon (lucide name)',       defaultValue: 'arrow-up-right' }),
     href:   props.Text({ name: 'Link URL',                defaultValue: '' }),

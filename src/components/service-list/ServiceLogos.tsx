@@ -131,6 +131,45 @@ const logos: Record<string, React.ReactNode> = {
       <path d="M12 4L4 20h7l5-8 5 14h7L18 4h-6z" fill="url(#az-grad)"/>
     </svg>
   ),
+  'shield-check': (
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28">
+      <defs>
+        <linearGradient id="ce1-grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#36C6E0"/>
+          <stop offset="100%" stopColor="#0F63F3"/>
+        </linearGradient>
+      </defs>
+      <path d="M16 3L5 7v8c0 5.52 4.74 10.67 11 12 6.26-1.33 11-6.48 11-12V7L16 3z" fill="url(#ce1-grad)"/>
+      <path d="M11 16l3 3 7-7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+    </svg>
+  ),
+  'shield-plus': (
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28">
+      <defs>
+        <linearGradient id="ce2-grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#0F63F3"/>
+          <stop offset="100%" stopColor="#7B61FF"/>
+        </linearGradient>
+      </defs>
+      <path d="M16 3L5 7v8c0 5.52 4.74 10.67 11 12 6.26-1.33 11-6.48 11-12V7L16 3z" fill="url(#ce2-grad)"/>
+      <path d="M13 16h6M16 13v6" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+    </svg>
+  ),
+  'shield-cog-corner': (
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28">
+      <defs>
+        <linearGradient id="ce3-grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#10C8E5"/>
+          <stop offset="100%" stopColor="#0F63F3"/>
+        </linearGradient>
+      </defs>
+      <path d="M16 3L5 7v8c0 5.52 4.74 10.67 11 12 6.26-1.33 11-6.48 11-12V7L16 3z" fill="url(#ce3-grad)"/>
+      <circle cx="16" cy="15" r="4" stroke="white" strokeWidth="1.8" fill="none"/>
+      <path d="M16 13v2.5l1.5 1.5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+      <circle cx="23" cy="23" r="5" fill="#0F63F3" stroke="#0a1325" strokeWidth="1.5"/>
+      <path d="M21 23h4M23 21v4" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  ),
   'dynamics': (
     <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28">
       <defs>

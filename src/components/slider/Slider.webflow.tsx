@@ -1,4 +1,4 @@
-import * as React from 'react';
+﻿import * as React from 'react';
 import { Slider, SliderTheme } from './Slider';
 import { SliderItem } from './SliderItem';
 import { props } from '@webflow/data-types';
@@ -55,7 +55,7 @@ export default declareComponent(SliderWebflow, {
   description: 'Scroll-snap card slider — paste a JSON array into the Slides prop',
   group: 'Content',
   props: {
-    theme:  props.Text({ name: 'Theme (dark / light)', defaultValue: 'dark' }),
+    theme:  props.Variant({ name: 'Theme', defaultValue: 'dark', options: ['dark', 'light'] }),
     basis:  props.Text({ name: 'Slide width (CSS value)', defaultValue: 'clamp(258px, 82%, 340px)' }),
     slides: props.Text({ name: 'Slides (JSON array)', defaultValue: DEFAULT_SLIDES }),
   },

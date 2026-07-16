@@ -1,4 +1,4 @@
-import { NumberedList, NumberedListItem, NumberedListTheme } from './NumberedList';
+﻿import { NumberedList, NumberedListItem, NumberedListTheme } from './NumberedList';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
 
@@ -45,7 +45,7 @@ export default declareComponent(NumberedListWebflow, {
   description: 'Numbered rows with icon, title and body — light or dark theme',
   group: 'Content',
   props: {
-    theme:       props.Text({ name: 'Theme (light / dark)',         defaultValue: 'light' }),
+    theme:       props.Variant({ name: 'Theme', defaultValue: 'light', options: ['light', 'dark'] }),
     activeIndex: props.Text({ name: 'Active row (1-based, optional)', defaultValue: '1' }),
     items:       props.Text({ name: 'Items (JSON array)',           defaultValue: DEFAULT_ITEMS_JSON }),
   },

@@ -1,4 +1,4 @@
-import { Marquee, MarqueeTheme, MarqueeDirection, MarqueeItem } from './Marquee';
+﻿import { Marquee, MarqueeTheme, MarqueeDirection, MarqueeItem } from './Marquee';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
 
@@ -50,8 +50,8 @@ export default declareComponent(MarqueeWebflow, {
   description: 'Infinite scrolling pill strip — icon + label items',
   group: 'Content',
   props: {
-    theme:     props.Text({ name: 'Theme (light / dark)',       defaultValue: 'light' }),
-    direction: props.Text({ name: 'Direction (left / right)',   defaultValue: 'left' }),
+    theme:     props.Variant({ name: 'Theme', defaultValue: 'light', options: ['light', 'dark'] }),
+    direction: props.Variant({ name: 'Direction', defaultValue: 'left', options: ['left', 'right'] }),
     duration:  props.Text({ name: 'Speed (CSS duration)',       defaultValue: '30s' }),
     items:     props.Text({ name: 'Items (JSON array)',         defaultValue: DEFAULT_ITEMS_JSON }),
   },

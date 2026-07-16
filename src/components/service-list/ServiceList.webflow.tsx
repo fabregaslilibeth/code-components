@@ -1,4 +1,4 @@
-import { ServiceList, ServiceItem, ServiceListTheme } from './ServiceList';
+﻿import { ServiceList, ServiceItem, ServiceListTheme } from './ServiceList';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
 
@@ -41,7 +41,7 @@ export default declareComponent(ServiceListWebflow, {
   description: 'Numbered clickable service rows with logo, title, body and arrow',
   group: 'Content',
   props: {
-    theme: props.Text({ name: 'Theme (light / dark)', defaultValue: 'light' }),
+    theme: props.Variant({ name: 'Theme', defaultValue: 'light', options: ['light', 'dark'] }),
     items: props.Text({ name: 'Items (JSON array)',   defaultValue: DEFAULT_ITEMS_JSON }),
   },
 });

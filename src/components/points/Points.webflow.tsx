@@ -1,4 +1,4 @@
-import { Points, PointsTheme, PointItem } from './Points';
+﻿import { Points, PointsTheme, PointItem } from './Points';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
 
@@ -40,7 +40,7 @@ export default declareComponent(PointsWebflow, {
   description: 'Feature card with title, body and a grid of icon points',
   group: 'Content',
   props: {
-    theme:  props.Text({ name: 'Theme (dark / light)', defaultValue: 'dark' }),
+    theme:  props.Variant({ name: 'Theme', defaultValue: 'dark', options: ['dark', 'light'] }),
     title:  props.Text({ name: 'Title',                defaultValue: 'Automate the apps you build' }),
     body:   props.Text({ name: 'Body',                 defaultValue: 'Pair Power Apps with Power Automate and Microsoft Teams to handle approvals, notifications and back-end tasks automatically.' }),
     points:    props.Text({ name: 'Points (JSON array)',  defaultValue: DEFAULT_POINTS_JSON }),
