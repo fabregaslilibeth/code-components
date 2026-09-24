@@ -25,6 +25,10 @@ import { NumberedList } from 'components/numbered-list/NumberedList';
 import { ServiceList } from 'components/service-list/ServiceList';
 import { CtaBanner } from 'components/cta-banner/CtaBanner';
 import { BulletList } from 'components/bullet-list/BulletList';
+import { PricingCard } from 'components/pricing-card/PricingCard';
+import { DEFAULT_BANDS, DEFAULT_CHECKLIST } from 'components/pricing-card/PricingCard.data';
+import { CtaButton } from 'components/cta-button/CtaButton';
+import { CaseStudySpotlight } from 'components/case-study/CaseStudySpotlight';
 
 function ComponentSection({ title, children }) {
   return (
@@ -39,7 +43,49 @@ function App() {
   return (
     <div className="App">
       <div className="app-container">
-        <ComponentSection title="BulletList (dark)">
+        <ComponentSection title="CaseStudySpotlight (dark)">
+          <CaseStudySpotlight />
+        </ComponentSection>
+        <ComponentSection title="CaseStudySpotlight (light)">
+          <CaseStudySpotlight theme="light" />
+        </ComponentSection>
+        <ComponentSection title="PricingCard (light, bands)">
+          <div style={{ maxWidth: 392 }}>
+            <PricingCard bands={DEFAULT_BANDS} checklist={DEFAULT_CHECKLIST} defaultBand={1} />
+          </div>
+        </ComponentSection>
+        <ComponentSection title="PricingCard (dark, fixed price, plain checklist)">
+          <div style={{ maxWidth: 392 }}>
+            <PricingCard
+              theme="dark"
+              showBands={false}
+              price="£2,055"
+              kicker="From"
+              badge=""
+              note="Includes **Cyber Essentials** certification and independent technical testing."
+              checklist={[
+                'External vulnerability scan',
+                'Device sampling and MFA checks',
+                'Retest included if required',
+              ]}
+              ctaLabel="Book CE Plus"
+              altLabel=""
+              accentColor="#10C8E5"
+              accentColor2="#0F63F3"
+            />
+          </div>
+        </ComponentSection>
+        <ComponentSection title="CtaButton (size / shape / position)">
+          <CtaButton label="Start certification" size="big" shape="pill" />
+          <CtaButton label="View details" size="small" shape="rounded" bgColor="#0F63F3" />
+          <CtaButton label="Talk to us" size="small" shape="square" bgColor="#001B41" icon="arrow-up-right" />
+          <CtaButton label="Centred on tablet down" size="big" shape="pill" position="tablet-center" />
+        </ComponentSection>
+        <ComponentSection title="HowTimeline">
+          <HowTimeline />
+          <PillList />
+        </ComponentSection>
+        {/* <ComponentSection title="BulletList (dark)">
           <BulletList theme="dark" items={[
             {title:"Reduce downtime and recurring IT issues", body:"Proactive monitoring catches issues before they impact your team."},
             {title:"Cut wasted spend on licences and suppliers"},
@@ -151,15 +197,13 @@ function App() {
         <ComponentSection title="WhyBentoLight">
           <WhyBentoLight />
         </ComponentSection>
-        <ComponentSection title="HowTimeline">
-          <HowTimeline />
-        </ComponentSection>
+       
         <ComponentSection title="Bento">
           <Bento />
         </ComponentSection>
         <ComponentSection title="DeliveryProcess">
           <DeliveryProcess />
-        </ComponentSection>
+        </ComponentSection> */}
       </div>
     </div>
   );

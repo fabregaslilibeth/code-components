@@ -38,7 +38,7 @@ export const howTimelineCss = `
   .how-timeline-root .ht-tl-item {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 26px;
+    gap: 22px;
     opacity: 0;
     transform: translateY(24px);
     transition:
@@ -74,8 +74,8 @@ export const howTimelineCss = `
   .how-timeline-root .ht-tl-num {
     position: relative;
     overflow: hidden;
-    width: 54px;
-    height: 54px;
+    width: 46px;
+    height: 38px;
     flex-shrink: 0;
     border-radius: 3px;
     border: 1px solid var(--ht-line-strong);
@@ -165,9 +165,9 @@ export const howTimelineCss = `
 
   .how-timeline-root .ht-tl-body {
     display: grid;
-    grid-template-columns: 1fr 220px;
+    grid-template-columns: minmax(0, 1fr) 270px;
     gap: 26px;
-    align-items: center;
+    align-items: start;
     padding-bottom: 38px;
     min-width: 0;
   }
@@ -178,6 +178,7 @@ export const howTimelineCss = `
   }
 
   .how-timeline-root .ht-tl-title {
+    position: relative;
     font-weight: 800;
     font-size: 21px;
     text-transform: uppercase;
@@ -194,10 +195,13 @@ export const howTimelineCss = `
 
   .how-timeline-root .ht-tl-title::after {
     content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
     display: block;
     width: 0;
     height: 2px;
-    margin-top: 8px;
+    margin-top: 6px;
     background: linear-gradient(90deg, var(--ht-cyan) 0%, rgba(15, 99, 243, 0.45) 100%);
     transition: width 0.7s var(--ht-ease);
   }
@@ -235,9 +239,13 @@ export const howTimelineCss = `
     position: relative;
     overflow: hidden;
     border: 1px solid var(--ht-line);
+    width: 100%;
     min-height: 130px;
     align-self: stretch;
     cursor: pointer;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.16),
+      inset 0 -34px 44px -32px rgba(0, 0, 0, 0.55);
     transition:
       border-color 0.6s var(--ht-ease),
       box-shadow 0.6s var(--ht-ease);
@@ -261,7 +269,10 @@ export const howTimelineCss = `
   .how-timeline-root .ht-tl-thumb:hover,
   .how-timeline-root .ht-tl-item.is-visible:hover .ht-tl-thumb {
     border-color: rgba(16, 200, 229, 0.55);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -34px 44px -32px rgba(0, 0, 0, 0.4),
+      0 12px 40px rgba(0, 0, 0, 0.35);
   }
 
   .how-timeline-root .ht-tl-thumb:hover::before,
@@ -279,31 +290,31 @@ export const howTimelineCss = `
     display: block;
     will-change: transform;
     transform: translateY(var(--ht-parallax-y, 0px)) scale(1);
-    transition: transform 0.85s var(--ht-ease);
+    filter: saturate(1.14) contrast(1.07) brightness(1.05);
+    transition:
+      transform 0.85s var(--ht-ease),
+      filter 0.6s var(--ht-ease);
   }
 
   .how-timeline-root .ht-tl-thumb:hover img,
   .how-timeline-root .ht-tl-item.is-visible:hover .ht-tl-thumb img {
     transform: translateY(calc(var(--ht-parallax-y, 0px) - 4px)) scale(1.1);
+    filter: saturate(1.18) contrast(1.09) brightness(1.06);
   }
 
   .how-timeline-root .ht-tl-thumb-overlay {
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: linear-gradient(180deg, rgba(0, 17, 43, 0.15), rgba(0, 17, 43, 0.5));
     pointer-events: none;
-    transition: opacity 0.6s var(--ht-ease), background 0.6s var(--ht-ease);
+    transition: opacity 0.6s var(--ht-ease), background-image 0.6s var(--ht-ease);
   }
 
   .how-timeline-root .ht-tl-thumb:hover .ht-tl-thumb-overlay,
   .how-timeline-root .ht-tl-item.is-visible:hover .ht-tl-thumb-overlay {
-    background: linear-gradient(
-      180deg,
-      rgba(0, 17, 43, 0.04) 0%,
-      rgba(0, 17, 43, 0.22) 55%,
-      rgba(15, 99, 243, 0.18) 100%
-    );
+    background-image:
+      linear-gradient(200deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.06) 20%, rgba(255, 255, 255, 0) 46%),
+      linear-gradient(180deg, rgba(0, 17, 43, 0) 40%, rgba(15, 99, 243, 0.26) 100%);
   }
 
   .how-timeline-root .ht-tl-thumb-shine {
@@ -312,11 +323,12 @@ export const howTimelineCss = `
     z-index: 2;
     background: linear-gradient(
       105deg,
-      transparent 38%,
-      rgba(255, 255, 255, 0.07) 46%,
-      rgba(16, 200, 229, 0.18) 50%,
-      rgba(255, 255, 255, 0.07) 54%,
-      transparent 62%
+      transparent 40%,
+      rgba(255, 255, 255, 0.09) 46%,
+      rgba(255, 255, 255, 0.26) 50%,
+      rgba(16, 200, 229, 0.18) 53%,
+      rgba(255, 255, 255, 0.09) 57%,
+      transparent 64%
     );
     transform: translateX(-130%) skewX(-12deg);
     pointer-events: none;

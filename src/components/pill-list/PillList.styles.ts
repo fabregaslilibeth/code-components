@@ -85,4 +85,27 @@ export const pillListCss = `
   .pl-pill--link:hover .pl-pill-label {
     color: var(--pl-label-hover);
   }
+
+  /* ── alignment variants ── */
+  .pl-root.pl-center-all .pl-track {
+    justify-content: center;
+  }
+
+  @media (max-width: 991px) {
+    .pl-root.pl-center-991 .pl-track {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .pl-root.pl-center-767 .pl-track {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 479px) {
+    .pl-root.pl-center-479 .pl-track {
+      justify-content: center;
+    }
+  }
 `;

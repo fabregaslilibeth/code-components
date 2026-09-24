@@ -1,12 +1,15 @@
 import * as React from 'react';
 import { headerGroupCss } from './HeaderGroup.styles';
 
+export type HeaderGroupHeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
+
 export interface HeaderGroupProps {
   eyebrow?: string;
   showEyebrow?: boolean;
   titleBefore?: string;
   titleGrad?: string;
   titleAfter?: string;
+  headingTag?: HeaderGroupHeadingTag;
   titleColor?: string;
   intro?: string;
   introColor?: string;
@@ -20,6 +23,7 @@ export const HeaderGroup = ({
   titleBefore = 'Why choose us for',
   titleGrad = 'Power BI?',
   titleAfter = '',
+  headingTag = 'h3',
   titleColor = '#001b41',
   intro = '',
   introColor,
@@ -27,6 +31,7 @@ export const HeaderGroup = ({
   maxWidth = '760px',
 }: HeaderGroupProps) => {
   const rootStyle: React.CSSProperties = { maxWidth };
+  const Heading = headingTag as React.ElementType;
 
   return (
     <div className="hg-root" style={rootStyle}>
@@ -39,11 +44,11 @@ export const HeaderGroup = ({
           {eyebrow}
         </p>
       )}
-      <h2 className="hg-heading" style={{ color: titleColor }}>
+      <Heading className="hg-heading" style={{ color: titleColor }}>
         {titleBefore && <span>{titleBefore} </span>}
         {titleGrad && <span className="hg-grad">{titleGrad}</span>}
         {titleAfter && <span> {titleAfter}</span>}
-      </h2>
+      </Heading>
       {intro && (
         <p
           className="hg-intro"

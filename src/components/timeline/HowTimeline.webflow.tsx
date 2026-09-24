@@ -1,10 +1,18 @@
 import { HowTimeline } from './HowTimeline';
-import { DEFAULT_HOW_TIMELINE_STEPS, DEFAULT_HOW_TIMELINE_STEP_5, HowTimelineStep } from './HowTimeline.data';
+import {
+  DEFAULT_HOW_TIMELINE_STEPS,
+  DEFAULT_HOW_TIMELINE_STEP_5,
+  DEFAULT_HOW_TIMELINE_STEP_6,
+  DEFAULT_HOW_TIMELINE_STEP_7,
+  HowTimelineStep,
+} from './HowTimeline.data';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
 
 const HowTimelineWebflow = ({
   showStep5,
+  showStep6,
+  showStep7,
   step1Number,
   step1Title,
   step1Body,
@@ -25,8 +33,18 @@ const HowTimelineWebflow = ({
   step5Title,
   step5Body,
   step5Photo,
+  step6Number,
+  step6Title,
+  step6Body,
+  step6Photo,
+  step7Number,
+  step7Title,
+  step7Body,
+  step7Photo,
 }: {
   showStep5?: boolean;
+  showStep6?: boolean;
+  showStep7?: boolean;
   step1Number?: string;
   step1Title?: string;
   step1Body?: string;
@@ -47,6 +65,14 @@ const HowTimelineWebflow = ({
   step5Title?: string;
   step5Body?: string;
   step5Photo?: string;
+  step6Number?: string;
+  step6Title?: string;
+  step6Body?: string;
+  step6Photo?: string;
+  step7Number?: string;
+  step7Title?: string;
+  step7Body?: string;
+  step7Photo?: string;
 }) => {
   const defaults = DEFAULT_HOW_TIMELINE_STEPS;
   const steps: HowTimelineStep[] = [
@@ -85,20 +111,33 @@ const HowTimelineWebflow = ({
     });
   }
 
+  if (showStep6 === true) {
+    steps.push({
+      n: step6Number?.trim() || DEFAULT_HOW_TIMELINE_STEP_6.n,
+      title: step6Title?.trim() || DEFAULT_HOW_TIMELINE_STEP_6.title,
+      body: step6Body?.trim() || DEFAULT_HOW_TIMELINE_STEP_6.body,
+      photo: step6Photo?.trim() || DEFAULT_HOW_TIMELINE_STEP_6.photo,
+    });
+  }
+
+  if (showStep7 === true) {
+    steps.push({
+      n: step7Number?.trim() || DEFAULT_HOW_TIMELINE_STEP_7.n,
+      title: step7Title?.trim() || DEFAULT_HOW_TIMELINE_STEP_7.title,
+      body: step7Body?.trim() || DEFAULT_HOW_TIMELINE_STEP_7.body,
+      photo: step7Photo?.trim() || DEFAULT_HOW_TIMELINE_STEP_7.photo,
+    });
+  }
+
   return <HowTimeline steps={steps} />;
 };
 
 export default declareComponent(HowTimelineWebflow, {
   name: 'How Timeline',
   description:
-    'Vertical process timeline (4–5 steps) with scroll reveal, animated connector lines and photo parallax',
+    'Vertical process timeline (4–7 steps) with scroll reveal, animated connector lines and photo parallax',
   group: 'Content',
   props: {
-    showStep5: props.Visibility({
-      name: 'Show step 5',
-      group: 'Step 5',
-      defaultValue: false,
-    }),
     step1Number: props.Text({ name: 'Step 1 number', defaultValue: '01' }),
     step1Title: props.Text({
       name: 'Step 1 title',
@@ -155,6 +194,11 @@ export default declareComponent(HowTimelineWebflow, {
       name: 'Step 4 photo URL',
       defaultValue: DEFAULT_HOW_TIMELINE_STEPS[3].photo,
     }),
+    showStep5: props.Visibility({
+      name: 'Show step 5',
+      group: 'Step 5',
+      defaultValue: false,
+    }),
     step5Number: props.Text({
       name: 'Step 5 number',
       group: 'Step 5',
@@ -175,6 +219,56 @@ export default declareComponent(HowTimelineWebflow, {
       name: 'Step 5 photo URL',
       group: 'Step 5',
       defaultValue: DEFAULT_HOW_TIMELINE_STEP_5.photo,
+    }),
+    showStep6: props.Visibility({
+      name: 'Show step 6',
+      group: 'Step 6',
+      defaultValue: false,
+    }),
+    step6Number: props.Text({
+      name: 'Step 6 number',
+      group: 'Step 6',
+      defaultValue: '06',
+    }),
+    step6Title: props.Text({
+      name: 'Step 6 title',
+      group: 'Step 6',
+      defaultValue: DEFAULT_HOW_TIMELINE_STEP_6.title,
+    }),
+    step6Body: props.Text({
+      name: 'Step 6 body',
+      group: 'Step 6',
+      defaultValue: DEFAULT_HOW_TIMELINE_STEP_6.body,
+    }),
+    step6Photo: props.Text({
+      name: 'Step 6 photo URL',
+      group: 'Step 6',
+      defaultValue: DEFAULT_HOW_TIMELINE_STEP_6.photo,
+    }),
+    showStep7: props.Visibility({
+      name: 'Show step 7',
+      group: 'Step 7',
+      defaultValue: false,
+    }),
+    step7Number: props.Text({
+      name: 'Step 7 number',
+      group: 'Step 7',
+      defaultValue: '07',
+    }),
+    step7Title: props.Text({
+      name: 'Step 7 title',
+      group: 'Step 7',
+      defaultValue: DEFAULT_HOW_TIMELINE_STEP_7.title,
+    }),
+    step7Body: props.Text({
+      name: 'Step 7 body',
+      group: 'Step 7',
+      defaultValue: DEFAULT_HOW_TIMELINE_STEP_7.body,
+    }),
+    step7Photo: props.Text({
+      name: 'Step 7 photo URL',
+      group: 'Step 7',
+      defaultValue: DEFAULT_HOW_TIMELINE_STEP_7.photo,
     }),
   },
 });

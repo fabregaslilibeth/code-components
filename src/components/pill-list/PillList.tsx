@@ -4,6 +4,21 @@ import { LucideIcon } from '../LucideIcon';
 
 export type PillListTheme = 'dark' | 'light';
 
+export type PillListAlign =
+  | 'left'
+  | 'center'
+  | 'tablet center'
+  | 'mobile L center'
+  | 'mobile center';
+
+const ALIGN_CLASS: Record<PillListAlign, string> = {
+  'left': '',
+  'center': 'pl-center-all',
+  'tablet center': 'pl-center-991',
+  'mobile L center': 'pl-center-767',
+  'mobile center': 'pl-center-479',
+};
+
 export interface PillItem {
   icon?: string;
   label: string;
@@ -12,6 +27,7 @@ export interface PillItem {
 
 export interface PillListProps {
   theme?: PillListTheme;
+  align?: PillListAlign;
   items?: PillItem[];
 }
 
@@ -30,11 +46,16 @@ const DEFAULT_ITEMS: PillItem[] = [
   { icon: 'graduation-cap', label: 'Education' },
 ];
 
-export const PillList = ({ theme = 'light', items = DEFAULT_ITEMS }: PillListProps) => {
+export const PillList = ({
+  theme = 'light',
+  align = 'left',
+  items = DEFAULT_ITEMS,
+}: PillListProps) => {
   const safeItems = items.length > 0 ? items : DEFAULT_ITEMS;
+  const alignClass = ALIGN_CLASS[align] || '';
 
   return (
-    <div className={`pl-root pl-${theme}`}>
+    <div className={`pl-root pl-${theme}${alignClass ? ` ${alignClass}` : ''}`}>
       <style>{pillListCss}</style>
       <div className="pl-track">
         {safeItems.map((item, i) => {

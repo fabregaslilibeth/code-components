@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Cyber Essentials self-certification from Intouch Tech. Fixed price by headcount band, UK assessor review before submission, certificate in 10-14 days.">
+<title>Cyber Essentials Self-Certification</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* brand */
+  --blue:#0F63F3; --blue-ink:#0B4ED6; --blue-deep:#0B3FA8;
+  --cyan:#10C8E5; --cyan-deep:#0891A8;
+  --accent:#D92B45; --accent-hover:#C21F38;
+  --green:#067647; --green-bg:rgba(6,118,71,0.08); --green-line:rgba(6,118,71,0.24);
+  --amber:#B54708; --amber-bg:rgba(245,165,36,0.10); --amber-line:rgba(181,71,8,0.28);
+  /* surfaces — neutrals biased toward the brand navy, not flat grey */
+  --ink:#FFFFFF; --field:#F4F8FE; --panel:#FFFFFF; --panel-2:#F7FAFF;
+  --line:rgba(0,27,65,0.12); --line-strong:rgba(15,99,243,0.30);
+  /* type */
+  --head:#001B41; --txt:#2A3A55; --txt-dim:#5A6B85; --faint:#77869D;
+  --font:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --dur:200ms; --ease:cubic-bezier(0.4,0,0.2,1);
+  --shadow:0 1px 2px rgba(0,27,65,0.05), 0 10px 30px rgba(0,27,65,0.07);
+  --shadow-sm:0 1px 2px rgba(0,27,65,0.05), 0 4px 14px rgba(0,27,65,0.05);
+  --max:1180px; --pad:40px;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; font-family:var(--font); color:var(--txt); background:var(--ink);
+  -webkit-font-smoothing:antialiased; font-size:15px; line-height:1.6;
+}
+.page{position:relative; z-index:2;}
+a{color:inherit; text-decoration:none; -webkit-tap-highlight-color:transparent;}
+::selection{background:var(--blue); color:#fff;}
+:focus-visible{outline:2px solid var(--blue); outline-offset:3px;}
+h1,h2,h3,h4,p{margin:0;}
+ul{list-style:none; padding:0; margin:0;}
+button{font-family:inherit;}
+.wrap{width:100%; max-width:var(--max); margin:0 auto; padding:0 var(--pad);}
+.num{font-variant-numeric:tabular-nums;}
+svg{display:block;}
+
+/* ---------- shared atoms ---------- */
+.eyebrow{display:inline-flex; align-items:center; gap:10px; font-size:11.5px; font-weight:700;
+  letter-spacing:0.24em; text-transform:uppercase; color:var(--blue-ink);}
+.eyebrow::before{content:""; width:6px; height:6px; background:var(--blue); flex:0 0 auto;}
+.sec-title{font-size:clamp(26px,3.2vw,38px); font-weight:800; line-height:1.1; letter-spacing:-0.03em;
+  text-transform:uppercase; color:var(--head); text-wrap:balance;}
+.sec-intro{font-size:15.5px; line-height:1.65; color:var(--txt-dim); max-width:62ch;}
+.section{padding:88px 0; border-top:1px solid var(--line);}
+.sec-head{display:flex; flex-direction:column; gap:14px; margin-bottom:40px; max-width:680px;}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:9px; padding:15px 26px;
+  font-weight:700; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; border-radius:999px;
+  border:1px solid transparent; cursor:pointer; transition:background var(--dur) var(--ease),
+  box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease);}
+.btn-solid{background:var(--accent); color:#fff;}
+.btn-solid:hover{background:var(--accent-hover); box-shadow:0 10px 26px rgba(217,43,69,0.28);}
+.btn-line{background:#fff; color:var(--head); border-color:rgba(15,99,243,0.34);}
+.btn-line:hover{background:rgba(15,99,243,0.06); border-color:var(--blue); color:var(--blue-deep);}
+.tick{flex:0 0 auto; color:var(--blue); margin-top:2px;}
+
+/* ---------- nav ---------- */
+.nav{position:sticky; top:0; z-index:80; background:rgba(255,255,255,0.90); backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);}
+.nav-in{display:flex; align-items:center; justify-content:space-between; height:62px; gap:24px;}
+.logo{display:flex; align-items:center; gap:10px;}
+.logo-mark{width:30px; height:30px; display:grid; place-items:center; font-weight:900; font-size:12px; color:#fff;
+  background:linear-gradient(135deg,var(--blue) 0%,var(--cyan) 100%);}
+.logo-txt{font-weight:800; font-size:16px; letter-spacing:-0.03em; text-transform:uppercase; color:var(--head);}
+.nav-links{display:flex; gap:26px;}
+.nav-links a{font-size:12.5px; font-weight:600; letter-spacing:0.05em; text-transform:uppercase;
+  color:var(--txt-dim); transition:color var(--dur) var(--ease);}
+.nav-links a:hover,.nav-links a[aria-current]{color:var(--head);}
+.nav-tel{display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:var(--head);}
+.nav-tel svg{color:var(--blue);}
+
+/* ---------- breadcrumb ---------- */
+.crumbs{display:flex; align-items:center; gap:9px; padding:18px 0 0; font-size:12px; color:var(--faint);
+  flex-wrap:wrap;}
+.crumbs a{color:var(--txt-dim); transition:color var(--dur) var(--ease);}
+.crumbs a:hover{color:var(--blue-ink);}
+.crumbs b{color:var(--head); font-weight:600;}
+
+/* ---------- hero ---------- */
+.hero{position:relative; overflow:hidden; background:var(--field); border-bottom:1px solid var(--line);}
+.hero-bg{position:absolute; inset:0; pointer-events:none;
+  background-image:linear-gradient(rgba(15,99,243,0.055) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(15,99,243,0.055) 1px,transparent 1px);
+  background-size:64px 64px; -webkit-mask-image:linear-gradient(to bottom,#000 0%,transparent 82%);
+  mask-image:linear-gradient(to bottom,#000 0%,transparent 82%);}
+.hero-glow{position:absolute; top:-260px; right:-160px; width:760px; height:760px; border-radius:50%;
+  background:radial-gradient(circle,rgba(16,200,229,0.20) 0%,transparent 62%); pointer-events:none;}
+.hero-in{position:relative; display:grid; grid-template-columns:minmax(0,1fr) 392px; gap:56px;
+  align-items:start; padding:40px 0 72px;}
+.hero h1{font-size:clamp(34px,4.4vw,54px); font-weight:800; line-height:1.05; letter-spacing:-0.035em;
+  text-transform:uppercase; color:var(--head); margin:16px 0 0; text-wrap:balance;}
+.hero h1 em{font-style:normal; display:block; color:var(--blue);
+  background:linear-gradient(92deg,var(--blue) 0%,var(--blue-deep) 100%);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;}
+.hero-sub{font-size:17px; line-height:1.6; color:var(--txt-dim); max-width:54ch; margin-top:20px;}
+.hero-list{display:flex; flex-direction:column; gap:11px; margin-top:28px;}
+.hero-list li{display:flex; gap:11px; align-items:flex-start; font-size:14.5px; color:var(--txt); max-width:60ch;}
+.hero-specs{display:flex; align-items:stretch; margin-top:36px; border:1px solid var(--line);
+  background:#fff; flex-wrap:wrap; box-shadow:var(--shadow-sm);}
+.spec{padding:15px 20px; display:flex; flex-direction:column; gap:4px; border-right:1px solid var(--line);
+  flex:1 1 auto;}
+.spec:last-child{border-right:none;}
+.spec-v{font-size:19px; font-weight:800; letter-spacing:-0.03em; color:var(--head); line-height:1.1;}
+.spec-l{font-size:10.5px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--txt-dim);}
+
+/* ---------- buy rail ---------- */
+.buy{position:sticky; top:86px;}
+.buy-card{position:relative; background:var(--panel); border:1px solid var(--line-strong);
+  box-shadow:var(--shadow);}
+.buy-card::before{content:""; position:absolute; inset:0 0 auto; height:3px;
+  background:linear-gradient(90deg,var(--blue) 0%,var(--cyan) 100%);}
+.buy-head{padding:22px 24px 0; display:flex; align-items:center; justify-content:space-between; gap:12px;}
+.buy-kicker{font-size:10.5px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--txt-dim);}
+.pill{font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:4px 10px;
+  border-radius:999px; white-space:nowrap;}
+.pill-green{background:var(--green-bg); color:var(--green); border:1px solid var(--green-line);}
+.buy-body{padding:18px 24px 24px;}
+.band-label{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:9px;}
+.band-label > span:first-child{font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--txt-dim);}
+.band-help{font-size:11.5px; color:var(--blue-ink); border-bottom:1px dotted rgba(15,99,243,0.55);}
+.bands{display:grid; grid-template-columns:repeat(2,1fr); gap:6px;}
+.band{text-align:left; padding:11px 12px; background:#fff;
+  border:1px solid var(--line); color:var(--txt-dim); cursor:pointer; display:flex; flex-direction:column; gap:2px;
+  transition:border-color var(--dur) var(--ease), background var(--dur) var(--ease), color var(--dur) var(--ease);}
+.band:hover{border-color:rgba(15,99,243,0.45); background:var(--panel-2); color:var(--txt);}
+.band strong{font-size:13px; font-weight:700; letter-spacing:-0.01em; color:inherit;}
+.band small{font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; opacity:0.85;}
+.band[aria-pressed="true"]{background:rgba(15,99,243,0.07); border-color:var(--blue); color:var(--head);
+  box-shadow:inset 0 0 0 1px var(--blue);}
+.price-block{margin-top:20px; padding-top:20px; border-top:1px solid var(--line);}
+.price-row{display:flex; align-items:baseline; gap:10px;}
+.price{font-size:52px; font-weight:800; letter-spacing:-0.045em; line-height:1; color:var(--head);
+  font-variant-numeric:tabular-nums; transition:opacity 160ms var(--ease);}
+.price.swap{opacity:0.25;}
+.price-vat{font-size:13px; font-weight:600; color:var(--txt-dim); letter-spacing:0.02em;}
+.price-note{margin-top:9px; font-size:12.5px; color:var(--txt-dim); line-height:1.5;}
+.price-note b{color:var(--head); font-weight:700;}
+.buy-inc{display:flex; flex-direction:column; gap:9px; margin:20px 0; padding:17px 0;
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+.buy-inc li{display:flex; gap:9px; align-items:flex-start; font-size:13px; color:var(--txt-dim); line-height:1.45;}
+.buy-inc li b{color:var(--head); font-weight:600;}
+.buy .btn{width:100%;}
+.buy-alt{display:block; text-align:center; margin-top:11px; font-size:12.5px; font-weight:600; color:var(--txt-dim);
+  padding:11px; border:1px solid var(--line);
+  transition:border-color var(--dur) var(--ease), color var(--dur) var(--ease), background var(--dur) var(--ease);}
+.buy-alt:hover{border-color:var(--line-strong); color:var(--blue-deep); background:var(--panel-2);}
+.buy-fine{margin-top:14px; font-size:11.5px; line-height:1.55; color:var(--faint); text-align:center;}
+.buy-under{display:flex; align-items:flex-start; gap:10px; margin-top:12px; padding:13px 14px;
+  border:1px solid var(--line); background:var(--field); font-size:11.5px; color:var(--txt-dim);
+  line-height:1.45;}
+.buy-under svg{color:var(--blue); flex:0 0 auto; margin-top:1px;}
+
+/* ---------- credential strip ---------- */
+.creds{background:var(--field); border-bottom:1px solid var(--line);}
+.creds-in{display:grid; grid-template-columns:repeat(4,1fr);}
+.cred{padding:24px 26px; border-right:1px solid var(--line); display:flex; gap:14px; align-items:flex-start;}
+.cred:last-child{border-right:none;}
+.cred-ico{width:34px; height:34px; flex:0 0 auto; display:grid; place-items:center; color:var(--blue);
+  border:1px solid rgba(15,99,243,0.22); background:rgba(15,99,243,0.06);}
+.cred-t{font-size:13px; font-weight:700; letter-spacing:-0.01em; color:var(--head); margin-bottom:3px;}
+.cred-d{font-size:12.5px; line-height:1.5; color:var(--txt-dim);}
+
+/* ---------- section nav ---------- */
+.secnav{position:sticky; top:62px; z-index:70; background:rgba(255,255,255,0.94); backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);}
+.secnav-in{display:flex; gap:2px; overflow-x:auto; scrollbar-width:none;}
+.secnav-in::-webkit-scrollbar{display:none;}
+.secnav a{position:relative; padding:15px 18px; font-size:12.5px; font-weight:700; letter-spacing:0.07em;
+  text-transform:uppercase; color:var(--txt-dim); white-space:nowrap; transition:color var(--dur) var(--ease);}
+.secnav a:hover{color:var(--head);}
+.secnav a.on{color:var(--blue-ink);}
+.secnav a.on::after{content:""; position:absolute; left:18px; right:18px; bottom:-1px; height:2px; background:var(--blue);}
+
+/* ---------- ledger ---------- */
+.ledger{border:1px solid var(--line); background:#fff; box-shadow:var(--shadow-sm);}
+.lrow{display:grid; grid-template-columns:44px 1fr auto; gap:20px; align-items:center; padding:20px 24px;
+  border-top:1px solid var(--line); transition:background var(--dur) var(--ease);}
+.lrow:first-child{border-top:none;}
+.lrow:hover{background:var(--panel-2);}
+.lico{width:40px; height:40px; display:grid; place-items:center; border:1px solid rgba(15,99,243,0.22);
+  background:rgba(15,99,243,0.05); color:var(--blue);
+  transition:border-color var(--dur) var(--ease), background var(--dur) var(--ease);}
+.lrow:hover .lico{border-color:var(--blue); background:rgba(15,99,243,0.10);}
+.lt{font-size:14.5px; font-weight:700; letter-spacing:-0.01em; color:var(--head); margin-bottom:4px;}
+.ld{font-size:13.5px; line-height:1.55; color:var(--txt-dim); max-width:70ch;}
+.ltag{font-size:10.5px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue-ink);
+  padding:5px 10px; border:1px solid rgba(15,99,243,0.28); background:rgba(15,99,243,0.04); white-space:nowrap;}
+.ltag.alt{color:var(--txt-dim); border-color:var(--line); background:transparent;}
+
+/* ---------- controls grid ---------- */
+.ctrls{display:grid; grid-template-columns:repeat(5,1fr); gap:12px;}
+.ctrl{background:#fff; border:1px solid var(--line); padding:22px 20px; display:flex; flex-direction:column;
+  gap:11px; transition:border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);}
+.ctrl:hover{border-color:var(--line-strong); box-shadow:var(--shadow-sm);}
+.ctrl-top{display:flex; align-items:center; justify-content:space-between; color:var(--blue);}
+.ctrl-n{font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:0.1em; color:var(--blue-ink);}
+.ctrl-t{font-size:14px; font-weight:700; color:var(--head); letter-spacing:-0.01em; line-height:1.25;}
+.ctrl-d{font-size:12.5px; line-height:1.55; color:var(--txt-dim);}
+
+/* ---------- timeline ---------- */
+.tl{display:grid; grid-template-columns:repeat(5,1fr); border:1px solid var(--line); background:#fff;
+  box-shadow:var(--shadow-sm);}
+.tl-step{padding:24px 22px 22px; border-right:1px solid var(--line); position:relative; display:flex;
+  flex-direction:column; gap:10px;}
+.tl-step:last-child{border-right:none;}
+.tl-step::before{content:""; position:absolute; top:0; left:0; height:3px; width:100%;
+  background:linear-gradient(90deg,var(--blue),rgba(15,99,243,0.15));}
+.tl-step:last-child::before{background:#12B76A;}
+.tl-when{font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
+  color:var(--blue-ink);}
+.tl-step:last-child .tl-when{color:var(--green);}
+.tl-t{font-size:14.5px; font-weight:700; color:var(--head); letter-spacing:-0.01em; line-height:1.3;}
+.tl-d{font-size:13px; line-height:1.55; color:var(--txt-dim);}
+.tl-who{margin-top:auto; padding-top:14px; font-size:10.5px; font-weight:700; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--faint);}
+
+/* ---------- compare table ---------- */
+.cmp-scroll{overflow-x:auto; border:1px solid var(--line); box-shadow:var(--shadow-sm);}
+.cmp{width:100%; border-collapse:collapse; min-width:820px; background:#fff;}
+.cmp th,.cmp td{text-align:left; padding:15px 20px; border-bottom:1px solid var(--line); font-size:13.5px;
+  vertical-align:top; line-height:1.5;}
+.cmp thead th{background:var(--field); border-bottom:1px solid var(--line-strong); vertical-align:bottom;}
+.cmp thead th:first-child{width:26%;}
+.cmp-name{font-size:15px; font-weight:800; letter-spacing:-0.02em; color:var(--head); text-transform:uppercase;
+  display:block; margin-bottom:6px;}
+.cmp-price{font-size:13px; font-weight:600; color:var(--blue-ink); display:block;}
+.cmp-for{font-size:12px; color:var(--txt-dim); display:block; margin-top:9px; font-weight:400; line-height:1.45;}
+.cmp tbody th{font-weight:600; color:var(--head); background:var(--field); font-size:13px;}
+.cmp td{color:var(--txt-dim);}
+.cmp .this{background:rgba(15,99,243,0.05); color:var(--txt);}
+.cmp thead .this{background:rgba(15,99,243,0.09); border-top:3px solid var(--blue);}
+.cmp tr:last-child td,.cmp tr:last-child th{border-bottom:none;}
+.yes{color:var(--green); font-weight:600;}
+.no{color:var(--txt-dim);}
+.cmp-hint{margin-top:12px; font-size:12px; color:var(--faint);}
+
+/* ---------- conditions ---------- */
+.cond-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+.callout{grid-column:1 / -1; display:flex; gap:16px; padding:24px 26px; background:var(--amber-bg);
+  border:1px solid var(--amber-line); align-items:flex-start;}
+.callout svg{color:var(--amber); flex:0 0 auto; margin-top:2px;}
+.callout-t{font-size:13px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:var(--amber);
+  margin-bottom:8px;}
+.callout p{font-size:14px; line-height:1.65; color:var(--txt); max-width:80ch;}
+.callout p b{color:var(--head); font-weight:700;}
+.cond{background:#fff; border:1px solid var(--line); padding:22px 24px;}
+.cond h3{font-size:12.5px; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--head);
+  margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid var(--line);}
+.cond li{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; line-height:1.55; color:var(--txt-dim);
+  padding:7px 0;}
+.cond li b{color:var(--head); font-weight:600;}
+.dot{flex:0 0 auto; width:5px; height:5px; margin-top:8px; background:var(--blue); border-radius:50%;}
+.dot-off{background:var(--faint);}
+
+/* ---------- faq ---------- */
+.faq{border:1px solid var(--line); background:#fff; box-shadow:var(--shadow-sm);}
+.faq details{border-top:1px solid var(--line);}
+.faq details:first-of-type{border-top:none;}
+.faq summary{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 24px;
+  cursor:pointer; font-size:14.5px; font-weight:700; letter-spacing:-0.01em; color:var(--head); list-style:none;
+  transition:color var(--dur) var(--ease);}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary:hover{color:var(--blue-ink);}
+.faq .chev{flex:0 0 auto; color:var(--txt-dim);
+  transition:transform var(--dur) var(--ease), color var(--dur) var(--ease);}
+.faq details[open] .chev{transform:rotate(180deg); color:var(--blue);}
+.faq-a{padding:0 24px 20px; font-size:14px; line-height:1.65; color:var(--txt-dim); max-width:78ch;}
+
+/* ---------- closing cta ---------- */
+.cta{position:relative; overflow:hidden; background:var(--field); border-top:1px solid var(--line);}
+.cta-glow{position:absolute; bottom:-320px; left:50%; transform:translateX(-50%); width:900px; height:600px;
+  background:radial-gradient(ellipse,rgba(16,200,229,0.22) 0%,transparent 62%); pointer-events:none;}
+.cta-in{position:relative; padding:72px 0; display:grid; grid-template-columns:1fr auto; gap:48px;
+  align-items:center;}
+.cta h2{font-size:clamp(26px,3vw,36px); font-weight:800; letter-spacing:-0.03em; text-transform:uppercase;
+  color:var(--head); line-height:1.1; margin-bottom:12px; text-wrap:balance;}
+.cta p{font-size:15.5px; line-height:1.6; color:var(--txt-dim); max-width:58ch;}
+.cta-btns{display:flex; flex-direction:column; gap:10px; min-width:250px;}
+.cta-btns .btn{width:100%;}
+
+/* ---------- footer ---------- */
+.foot{border-top:1px solid var(--line); padding:30px 0; background:#fff;}
+.foot-in{display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+  font-size:12px; color:var(--txt-dim);}
+.foot-links{display:flex; gap:22px; flex-wrap:wrap;}
+.foot-links a{color:var(--txt-dim); font-weight:600; letter-spacing:0.05em; text-transform:uppercase;
+  font-size:11.5px; transition:color var(--dur) var(--ease);}
+.foot-links a:hover{color:var(--head);}
+
+/* ---------- mobile buy bar ---------- */
+.mbar{display:none; position:fixed; left:0; right:0; bottom:0; z-index:90; padding:11px 16px;
+  background:rgba(255,255,255,0.96); backdrop-filter:blur(16px); border-top:1px solid var(--line);
+  box-shadow:0 -4px 20px rgba(0,27,65,0.10); align-items:center; gap:14px;}
+.mbar-p{font-size:22px; font-weight:800; letter-spacing:-0.03em; color:var(--head); line-height:1;
+  font-variant-numeric:tabular-nums;}
+.mbar-l{font-size:10.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--txt-dim);
+  margin-top:3px;}
+.mbar .btn{flex:1; padding:14px 16px;}
+
+/* ---------- responsive ---------- */
+@media (max-width:1080px){
+  .hero-in{grid-template-columns:1fr; gap:40px;}
+  .buy{position:static;}
+  .buy-card{max-width:520px;}
+  .ctrls{grid-template-columns:repeat(3,1fr);}
+  .tl{grid-template-columns:repeat(3,1fr);}
+  .tl-step:nth-child(3n){border-right:none;}
+  .tl-step:nth-child(n+4){border-top:1px solid var(--line);}
+  .creds-in{grid-template-columns:repeat(2,1fr);}
+  .cred:nth-child(2n){border-right:none;}
+  .cred:nth-child(n+3){border-top:1px solid var(--line);}
+}
+@media (max-width:768px){
+  :root{--pad:22px;}
+  .section{padding:60px 0;}
+  .nav-links,.nav-tel{display:none;}
+  .hero-in{padding:30px 0 52px;}
+  .spec{flex:1 1 45%; border-bottom:1px solid var(--line);}
+  .ctrls{grid-template-columns:1fr 1fr;}
+  .tl{grid-template-columns:1fr;}
+  .tl-step{border-right:none; border-top:1px solid var(--line);}
+  .tl-step:first-child{border-top:none;}
+  .cond-grid{grid-template-columns:1fr;}
+  .cta-in{grid-template-columns:1fr; gap:26px; padding:56px 0;}
+  .lrow{grid-template-columns:40px 1fr; gap:14px;}
+  .ltag{grid-column:2; justify-self:start;}
+  .mbar{display:flex;}
+  body{padding-bottom:74px;}
+  .secnav{top:0;}
+  .buy{display:none;}
+}
+@media (max-width:420px){
+  .ctrls{grid-template-columns:1fr;}
+  .bands{grid-template-columns:1fr;}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <div class="logo">
+      <span class="logo-mark">IT</span>
+      <span class="logo-txt">Intouch Tech</span>
+    </div>
+    <div class="nav-links">
+      <a href="#">Services</a>
+      <a href="#" aria-current="page">Cyber Essentials</a>
+      <a href="#">Managed IT</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+    <a class="nav-tel" href="tel:+441234567890">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      01234 567 890
+    </a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="#">Home</a><span>/</span>
+      <a href="#">Cyber Essentials Packages</a><span>/</span>
+      <b aria-current="page">Self-Certification</b>
+    </nav>
+  </div>
+  <div class="wrap hero-in">
+    <div>
+      <span class="eyebrow">Cyber Essentials &middot; Package 1 of 3</span>
+      <h1>Cyber Essentials<em>Self-Certification</em></h1>
+      <p class="hero-sub">The government-backed security baseline, assessed against five technical
+        controls and certified by IASME. You prepare your own environment &mdash; we make sure your
+        submission passes first time.</p>
+
+      <ul class="hero-list">
+        <li>
+          <svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Fixed price by headcount band &mdash; nothing added later</span>
+        </li>
+        <li>
+          <svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Every answer reviewed by a UK assessor before it reaches IASME</span>
+        </li>
+        <li>
+          <svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>One free resubmission if the first attempt doesn&rsquo;t pass</span>
+        </li>
+        <li>
+          <svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>&pound;25,000 cyber liability insurance included on certification</span>
+        </li>
+      </ul>
+
+      <div class="hero-specs">
+        <div class="spec"><span class="spec-v num">5</span><span class="spec-l">Technical controls</span></div>
+        <div class="spec"><span class="spec-v num">10&ndash;14 days</span><span class="spec-l">Typical time to certify</span></div>
+        <div class="spec"><span class="spec-v num">12 months</span><span class="spec-l">Certificate validity</span></div>
+        <div class="spec"><span class="spec-v num">&pound;25,000</span><span class="spec-l">Insurance cover</span></div>
+      </div>
+    </div>
+
+    <aside class="buy" aria-label="Pricing and purchase">
+      <div class="buy-card">
+        <div class="buy-head">
+          <span class="buy-kicker">Your price</span>
+          <span class="pill pill-green">Fixed &middot; No hidden fees</span>
+        </div>
+        <div class="buy-body">
+          <div class="band-label">
+            <span id="band-lbl">Organisation size</span>
+            <a class="band-help" href="#conditions">How is this set?</a>
+          </div>
+          <div class="bands" role="group" aria-labelledby="band-lbl">
+            <button class="band" type="button" data-price="420" data-band="Micro" data-range="1&ndash;9 employees" aria-pressed="false">
+              <strong>Micro</strong><small>1&ndash;9 staff</small>
+            </button>
+            <button class="band" type="button" data-price="540" data-band="Small" data-range="10&ndash;49 employees" aria-pressed="true">
+              <strong>Small</strong><small>10&ndash;49 staff</small>
+            </button>
+            <button class="band" type="button" data-price="660" data-band="Medium" data-range="50&ndash;249 employees" aria-pressed="false">
+              <strong>Medium</strong><small>50&ndash;249 staff</small>
+            </button>
+            <button class="band" type="button" data-price="840" data-band="Large" data-range="250+ employees" aria-pressed="false">
+              <strong>Large</strong><small>250+ staff</small>
+            </button>
+          </div>
+
+          <div class="price-block">
+            <div class="price-row">
+              <span class="price" id="price">&pound;540</span>
+              <span class="price-vat">+ VAT</span>
+            </div>
+            <p class="price-note">
+              <b id="price-band">Small</b> band &mdash; <span id="price-range">10&ndash;49 employees</span>.
+              Set by total headcount across your whole organisation, not by the part being certified.
+            </p>
+          </div>
+
+          <ul class="buy-inc">
+            <li><svg class="tick" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span><b>IASME portal access</b> with the current question set</span></li>
+            <li><svg class="tick" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span><b>Pre-submission technical review</b> by your assessor</span></li>
+            <li><svg class="tick" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span><b>One free resubmission</b> within two working days</span></li>
+            <li><svg class="tick" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span><b>Certificate, badge assets</b> and directory listing</span></li>
+          </ul>
+
+          <a class="btn btn-solid" href="#start">
+            Start certification
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a class="buy-alt" href="#start">Not sure which band? Talk to an assessor</a>
+
+          <p class="buy-fine">Payment taken on submission. Certificate valid 12 months from issue.</p>
+
+          <div class="buy-under">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span>Assessed and certified by IASME, the NCSC&rsquo;s appointed Cyber Essentials Partner.</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</header>
+
+<section class="creds" aria-label="Scheme credentials">
+  <div class="wrap creds-in">
+    <div class="cred">
+      <span class="cred-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+      <div>
+        <div class="cred-t">Certified by IASME</div>
+        <p class="cred-d">Appointed by the NCSC to run the Cyber Essentials scheme across the UK.</p>
+      </div>
+    </div>
+    <div class="cred">
+      <span class="cred-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+      <div>
+        <div class="cred-t">&pound;25,000 cyber insurance</div>
+        <p class="cred-d">Included for UK organisations with turnover under &pound;20m. Opt out if covered.</p>
+      </div>
+    </div>
+    <div class="cred">
+      <span class="cred-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+      <div>
+        <div class="cred-t">Valid for 12 months</div>
+        <p class="cred-d">We prompt you 60 days before expiry so your listing never lapses.</p>
+      </div>
+    </div>
+    <div class="cred">
+      <span class="cred-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></span>
+      <div>
+        <div class="cred-t">UK-based assessors</div>
+        <p class="cred-d">Speak directly to the person reviewing your answers &mdash; not a ticket queue.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="secnav" aria-label="Page sections">
+  <div class="wrap secnav-in">
+    <a href="#included" class="on">What&rsquo;s included</a>
+    <a href="#controls">The five controls</a>
+    <a href="#process">How it works</a>
+    <a href="#compare">Compare packages</a>
+    <a href="#conditions">Conditions</a>
+    <a href="#faq">FAQs</a>
+  </div>
+</nav>
+
+<section class="section" id="included">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">What&rsquo;s included</span>
+      <h2 class="sec-title">Everything in the package</h2>
+      <p class="sec-intro">Self-certification doesn&rsquo;t mean on your own. You do the preparation;
+        we handle the scheme mechanics and check your work before it counts.</p>
+    </div>
+
+    <div class="ledger">
+      <div class="lrow">
+        <span class="lico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg></span>
+        <div>
+          <div class="lt">Guided self-assessment portal</div>
+          <p class="ld">Your own IASME portal account with the current question set, plus plain-English
+            notes on what each question is actually asking for &mdash; written by assessors, not lawyers.</p>
+        </div>
+        <span class="ltag">Included</span>
+      </div>
+      <div class="lrow">
+        <span class="lico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+        <div>
+          <div class="lt">Technical review before you submit</div>
+          <p class="ld">We read every answer against the scheme&rsquo;s marking criteria and flag anything
+            likely to fail &mdash; while there is still time to fix it.</p>
+        </div>
+        <span class="ltag">Included</span>
+      </div>
+      <div class="lrow">
+        <span class="lico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+        <div>
+          <div class="lt">A named Cyber Essentials assessor</div>
+          <p class="ld">Direct phone and email access to a UK-based assessor while you prepare.
+            Ask the awkward questions before they become a failed answer.</p>
+        </div>
+        <span class="ltag">Included</span>
+      </div>
+      <div class="lrow">
+        <span class="lico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg></span>
+        <div>
+          <div class="lt">One free resubmission</div>
+          <p class="ld">If your first submission doesn&rsquo;t pass, you get one corrected resubmission
+            within two working days at no extra cost.</p>
+        </div>
+        <span class="ltag alt">Scheme rule</span>
+      </div>
+      <div class="lrow">
+        <span class="lico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg></span>
+        <div>
+          <div class="lt">Certificate and marketing pack</div>
+          <p class="ld">Your certificate, official IASME badge assets for your website and tender
+            documents, and your entry on the certified organisation directory.</p>
+        </div>
+        <span class="ltag">Included</span>
+      </div>
+      <div class="lrow">
+        <span class="lico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></span>
+        <div>
+          <div class="lt">&pound;25,000 cyber liability insurance</div>
+          <p class="ld">Automatically included for UK-domiciled organisations with turnover under
+            &pound;20m. Opt out at submission if you already hold cyber cover.</p>
+        </div>
+        <span class="ltag alt">Conditions apply</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="controls">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">The assessment</span>
+      <h2 class="sec-title">The five controls you&rsquo;ll be assessed against</h2>
+      <p class="sec-intro">Cyber Essentials is not a broad audit. It tests five specific technical
+        controls, and the scheme is explicit about what each one requires. Here is what you&rsquo;ll
+        need to evidence.</p>
+    </div>
+
+    <div class="ctrls">
+      <div class="ctrl">
+        <div class="ctrl-top">
+          <span class="ctrl-n">01</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 9v12M15 9v12M3 15h18"/></svg>
+        </div>
+        <div class="ctrl-t">Firewalls</div>
+        <p class="ctrl-d">Boundary and host firewalls in place, default passwords changed, and every
+          inbound rule documented with a business justification.</p>
+      </div>
+      <div class="ctrl">
+        <div class="ctrl-top">
+          <span class="ctrl-n">02</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6 1.65 1.65 0 0 0 10 3.09V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </div>
+        <div class="ctrl-t">Secure configuration</div>
+        <p class="ctrl-d">Unused accounts and software removed, default credentials replaced, and
+          auto-run disabled on removable media.</p>
+      </div>
+      <div class="ctrl">
+        <div class="ctrl-top">
+          <span class="ctrl-n">03</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+        </div>
+        <div class="ctrl-t">Security update management</div>
+        <p class="ctrl-d">Only vendor-supported software in use, with high and critical updates applied
+          within 14 days of release.</p>
+      </div>
+      <div class="ctrl">
+        <div class="ctrl-top">
+          <span class="ctrl-n">04</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11h-6"/><path d="M19 8v6"/></svg>
+        </div>
+        <div class="ctrl-t">User access control</div>
+        <p class="ctrl-d">A unique account per user, administrator rights granted only where genuinely
+          needed, and multi-factor authentication on all cloud services.</p>
+      </div>
+      <div class="ctrl">
+        <div class="ctrl-top">
+          <span class="ctrl-n">05</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 8 10 8 10s8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <div class="ctrl-t">Malware protection</div>
+        <p class="ctrl-d">Anti-malware running on every in-scope device, or an approved allow-listing
+          or sandboxing approach in its place.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">How it works</span>
+      <h2 class="sec-title">From purchase to certificate</h2>
+      <p class="sec-intro">Most organisations certify in 10 to 14 days. The variable is how quickly
+        you can answer the questionnaire &mdash; everything on our side runs to a fixed clock.</p>
+    </div>
+
+    <ol class="tl">
+      <li class="tl-step">
+        <span class="tl-when">Day 0</span>
+        <div class="tl-t">Purchase and scoping</div>
+        <p class="tl-d">You pick your headcount band and pay. We send a short scope form and confirm
+          what is in and out of certification.</p>
+        <span class="tl-who">You + Intouch</span>
+      </li>
+      <li class="tl-step">
+        <span class="tl-when">Day 1</span>
+        <div class="tl-t">Portal access issued</div>
+        <p class="tl-d">Your IASME account goes live with the current question set, our guidance notes
+          and your named assessor&rsquo;s contact details.</p>
+        <span class="tl-who">Intouch</span>
+      </li>
+      <li class="tl-step">
+        <span class="tl-when">Days 2&ndash;8</span>
+        <div class="tl-t">You complete the questionnaire</div>
+        <p class="tl-d">Work through the five controls at your own pace. Ask your assessor anything
+          as you go &mdash; there is no question limit.</p>
+        <span class="tl-who">You</span>
+      </li>
+      <li class="tl-step">
+        <span class="tl-when">Days 8&ndash;10</span>
+        <div class="tl-t">Technical review</div>
+        <p class="tl-d">We check every answer against the marking criteria and send back anything that
+          needs evidence, correcting or rewording.</p>
+        <span class="tl-who">Intouch</span>
+      </li>
+      <li class="tl-step">
+        <span class="tl-when">Days 10&ndash;14</span>
+        <div class="tl-t">Submission and certificate</div>
+        <p class="tl-d">Submitted to IASME for assessment. Most certificates are issued within two
+          working days of a passing submission.</p>
+        <span class="tl-who">IASME</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section" id="compare">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Choosing a package</span>
+      <h2 class="sec-title">Is self-certification right for you?</h2>
+      <p class="sec-intro">Self-certification suits organisations with in-house IT who already know
+        their environment. If you&rsquo;d be guessing at half the questions, one of the supported
+        packages will cost less than a failed submission.</p>
+    </div>
+
+    <div class="cmp-scroll">
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th scope="col"><span class="cmp-name" style="color:var(--txt-dim)">Compare</span></th>
+            <th scope="col" class="this">
+              <span class="cmp-name">Self-certification</span>
+              <span class="cmp-price">&pound;420 &ndash; &pound;840 + VAT</span>
+              <span class="cmp-for">You&rsquo;re looking at this one</span>
+            </th>
+            <th scope="col">
+              <span class="cmp-name">A little help</span>
+              <span class="cmp-price">From &pound;720 + VAT</span>
+              <span class="cmp-for">For teams without dedicated IT</span>
+            </th>
+            <th scope="col">
+              <span class="cmp-name">A lot of help</span>
+              <span class="cmp-price">From &pound;1,420 + VAT</span>
+              <span class="cmp-for">For complex or multi-site setups</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Who completes the questionnaire</th>
+            <td class="this">You</td>
+            <td>Us, with your input</td>
+            <td>Us, end to end</td>
+          </tr>
+          <tr>
+            <th scope="row">Consultancy time</th>
+            <td class="this">Ad-hoc questions, no limit</td>
+            <td>Up to 2 hours</td>
+            <td>Up to 1 full day</td>
+          </tr>
+          <tr>
+            <th scope="row">Pre-submission review</th>
+            <td class="this"><span class="yes">Included</span></td>
+            <td class="yes">Included</td>
+            <td class="yes">Included</td>
+          </tr>
+          <tr>
+            <th scope="row">Gap analysis and remediation advice</th>
+            <td class="this"><span class="no">Not included</span></td>
+            <td class="yes">Included</td>
+            <td class="yes">Included</td>
+          </tr>
+          <tr>
+            <th scope="row">Policy and device configuration guidance</th>
+            <td class="this"><span class="no">Not included</span></td>
+            <td class="no">Not included</td>
+            <td class="yes">Included</td>
+          </tr>
+          <tr>
+            <th scope="row">Fast-track handling</th>
+            <td class="this"><span class="no">Subject to availability</span></td>
+            <td class="no">Subject to availability</td>
+            <td class="yes">Priority</td>
+          </tr>
+          <tr>
+            <th scope="row">&pound;25,000 cyber insurance</th>
+            <td class="this"><span class="yes">Included</span></td>
+            <td class="yes">Included</td>
+            <td class="yes">Included</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="cmp-hint">All three packages produce the same certificate. The difference is how much
+      of the work sits with you.</p>
+  </div>
+</section>
+
+<section class="section" id="conditions">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Before you buy</span>
+      <h2 class="sec-title">Conditions and scope</h2>
+      <p class="sec-intro">Two things catch people out: how the price band is decided, and what
+        counts as an in-scope device. Both are worth two minutes now.</p>
+    </div>
+
+    <div class="cond-grid">
+      <div class="callout">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <div>
+          <div class="callout-t">How your price band is decided</div>
+          <p>Your band is set by the <b>total number of employees across your entire
+            organisation</b> &mdash; including part-time staff, contractors on your payroll and any
+            sites outside the certification scope. It is <b>not</b> set by the number of people or
+            devices being certified. Selecting a band below your actual headcount will fail
+            assessment, and the difference becomes payable before your certificate is issued.</p>
+        </div>
+      </div>
+
+      <div class="cond">
+        <h3>What&rsquo;s in scope</h3>
+        <ul>
+          <li><span class="dot"></span><span>All end-user devices, <b>including home workers&rsquo; laptops and BYOD phones</b> used for work</span></li>
+          <li><span class="dot"></span><span>All cloud services holding organisational data, including SaaS applications</span></li>
+          <li><span class="dot"></span><span>Internet-facing infrastructure: servers, routers and firewalls</span></li>
+          <li><span class="dot"></span><span>Whole-organisation certification, or a sub-scope separated by network and account boundaries</span></li>
+        </ul>
+      </div>
+
+      <div class="cond">
+        <h3>Not included in this package</h3>
+        <ul>
+          <li><span class="dot dot-off"></span><span>Hands-on remediation &mdash; we tell you what to fix, you or your IT provider fix it</span></li>
+          <li><span class="dot dot-off"></span><span>Independent technical testing and device sampling <b>(that&rsquo;s Cyber Essentials Plus)</b></span></li>
+          <li><span class="dot dot-off"></span><span>Policy writing, device configuration or software licences</span></li>
+          <li><span class="dot dot-off"></span><span>Further submissions once the free resubmission window has passed</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Questions</span>
+      <h2 class="sec-title">Frequently asked</h2>
+    </div>
+
+    <div class="faq">
+      <details open>
+        <summary>How long does certification take?
+          <svg class="chev" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <p class="faq-a">Most organisations certify within 10 to 14 days. The fixed parts are ours:
+          portal access the next working day, technical review inside 48 hours. The variable is how
+          quickly you answer the questionnaire. Fast-track is sometimes available &mdash; ask before
+          you buy rather than after.</p>
+      </details>
+      <details>
+        <summary>What happens if our first submission doesn&rsquo;t pass?
+          <svg class="chev" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <p class="faq-a">You get one free resubmission within two working days of the result, provided
+          you correct the issues the assessor raised. Past that window a new submission is chargeable
+          at the full band price. This is why we review everything before it goes in &mdash; the free
+          window is short.</p>
+      </details>
+      <details>
+        <summary>Do home workers&rsquo; devices count?
+          <svg class="chev" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <p class="faq-a">Yes. Any device used to access organisational data or services is in scope,
+          including personal laptops and phones under a BYOD arrangement. An ISP-supplied home router
+          is generally out of scope, but the device&rsquo;s own software firewall is not &mdash; it
+          has to be enabled and configured.</p>
+      </details>
+      <details>
+        <summary>Can we certify just one part of the business?
+          <svg class="chev" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <p class="faq-a">You can scope to a clearly separated part of the organisation, but the
+          sub-scope has to be genuinely segregated by network and account boundaries &mdash; a
+          department that shares a domain with everyone else doesn&rsquo;t qualify. Your price band
+          is still set by total headcount.</p>
+      </details>
+      <details>
+        <summary>Is the &pound;25,000 insurance automatic?
+          <svg class="chev" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <p class="faq-a">It&rsquo;s included for UK-domiciled organisations with an annual turnover
+          under &pound;20m, and you can opt out at submission if you already hold cyber cover. Cover
+          starts when the certificate is issued, not when you buy.</p>
+      </details>
+      <details>
+        <summary>What&rsquo;s the difference between this and Cyber Essentials Plus?
+          <svg class="chev" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <p class="faq-a">Cyber Essentials is a verified self-assessment. Plus adds independent
+          technical testing &mdash; external vulnerability scanning and hands-on device sampling
+          carried out by an assessor. You need Cyber Essentials in place before Plus can be issued,
+          so this is the right starting point either way.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="start">
+  <div class="cta-glow"></div>
+  <div class="wrap cta-in">
+    <div>
+      <h2>Ready to get certified?</h2>
+      <p>Pick your band, pay, and your portal access is live the next working day. If you&rsquo;re
+        not sure whether self-certification is the right package, a 15-minute call with an assessor
+        will settle it &mdash; there&rsquo;s no sales pitch attached.</p>
+    </div>
+    <div class="cta-btns">
+      <a class="btn btn-solid" href="#">
+        Start certification &mdash; <span class="num" id="cta-price">&pound;540</span>
+      </a>
+      <a class="btn btn-line" href="#">Book a 15-minute call</a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span>&copy; 2026 Intouch Tech Ltd. Cyber Essentials certification delivered through IASME.</span>
+    <div class="foot-links">
+      <a href="#">Cyber Essentials Plus</a>
+      <a href="#">Managed security</a>
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<div class="mbar">
+  <div>
+    <div class="mbar-p" id="mbar-price">&pound;540</div>
+    <div class="mbar-l" id="mbar-band">Small &middot; + VAT</div>
+  </div>
+  <a class="btn btn-solid" href="#start">Start certification</a>
+</div>
+
+</div>
+
+<script>
+(function () {
+  var bands = Array.prototype.slice.call(document.querySelectorAll('.band'));
+  var priceEl = document.getElementById('price');
+  var bandEl = document.getElementById('price-band');
+  var rangeEl = document.getElementById('price-range');
+  var ctaEl = document.getElementById('cta-price');
+  var mPrice = document.getElementById('mbar-price');
+  var mBand = document.getElementById('mbar-band');
+
+  function decode(s) {
+    var d = document.createElement('textarea');
+    d.innerHTML = s;
+    return d.value;
+  }
+
+  function select(btn) {
+    bands.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+    var price = '£' + Number(btn.dataset.price).toLocaleString('en-GB');
+    var band = btn.dataset.band;
+    var range = decode(btn.dataset.range);
+
+    priceEl.classList.add('swap');
+    window.setTimeout(function () {
+      priceEl.textContent = price;
+      priceEl.classList.remove('swap');
+    }, 140);
+
+    bandEl.textContent = band;
+    rangeEl.textContent = range;
+    ctaEl.textContent = price;
+    mPrice.textContent = price;
+    mBand.textContent = band + ' · + VAT';
+  }
+
+  bands.forEach(function (btn) {
+    btn.addEventListener('click', function () { select(btn); });
+  });
+
+  // Section nav highlighting
+  var links = Array.prototype.slice.call(document.querySelectorAll('.secnav a'));
+  var targets = links
+    .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+    .filter(Boolean);
+
+  if ('IntersectionObserver' in window && targets.length) {
+    var visible = {};
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { visible[e.target.id] = e.isIntersecting; });
+      var active = targets.filter(function (t) { return visible[t.id]; })[0];
+      if (!active) return;
+      links.forEach(function (a) {
+        a.classList.toggle('on', a.getAttribute('href') === '#' + active.id);
+      });
+    }, { rootMargin: '-110px 0px -60% 0px', threshold: 0 });
+    targets.forEach(function (t) { obs.observe(t); });
+  }
+})();
+</script>
+</body>
+</html>

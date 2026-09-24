@@ -1,4 +1,4 @@
-﻿import { PillList, PillItem, PillListTheme } from './PillList';
+﻿import { PillList, PillItem, PillListTheme, PillListAlign } from './PillList';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
 
@@ -26,17 +26,45 @@ const parseItems = (raw: string): PillItem[] => {
   }
 };
 
-const PillListWebflow = ({ theme, items }: { theme?: string; items?: string }) => {
+const ALIGN_OPTIONS: PillListAlign[] = [
+  'left',
+  'center',
+  'tablet center',
+  'mobile L center',
+  'mobile center',
+];
+
+const PillListWebflow = ({
+  theme,
+  align,
+  items,
+}: {
+  theme?: string;
+  align?: string;
+  items?: string;
+}) => {
   const safeTheme: PillListTheme = theme === 'dark' ? 'dark' : 'light';
-  return <PillList theme={safeTheme} items={parseItems(items || DEFAULT_ITEMS_JSON)} />;
+  const safeAlign: PillListAlign = ALIGN_OPTIONS.find((o) => o === align) || 'left';
+  return (
+    <PillList
+      theme={safeTheme}
+      align={safeAlign}
+      items={parseItems(items || DEFAULT_ITEMS_JSON)}
+    />
+  );
 };
 
 export default declareComponent(PillListWebflow, {
   name: 'Pill List',
-  description: 'Flex-wrap pill list — icon + label. Add "href" to make a pill a link.',
+  description: 'Flex-wrap pill list — icon + label. Align left or centred per breakpoint. Add "href" to make a pill a link.',
   group: 'Content',
   props: {
     theme: props.Variant({ name: 'Theme', defaultValue: 'light', options: ['light', 'dark'] }),
+    align: props.Variant({
+      name: 'Align',
+      defaultValue: 'left',
+      options: ALIGN_OPTIONS,
+    }),
     items: props.Text({ name: 'Items (JSON array)', defaultValue: DEFAULT_ITEMS_JSON }),
   },
 });
