@@ -461,7 +461,8 @@ export const whyBentoLightCss = `
   }
 
   .wbl-root .wbl-tile--photo.is-visible:hover .wbl-tile-title {
-    text-shadow: 0 0 24px rgba(255, 255, 255, 0.30);
+    color: var(--wbl-cyan);
+    text-shadow: 0 0 24px rgba(16, 200, 229, 0.25);
   }
 
   .wbl-root .wbl-tile--photo.is-visible:hover .wbl-tile-text {
