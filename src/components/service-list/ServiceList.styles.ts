@@ -59,11 +59,16 @@ export const serviceListCss = `
     position: relative;
   }
 
+  .svl-root .svl-row:focus-visible {
+    outline: 2px solid var(--svl-cyan);
+    outline-offset: -2px;
+  }
+
   .svl-root .svl-row:last-child {
     border-bottom: none;
   }
 
-  .svl-root .svl-row:hover {
+  .svl-root .svl-row:is(:hover, :focus-visible) {
     background: var(--svl-row-hover);
   }
 
@@ -81,7 +86,7 @@ export const serviceListCss = `
     transform-origin: center;
   }
 
-  .svl-root .svl-row:hover::before {
+  .svl-root .svl-row:is(:hover, :focus-visible)::before {
     transform: scaleY(1);
   }
 
@@ -96,7 +101,7 @@ export const serviceListCss = `
     transition: color 0.2s;
   }
 
-  .svl-root .svl-row:hover .svl-num {
+  .svl-root .svl-row:is(:hover, :focus-visible) .svl-num {
     color: var(--svl-cyan);
   }
 
@@ -118,7 +123,7 @@ export const serviceListCss = `
     overflow: hidden;
   }
 
-  .svl-root .svl-row:hover .svl-logo {
+  .svl-root .svl-row:is(:hover, :focus-visible) .svl-logo {
     border-color: rgba(16, 200, 229, 0.40);
     box-shadow: 0 0 14px rgba(16, 200, 229, 0.14);
     transform: scale(1.06);
@@ -146,8 +151,14 @@ export const serviceListCss = `
     line-height: 1.2;
   }
 
+  /* inline (not inline-flex) keeps the real spaces between words, so titles can wrap */
   .svl-root .svl-label-mask {
+    display: inline;
+  }
+
+  .svl-root .svl-word {
     display: inline-flex;
+    white-space: nowrap;
   }
 
   .svl-root .svl-letter-mask {
@@ -170,11 +181,11 @@ export const serviceListCss = `
     transition: color 0.2s;
   }
 
-  .svl-root .svl-row:hover .svl-letter-track {
+  .svl-root .svl-row:is(:hover, :focus-visible) .svl-letter-track {
     transform: translateY(-1.2em);
   }
 
-  .svl-root .svl-row:hover .svl-letter {
+  .svl-root .svl-row:is(:hover, :focus-visible) .svl-letter {
     color: var(--svl-cyan);
   }
 
@@ -183,9 +194,6 @@ export const serviceListCss = `
     line-height: 1.5;
     color: var(--svl-body);
     margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   /* ── arrow ── */
@@ -199,7 +207,7 @@ export const serviceListCss = `
     transition: opacity 0.2s;
   }
 
-  .svl-root .svl-row:hover .svl-arrow {
+  .svl-root .svl-row:is(:hover, :focus-visible) .svl-arrow {
     opacity: 1;
     transform: translateX(30%) rotate(-45deg);
     transition: opacity 0.2s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) var(--svl-icon-delay, 0ms);

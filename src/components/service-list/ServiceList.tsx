@@ -47,8 +47,10 @@ export const ServiceList = ({
       {safeItems.map((item, i) => {
         const num = String(i + 1).padStart(2, '0');
         const Tag = item.url ? 'a' : 'div';
+        // New tab only for other sites; same-site package links stay in the tab.
+        const external = !!item.url && /^https?:\/\//.test(item.url) && !item.url.includes('intouchtech.co.uk');
         const linkProps = item.url
-          ? { href: item.url, target: '_blank', rel: 'noopener noreferrer' }
+          ? { href: item.url, ...(external && { target: '_blank', rel: 'noopener noreferrer' }) }
           : {};
 
         return (
@@ -67,7 +69,7 @@ export const ServiceList = ({
             </span>
             <div className="svl-text">
               <p className="svl-title">
-                <WaveLabel label={item.title} prefix="svl" />
+                <WaveLabel label={item.title} prefix="svl" wrap />
               </p>
               <p className="svl-body">{item.body}</p>
             </div>
