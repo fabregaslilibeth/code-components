@@ -272,6 +272,7 @@ export const pricingCardCss = `
 
   /* ── actions ── */
   .pc-cta {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -288,13 +289,30 @@ export const pricingCardCss = `
     border: none;
     border-radius: 999px;
     cursor: pointer;
+    overflow: hidden;
     background: var(--pc-cta-bg);
     color: var(--pc-cta-text);
-    transition: filter 0.2s ease, box-shadow 0.2s ease;
+    transition: box-shadow 0.2s ease;
+  }
+
+  /* solid colour wipe, left → right */
+  .pc-cta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: color-mix(in srgb, var(--pc-cta-bg) 88%, #000);
+    transform-origin: left center;
+    transform: scaleX(0);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .pc-cta:hover::after {
+    transform: scaleX(1);
   }
 
   .pc-cta:hover {
-    filter: brightness(0.92);
     box-shadow: 0 10px 26px color-mix(in srgb, var(--pc-cta-bg) 30%, transparent);
   }
 
@@ -303,16 +321,49 @@ export const pricingCardCss = `
     outline-offset: 3px;
   }
 
-  .pc-cta-icon {
+  .pc-cta-label-mask {
+    position: relative;
+    z-index: 1;
     display: inline-flex;
-    transition: transform 0.2s ease;
+  }
+
+  .pc-cta-letter-mask {
+    overflow: hidden;
+    display: inline-block;
+    height: 1.2em;
+    line-height: 1.2em;
+  }
+
+  .pc-cta-letter-track {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .pc-cta-letter {
+    display: block;
+    height: 1.2em;
+    line-height: 1.2em;
+  }
+
+  .pc-cta:hover .pc-cta-letter-track {
+    transform: translateY(-1.2em);
+  }
+
+  .pc-cta-icon {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    transition: transform 0.3s ease;
   }
 
   .pc-cta:hover .pc-cta-icon {
-    transform: translateX(3px);
+    transform: translateX(30%) rotate(-45deg);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) var(--pc-cta-icon-delay, 0ms);
   }
 
   .pc-alt {
+    position: relative;
     display: block;
     margin-top: 11px;
     padding: 11px;
@@ -322,13 +373,58 @@ export const pricingCardCss = `
     text-decoration: none;
     color: var(--pc-dim);
     border: 1px solid var(--pc-line);
-    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    overflow: hidden;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .pc-alt::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--pc-surface-alt);
+    transform-origin: left center;
+    transform: scaleX(0);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .pc-alt:hover::after {
+    transform: scaleX(1);
   }
 
   .pc-alt:hover {
     border-color: var(--pc-line-strong);
     color: var(--pc-head);
-    background: var(--pc-surface-alt);
+  }
+
+  .pc-alt-label-mask {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+  }
+
+  .pc-alt-letter-mask {
+    overflow: hidden;
+    display: inline-block;
+    height: 1.2em;
+    line-height: 1.2em;
+  }
+
+  .pc-alt-letter-track {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .pc-alt-letter {
+    display: block;
+    height: 1.2em;
+    line-height: 1.2em;
+  }
+
+  .pc-alt:hover .pc-alt-letter-track {
+    transform: translateY(-1.2em);
   }
 
   .pc-fine {

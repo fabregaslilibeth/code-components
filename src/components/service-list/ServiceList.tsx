@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ServiceLogo } from './ServiceLogos';
 import { serviceListCss } from './ServiceList.styles';
+import { WaveLabel, waveEndMs } from '../WaveLabel';
 
 export type ServiceListTheme = 'light' | 'dark';
 
@@ -51,7 +52,12 @@ export const ServiceList = ({
           : {};
 
         return (
-          <Tag key={i} className="svl-row" {...linkProps}>
+          <Tag
+            key={i}
+            className="svl-row"
+            {...linkProps}
+            style={{ '--svl-icon-delay': `${waveEndMs(item.title)}ms` } as React.CSSProperties}
+          >
             <span className="svl-num">{num}</span>
             <span className="svl-logo">
               {isUrl(item.logo)
@@ -60,7 +66,9 @@ export const ServiceList = ({
               }
             </span>
             <div className="svl-text">
-              <p className="svl-title">{item.title}</p>
+              <p className="svl-title">
+                <WaveLabel label={item.title} prefix="svl" />
+              </p>
               <p className="svl-body">{item.body}</p>
             </div>
             <span className="svl-arrow">

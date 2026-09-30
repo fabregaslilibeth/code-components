@@ -100,6 +100,7 @@ export const bannerStyles = {
   } as CSSProperties,
 
   ctaPrimary: {
+    position: 'relative',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -108,11 +109,12 @@ export const bannerStyles = {
     color: TEXT_WHITE,
     border: 'none',
     borderRadius: '8px',
+    overflow: 'hidden',
     fontSize: '1rem',
     fontWeight: 600,
     cursor: 'pointer',
     textDecoration: 'none',
-    transition: 'background-color 0.2s, transform 0.15s',
+    transition: 'transform 0.15s',
     marginBottom: '0.75rem',
   } as CSSProperties,
 
@@ -214,6 +216,7 @@ export const bannerStyles = {
   } as CSSProperties,
 
   rightBoxCta: {
+    position: 'relative',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -223,11 +226,11 @@ export const bannerStyles = {
     color: TEXT_WHITE,
     border: 'none',
     borderRadius: '8px',
+    overflow: 'hidden',
     fontSize: '0.9rem',
     fontWeight: 600,
     cursor: 'pointer',
     textDecoration: 'none',
-    transition: 'background-color 0.2s',
     marginBottom: '0.5rem',
   } as CSSProperties,
 
@@ -264,9 +267,58 @@ export const bannerStyles = {
       .banner-hero-wrap { clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%); min-height: auto; }
       .banner-hero-inner { min-height: auto; }
     }
+    .banner-cta-primary::after, .banner-right-cta::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: ${ACCENT_ORANGE_LIGHT};
+      transform-origin: left center;
+      transform: scaleX(0);
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .banner-cta-primary:hover::after, .banner-right-cta:hover::after {
+      transform: scaleX(1);
+    }
     .banner-cta-primary:hover, .banner-right-cta:hover {
-      background-color: ${ACCENT_ORANGE_LIGHT};
       transform: translateY(-1px);
+    }
+    .banner-cta-primary > *, .banner-right-cta > * {
+      position: relative;
+      z-index: 1;
+    }
+    .banner-cta-label-mask {
+      display: inline-flex;
+    }
+    .banner-cta-letter-mask {
+      overflow: hidden;
+      display: inline-block;
+      height: 1.2em;
+      line-height: 1.2em;
+    }
+    .banner-cta-letter-track {
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .banner-cta-letter {
+      display: block;
+      height: 1.2em;
+      line-height: 1.2em;
+    }
+    .banner-cta-primary:hover .banner-cta-letter-track,
+    .banner-right-cta:hover .banner-cta-letter-track {
+      transform: translateY(-1.2em);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .banner-cta-primary,
+      .banner-right-cta,
+      .banner-cta-primary::after,
+      .banner-right-cta::after,
+      .banner-cta-letter-track {
+        transition: none;
+      }
     }
   `,
 };

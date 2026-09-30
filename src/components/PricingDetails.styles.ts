@@ -275,6 +275,7 @@ export const pricingDetailsStyles = {
   } as CSSProperties,
 
   buyButton: {
+    position: 'relative',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -283,12 +284,13 @@ export const pricingDetailsStyles = {
     color: BG_DARK,
     border: 'none',
     borderRadius: '9999px',
+    overflow: 'hidden',
     fontSize: '1rem',
     fontWeight: '700',
     cursor: 'pointer',
     textDecoration: 'none',
     width: '100%',
-    transition: 'opacity 0.2s, transform 0.2s, box-shadow 0.2s',
+    transition: 'transform 0.2s, box-shadow 0.2s',
   } as CSSProperties,
 
   relatedTitle: {

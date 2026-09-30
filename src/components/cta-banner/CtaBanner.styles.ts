@@ -163,6 +163,7 @@ export const ctaBannerCss = `
   }
 
   .ctab-btn {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -176,8 +177,8 @@ export const ctaBannerCss = `
     text-decoration: none;
     cursor: pointer;
     white-space: nowrap;
+    overflow: hidden;
     transition:
-      background 0.3s cubic-bezier(0.16,1,0.3,1),
       border-color 0.3s cubic-bezier(0.16,1,0.3,1),
       box-shadow 0.3s cubic-bezier(0.16,1,0.3,1),
       transform 0.2s cubic-bezier(0.16,1,0.3,1);
@@ -188,38 +189,97 @@ export const ctaBannerCss = `
     transform: translateY(-1px);
   }
 
-  /* primary — red by default */
+  /* solid colour wipe, left → right */
+  .ctab-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform-origin: left center;
+    transform: scaleX(0);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .ctab-btn:hover::after {
+    transform: scaleX(1);
+  }
+
+  .ctab-btn > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* primary — red by default, wipes to a deeper red */
   .ctab-btn--primary {
     background: #e11d48;
-    border-color: #e11d48;
     color: #ffffff;
     box-shadow: 0 0 24px rgba(225, 29, 72, 0.35);
   }
 
-  .ctab-btn--primary:hover {
+  .ctab-btn--primary::after {
     background: #be123c;
-    border-color: #be123c;
+  }
+
+  .ctab-btn--primary:hover {
     box-shadow: 0 0 36px rgba(225, 29, 72, 0.55);
   }
 
-  .ctab-btn svg {
-    transition: transform 0.25s cubic-bezier(0.16,1,0.3,1);
+  .ctab-btn-icon {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
   }
 
-  .ctab-btn:hover svg {
-    transform: translate(2px, -2px);
+  .ctab-btn:hover .ctab-btn-icon {
+    transform: translateX(30%) rotate(-45deg);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) var(--ctab-icon-delay, 0ms);
   }
 
-  /* secondary — dark with border */
+  /* secondary — dark with border, wipes to a brighter tint */
   .ctab-btn--secondary {
     background: rgba(255,255,255,0.06);
     border-color: rgba(255,255,255,0.22);
     color: #ffffff;
   }
 
-  .ctab-btn--secondary:hover {
+  .ctab-btn--secondary::after {
     background: rgba(255,255,255,0.12);
+  }
+
+  .ctab-btn--secondary:hover {
     border-color: rgba(255,255,255,0.50);
+  }
+
+  .ctab-btn--secondary svg {
+    flex-shrink: 0;
+  }
+
+  .ctab-label-mask {
+    display: inline-flex;
+  }
+
+  .ctab-letter-mask {
+    overflow: hidden;
+    display: inline-block;
+    height: 1.2em;
+    line-height: 1.2em;
+  }
+
+  .ctab-letter-track {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .ctab-letter {
+    display: block;
+    height: 1.2em;
+    line-height: 1.2em;
+  }
+
+  .ctab-btn:hover .ctab-letter-track {
+    transform: translateY(-1.2em);
   }
 
   /* ── responsive ── */
@@ -269,6 +329,11 @@ export const ctaBannerCss = `
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .ctab-btn { transition: none; }
+    .ctab-btn,
+    .ctab-btn::after,
+    .ctab-letter-track,
+    .ctab-btn-icon {
+      transition: none;
+    }
   }
 `;

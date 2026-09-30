@@ -367,12 +367,14 @@ export const styles = {
   } as CSSProperties,
 
   ctaButtonPrimary: {
+    position: "relative",
     width: "100%",
     padding: "0.65rem 0.75rem",
     backgroundColor: HEADER_BG,
     color: "#fff",
     border: "none",
     borderRadius: "8px",
+    overflow: "hidden",
     fontSize: "0.9rem",
     fontWeight: "600",
     cursor: "pointer",
@@ -381,16 +383,17 @@ export const styles = {
     justifyContent: "center",
     gap: "0.4rem",
     textDecoration: "none",
-    transition: "background-color 0.2s",
   } as CSSProperties,
 
   ctaButtonSecondary: {
+    position: "relative",
     width: "100%",
     padding: "0.65rem 0.75rem",
     backgroundColor: "#fff",
     color: "#374151",
     border: "2px solid #374151",
     borderRadius: "8px",
+    overflow: "hidden",
     fontSize: "0.9rem",
     fontWeight: "600",
     cursor: "pointer",
@@ -399,7 +402,7 @@ export const styles = {
     justifyContent: "center",
     gap: "0.4rem",
     textDecoration: "none",
-    transition: "background-color 0.2s, color 0.2s",
+    transition: "color 0.2s",
   } as CSSProperties,
 
   guaranteeDisclaimer: {

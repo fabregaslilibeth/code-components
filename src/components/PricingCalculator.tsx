@@ -2,6 +2,7 @@ import * as React from "react";
 import { DEFAULT_PLANS, EMPLOYEE_TIERS, ADDON_DESCRIPTIONS } from "./PricingCalculator.data";
 import { getEmployeeTier, getBasePrice, getAddonPrice, formatPrice } from "./PricingCalculator.utils";
 import { styles } from "./PricingCalculator.styles";
+import { WaveLabel } from "./WaveLabel";
 
 interface PricingPlan {
   id: string;
@@ -153,6 +154,72 @@ export const PricingCalculator = ({
             max-width: 100%;
             -webkit-tap-highlight-color: transparent;
             box-sizing: border-box;
+          }
+        }
+        .pricing-cta-primary::after,
+        .pricing-cta-secondary::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          transform-origin: left center;
+          transform: scaleX(0);
+          transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+          pointer-events: none;
+          z-index: 0;
+        }
+        .pricing-cta-primary:hover::after,
+        .pricing-cta-secondary:hover::after {
+          transform: scaleX(1);
+        }
+        .pricing-cta-primary::after {
+          background: #0a325a;
+        }
+        .pricing-cta-secondary::after {
+          background: #f3f4f6;
+        }
+        .pricing-cta-secondary:hover {
+          color: #374151;
+        }
+        .pricing-cta-primary > *,
+        .pricing-cta-secondary > * {
+          position: relative;
+          z-index: 1;
+        }
+        .pcalc-cta-label-mask,
+        .pcalc-alt-label-mask {
+          display: inline-flex;
+        }
+        .pcalc-cta-letter-mask,
+        .pcalc-alt-letter-mask {
+          overflow: hidden;
+          display: inline-block;
+          height: 1.2em;
+          line-height: 1.2em;
+        }
+        .pcalc-cta-letter-track,
+        .pcalc-alt-letter-track {
+          display: flex;
+          flex-direction: column;
+          transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .pcalc-cta-letter,
+        .pcalc-alt-letter {
+          display: block;
+          height: 1.2em;
+          line-height: 1.2em;
+        }
+        .pricing-cta-primary:hover .pcalc-cta-letter-track,
+        .pricing-cta-secondary:hover .pcalc-alt-letter-track {
+          transform: translateY(-1.2em);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .pricing-cta-primary,
+          .pricing-cta-secondary,
+          .pricing-cta-primary::after,
+          .pricing-cta-secondary::after,
+          .pcalc-cta-letter-track,
+          .pcalc-alt-letter-track {
+            transition: none;
           }
         }
       `}</style>
@@ -330,33 +397,21 @@ export const PricingCalculator = ({
                     className="pricing-cta-primary"
                     href={buttonLinks[plan.id] || plan.buttonLink || "/contact"}
                     style={styles.ctaButtonPrimary}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = "#0a325a";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = "#032447";
-                    }}
                   >
                     <CheckIcon />
-                    {plan.primaryButtonLabel ?? "Get Certified Fast"}
+                    <WaveLabel label={plan.primaryButtonLabel ?? "Get Certified Fast"} prefix="pcalc-cta" />
                   </a>
                   <a
                     className="pricing-cta-secondary"
                     href={`${buttonLinks[plan.id] || plan.buttonLink || "/contact"}?inquiry=true`}
                     style={styles.ctaButtonSecondary}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = "#f3f4f6";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = "#fff";
-                    }}
                   >
                     {plan.secondaryButtonIcon === "email" ? (
                       <EmailIcon />
                     ) : (
                       <PhoneIcon />
                     )}
-                    {plan.secondaryButtonLabel ?? "Speak to an Expert"}
+                    <WaveLabel label={plan.secondaryButtonLabel ?? "Speak to an Expert"} prefix="pcalc-alt" />
                   </a>
                 </div>
 

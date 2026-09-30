@@ -144,10 +144,37 @@ export const serviceListCss = `
     color: var(--svl-title);
     margin: 0 0 3px;
     line-height: 1.2;
+  }
+
+  .svl-root .svl-label-mask {
+    display: inline-flex;
+  }
+
+  .svl-root .svl-letter-mask {
+    overflow: hidden;
+    display: inline-block;
+    height: 1.2em;
+    line-height: 1.2em;
+  }
+
+  .svl-root .svl-letter-track {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .svl-root .svl-letter {
+    display: block;
+    height: 1.2em;
+    line-height: 1.2em;
     transition: color 0.2s;
   }
 
-  .svl-root .svl-row:hover .svl-title {
+  .svl-root .svl-row:hover .svl-letter-track {
+    transform: translateY(-1.2em);
+  }
+
+  .svl-root .svl-row:hover .svl-letter {
     color: var(--svl-cyan);
   }
 
@@ -169,12 +196,13 @@ export const serviceListCss = `
     justify-content: flex-end;
     flex-shrink: 0;
     opacity: 0.5;
-    transition: opacity 0.2s, transform 0.25s var(--svl-ease);
+    transition: opacity 0.2s;
   }
 
   .svl-root .svl-row:hover .svl-arrow {
     opacity: 1;
-    transform: translate(2px, -2px);
+    transform: translateX(30%) rotate(-45deg);
+    transition: opacity 0.2s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) var(--svl-icon-delay, 0ms);
   }
 
   /* ── responsive ── */
@@ -207,6 +235,7 @@ export const serviceListCss = `
     .svl-root .svl-row,
     .svl-root .svl-row::before,
     .svl-root .svl-logo,
+    .svl-root .svl-letter-track,
     .svl-root .svl-arrow {
       transition: none;
     }

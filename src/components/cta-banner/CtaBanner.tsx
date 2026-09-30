@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ctaBannerCss } from './CtaBanner.styles';
+import { WaveLabel, waveEndMs } from '../WaveLabel';
 
 export interface CtaBannerProps {
   eyebrow?: string;
@@ -75,12 +76,20 @@ export const CtaBanner = ({
         </div>
 
         <div className="ctab-actions">
-          <a className="ctab-btn ctab-btn--primary" href={primaryHref}>
-            {primaryLabel}
-            <ArrowUpRight />
+          <a
+            className="ctab-btn ctab-btn--primary"
+            href={primaryHref}
+            aria-label={primaryLabel}
+            style={{ '--ctab-icon-delay': `${waveEndMs(primaryLabel)}ms` } as React.CSSProperties}
+          >
+            <WaveLabel label={primaryLabel} prefix="ctab" />
+            <span className="ctab-btn-icon">
+              <ArrowUpRight />
+            </span>
           </a>
-          <a className="ctab-btn ctab-btn--secondary" href={secondaryHref}>
-            <PhoneIcon />{secondaryLabel}
+          <a className="ctab-btn ctab-btn--secondary" href={secondaryHref} aria-label={secondaryLabel}>
+            <PhoneIcon />
+            <WaveLabel label={secondaryLabel} prefix="ctab" />
           </a>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { buttonCss } from './Button.styles';
 import { LucideIcon } from '../LucideIcon';
+import { WaveLabel, waveEndMs } from '../WaveLabel';
 
 export type ButtonTheme = 'dark' | 'light';
 
@@ -10,6 +11,10 @@ export interface ButtonProps {
   icon?: string;
   href?: string;
   target?: string;
+  /** Background colour at rest. Default is transparent (outline style). */
+  bgColor?: string;
+  /** Background colour the hover wipe reveals. */
+  hoverColor?: string;
 }
 
 export const Button = ({
@@ -18,6 +23,8 @@ export const Button = ({
   icon = 'arrow-up-right',
   href,
   target,
+  bgColor = 'transparent',
+  hoverColor = '#10C8E5',
 }: ButtonProps) => {
   const iconOnly = !label && !!icon;
   const Tag = href ? 'a' : 'button';
@@ -27,13 +34,23 @@ export const Button = ({
     : { type: 'button' as const };
 
   return (
-    <div className={`btn-root btn-${theme}`}>
+    <div
+      className={`btn-root btn-${theme}`}
+      style={
+        {
+          '--btn-icon-delay': `${waveEndMs(label)}ms`,
+          '--btn-bg': bgColor,
+          '--btn-fill': hoverColor,
+        } as React.CSSProperties
+      }
+    >
       <style>{buttonCss}</style>
       <Tag
         className={`btn-el${iconOnly ? ' btn-icon-only' : ''}`}
+        aria-label={label || undefined}
         {...elProps}
       >
-        {label && <span className="btn-label">{label}</span>}
+        {label && <WaveLabel label={label} prefix="btn" />}
         {icon && (
           <span className="btn-icon">
             <LucideIcon name={icon} size={16} strokeWidth={2.2} />

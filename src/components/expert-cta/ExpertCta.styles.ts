@@ -106,7 +106,8 @@ export const S = {
     cursor: 'pointer',
     textDecoration: 'none',
     position: 'relative',
-    transition: 'opacity 0.2s, transform 0.15s',
+    overflow: 'hidden',
+    transition: 'transform 0.15s',
     boxShadow: '0 4px 20px rgba(37,99,235,0.45)',
   } as CSSProperties,
 
@@ -295,7 +296,8 @@ export const S = {
     fontWeight: 700,
     cursor: 'pointer',
     textDecoration: 'none',
-    transition: 'background-color 0.2s',
+    position: 'relative',
+    overflow: 'hidden',
   } as CSSProperties,
 
   mediaQueries: `
@@ -329,12 +331,66 @@ export const S = {
         width: 72vw !important;
       }
     }
+    .expert-cta-cta-btn::after,
+    .expert-cta-whatsapp-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      transform-origin: left center;
+      transform: scaleX(0);
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .expert-cta-cta-btn:hover::after,
+    .expert-cta-whatsapp-btn:hover::after {
+      transform: scaleX(1);
+    }
+    .expert-cta-cta-btn::after {
+      background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+    }
+    .expert-cta-whatsapp-btn::after {
+      background: #1fb855;
+    }
+    .expert-cta-cta-btn > *,
+    .expert-cta-whatsapp-btn > * {
+      position: relative;
+      z-index: 1;
+    }
     .expert-cta-cta-btn:hover {
-      opacity: 0.9;
       transform: translateY(-1px);
     }
-    .expert-cta-whatsapp-btn:hover {
-      background-color: #1fb855 !important;
+    .expert-cta-label-mask {
+      display: inline-flex;
+    }
+    .expert-cta-letter-mask {
+      overflow: hidden;
+      display: inline-block;
+      height: 1.2em;
+      line-height: 1.2em;
+    }
+    .expert-cta-letter-track {
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .expert-cta-letter {
+      display: block;
+      height: 1.2em;
+      line-height: 1.2em;
+    }
+    .expert-cta-cta-btn:hover .expert-cta-letter-track,
+    .expert-cta-whatsapp-btn:hover .expert-cta-letter-track {
+      transform: translateY(-1.2em);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .expert-cta-cta-btn,
+      .expert-cta-whatsapp-btn,
+      .expert-cta-cta-btn::after,
+      .expert-cta-whatsapp-btn::after,
+      .expert-cta-letter-track {
+        transition: none;
+      }
     }
   `,
 };

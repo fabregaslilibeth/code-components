@@ -47,35 +47,27 @@ export const ctaButtonCss = `
     outline: none;
     background: var(--cb-bg);
     color: var(--cb-text);
-    transition:
-      background 0.25s ease,
-      box-shadow 0.25s ease,
-      color      0.20s ease,
-      filter     0.25s ease;
+    transition: box-shadow 0.25s ease;
   }
 
-  /* diagonal shine sweep */
-  .cb-el::before {
+  /* solid colour wipe, left → right */
+  .cb-el::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      110deg,
-      transparent 30%,
-      rgba(255, 255, 255, 0.16) 50%,
-      transparent 70%
-    );
-    transform: translateX(-100%);
-    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    background: var(--cb-bg-hover);
+    transform-origin: left center;
+    transform: scaleX(0);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     pointer-events: none;
+    z-index: 0;
   }
 
-  .cb-el:hover::before {
-    transform: translateX(100%);
+  .cb-el:hover::after {
+    transform: scaleX(1);
   }
 
   .cb-el:hover {
-    background: var(--cb-bg-hover);
     box-shadow: 0 10px 26px var(--cb-glow);
   }
 
@@ -84,19 +76,45 @@ export const ctaButtonCss = `
     outline-offset: 3px;
   }
 
-  .cb-label,
+  .cb-label-mask,
   .cb-icon {
     position: relative;
     z-index: 1;
   }
 
-  .cb-icon {
+  .cb-label-mask {
     display: inline-flex;
-    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .cb-el:hover .cb-icon { transform: translateX(3px); }
-  .cb-el.cb-diag:hover .cb-icon { transform: translate(2px, -2px); }
+  .cb-letter-mask {
+    overflow: hidden;
+    display: inline-block;
+    height: 1.2em;
+    line-height: 1.2em;
+  }
+
+  .cb-letter-track {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cb-letter {
+    display: block;
+    height: 1.2em;
+    line-height: 1.2em;
+  }
+
+  .cb-icon {
+    display: inline-flex;
+    transition: transform 0.3s ease;
+  }
+
+  .cb-el:hover .cb-letter-track { transform: translateY(-1.2em); }
+  .cb-el:hover .cb-icon {
+    transform: translateX(30%) rotate(-45deg);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) var(--cb-icon-delay, 0ms);
+  }
 
   /* ── size variants ── */
   .cb-el.cb-size-small {
@@ -122,9 +140,11 @@ export const ctaButtonCss = `
 
   @media (prefers-reduced-motion: reduce) {
     .cb-el,
-    .cb-el::before,
+    .cb-el::after,
+    .cb-letter-track,
     .cb-icon {
       transition-duration: 0.01ms !important;
+      transition-delay: 0ms !important;
     }
   }
 `;

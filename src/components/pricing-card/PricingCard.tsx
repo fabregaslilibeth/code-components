@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { pricingCardCss } from './PricingCard.styles';
 import { LucideIcon } from '../LucideIcon';
+import { WaveLabel, waveEndMs } from '../WaveLabel';
 
 export type PricingCardTheme = 'light' | 'dark';
 
@@ -131,11 +132,12 @@ export const PricingCard = ({
     className: string,
     href: string,
     target: string | undefined,
-    children: React.ReactNode
+    children: React.ReactNode,
+    style?: React.CSSProperties
   ) => {
     if (!href) {
       return (
-        <button type="button" className={className}>
+        <button type="button" className={className} style={style}>
           {children}
         </button>
       );
@@ -146,6 +148,7 @@ export const PricingCard = ({
         href={href}
         target={target || undefined}
         rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+        style={style}
       >
         {children}
       </a>
@@ -245,13 +248,14 @@ export const PricingCard = ({
             ctaHref,
             ctaTarget,
             <>
-              {ctaLabel}
+              <WaveLabel label={ctaLabel} prefix="pc-cta" />
               {ctaIcon && (
                 <span className="pc-cta-icon">
                   <LucideIcon name={ctaIcon} size={15} strokeWidth={2.5} />
                 </span>
               )}
-            </>
+            </>,
+            { '--pc-cta-icon-delay': `${waveEndMs(ctaLabel)}ms` } as React.CSSProperties
           )}
 
         {altLabel && (
@@ -261,7 +265,7 @@ export const PricingCard = ({
             target={altTarget || undefined}
             rel={altTarget === '_blank' ? 'noopener noreferrer' : undefined}
           >
-            {altLabel}
+            <WaveLabel label={altLabel} prefix="pc-alt" />
           </a>
         )}
 

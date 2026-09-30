@@ -28,27 +28,18 @@ import { BulletList } from 'components/bullet-list/BulletList';
 import { PricingCard } from 'components/pricing-card/PricingCard';
 import { DEFAULT_BANDS, DEFAULT_CHECKLIST } from 'components/pricing-card/PricingCard.data';
 import { CtaButton } from 'components/cta-button/CtaButton';
-import { CaseStudySpotlight } from 'components/case-study/CaseStudySpotlight';
+import ComponentSection from './ComponentSection';
+import CaseStudiesPage from './CaseStudiesPage';
 
-function ComponentSection({ title, children }) {
-  return (
-    <div className="component-section">
-      <div className="component-label">{title}</div>
-      {children}
-    </div>
-  );
-}
-
-function App() {
+function ComponentGallery() {
   return (
     <div className="App">
       <div className="app-container">
-        <ComponentSection title="CaseStudySpotlight (dark)">
-          <CaseStudySpotlight />
-        </ComponentSection>
-        <ComponentSection title="CaseStudySpotlight (light)">
-          <CaseStudySpotlight theme="light" />
-        </ComponentSection>
+        <div style={{ padding: '16px 20px 0' }}>
+          <a href="/case-studies" style={{ fontSize: 13, fontWeight: 600, color: '#0F63F3', textDecoration: 'none' }}>
+            Case studies components →
+          </a>
+        </div>
         <ComponentSection title="PricingCard (light, bands)">
           <div style={{ maxWidth: 392 }}>
             <PricingCard bands={DEFAULT_BANDS} checklist={DEFAULT_CHECKLIST} defaultBand={1} />
@@ -85,7 +76,7 @@ function App() {
           <HowTimeline />
           <PillList />
         </ComponentSection>
-        {/* <ComponentSection title="BulletList (dark)">
+        <ComponentSection title="BulletList (dark)">
           <BulletList theme="dark" items={[
             {title:"Reduce downtime and recurring IT issues", body:"Proactive monitoring catches issues before they impact your team."},
             {title:"Cut wasted spend on licences and suppliers"},
@@ -197,16 +188,21 @@ function App() {
         <ComponentSection title="WhyBentoLight">
           <WhyBentoLight />
         </ComponentSection>
-       
+
         <ComponentSection title="Bento">
           <Bento />
         </ComponentSection>
         <ComponentSection title="DeliveryProcess">
           <DeliveryProcess />
-        </ComponentSection> */}
+        </ComponentSection>
       </div>
     </div>
   );
+}
+
+function App() {
+  const isCaseStudies = window.location.pathname.replace(/\/+$/, '') === '/case-studies';
+  return isCaseStudies ? <CaseStudiesPage /> : <ComponentGallery />;
 }
 
 export default App;

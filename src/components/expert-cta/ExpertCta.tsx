@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { S } from './ExpertCta.styles';
+import { WaveLabel } from '../WaveLabel';
 
 export interface ExpertCtaProps {
   eyebrow?: string;
@@ -136,7 +137,7 @@ export const ExpertCta = ({
               aria-haspopup="dialog"
             >
               <ChatIcon />
-              {ctaLabel}
+              <WaveLabel label={ctaLabel} prefix="expert-cta" />
               <span style={S.ctaDot} aria-hidden />
             </button>
 
@@ -206,7 +207,7 @@ export const ExpertCta = ({
                   className="expert-cta-whatsapp-btn"
                 >
                   <WhatsAppIcon />
-                  {whatsappBtnLabel}
+                  <WaveLabel label={whatsappBtnLabel} prefix="expert-cta" />
                 </a>
               </div>
             </div>

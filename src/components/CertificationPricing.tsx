@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { certificationPricingStyles as styles } from './CertificationPricing.styles';
+import { WaveLabel, waveEndMs } from './WaveLabel';
 
 export type FeatureItem = string | { label: string; included: false };
 
@@ -211,13 +212,70 @@ export const CertificationPricing = ({
             grid-template-columns: 1fr !important;
           }
         }
+        .cert-pricing-cta::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: #0891b2;
+          transform-origin: left center;
+          transform: scaleX(0);
+          transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+          pointer-events: none;
+          z-index: 0;
+        }
+        .cert-pricing-cta:hover::after {
+          transform: scaleX(1);
+        }
         .cert-pricing-cta:hover {
-          opacity: 0.95;
-          transform: translateY(-2px) scale(1.02);
+          transform: translateY(-2px);
           box-shadow: 0 8px 24px rgba(34, 211, 238, 0.35);
+        }
+        .cert-pricing-cta > * {
+          position: relative;
+          z-index: 1;
+        }
+        .cert-pricing-cta-arrow,
+        .cert-pricing-details-arrow {
+          display: inline-block;
+          transition: transform 0.3s ease;
+        }
+        .cert-pricing-cta:hover .cert-pricing-cta-arrow {
+          transform: translateX(30%) rotate(-45deg);
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) var(--certp-icon-delay, 0ms);
         }
         .cert-pricing-details-link:hover {
           color: #67e8f9 !important;
+        }
+        .cert-pricing-details-link:hover .cert-pricing-details-arrow {
+          transform: translateX(30%) rotate(-45deg);
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) var(--certp-icon-delay, 0ms);
+        }
+        .certp-cta-label-mask,
+        .certp-details-label-mask {
+          display: inline-flex;
+        }
+        .certp-cta-letter-mask,
+        .certp-details-letter-mask {
+          overflow: hidden;
+          display: inline-block;
+          height: 1.2em;
+          line-height: 1.2em;
+        }
+        .certp-cta-letter-track,
+        .certp-details-letter-track {
+          display: flex;
+          flex-direction: column;
+          transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .certp-cta-letter,
+        .certp-details-letter {
+          display: block;
+          height: 1.2em;
+          line-height: 1.2em;
+        }
+        .cert-pricing-cta:hover .certp-cta-letter-track,
+        .cert-pricing-details-link:hover .certp-details-letter-track {
+          transform: translateY(-1.2em);
         }
         .cert-pricing-card-wrap {
           opacity: 0;
@@ -312,9 +370,15 @@ export const CertificationPricing = ({
             <a
               href={"/contact"}
               className="cert-pricing-cta"
-              style={styles.ctaButton}
+              style={
+                {
+                  ...styles.ctaButton,
+                  '--certp-icon-delay': `${waveEndMs(getStartedLabelProp?.trim() || plan.ctaLabel)}ms`,
+                } as React.CSSProperties
+              }
             >
-              {getStartedLabelProp?.trim() || plan.ctaLabel} →
+              <WaveLabel label={getStartedLabelProp?.trim() || plan.ctaLabel} prefix="certp-cta" />
+              <span className="cert-pricing-cta-arrow">→</span>
             </a>
             <hr style={styles.divider} />
             <ul style={styles.featureList}>
@@ -338,9 +402,15 @@ export const CertificationPricing = ({
             <a
               href={resolveUrl(plan.detailsUrl)}
               className="cert-pricing-details-link"
-              style={styles.detailsLink}
+              style={
+                {
+                  ...styles.detailsLink,
+                  '--certp-icon-delay': `${waveEndMs(plan.detailsLabel)}ms`,
+                } as React.CSSProperties
+              }
             >
-              {plan.detailsLabel} →
+              <WaveLabel label={plan.detailsLabel} prefix="certp-details" />
+              <span className="cert-pricing-details-arrow">→</span>
             </a>
           </div>
         ))}

@@ -181,42 +181,128 @@ export const caseStudySpotlightCss = `
     cursor: pointer;
     overflow: hidden;
     position: relative;
-    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .csp-root .csp-cta::before {
+  /* solid colour wipe, left → right */
+  .csp-root .csp-cta::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.08) 50%, transparent 70%);
-    transform: translateX(-100%);
-    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    background: var(--csp-cyan);
+    transform-origin: left center;
+    transform: scaleX(0);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .csp-root .csp-cta:hover::after {
+    transform: scaleX(1);
   }
 
   .csp-root .csp-cta:hover {
-    background: rgba(16, 200, 229, 0.08);
-    border-color: rgba(16, 200, 229, 0.55);
+    border-color: rgba(16, 200, 229, 0.85);
     box-shadow: 0 0 0 3px rgba(16, 200, 229, 0.14), 0 0 18px rgba(16, 200, 229, 0.14);
   }
 
-  .csp-root .csp-cta:hover::before {
-    transform: translateX(100%);
-  }
-
-  .csp-root .csp-cta svg {
+  .csp-root .csp-cta-label-mask {
     position: relative;
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 1;
+    display: inline-flex;
   }
 
-  .csp-root .csp-cta:hover svg {
-    transform: translate(2px, -2px);
+  .csp-root .csp-cta-letter-mask {
+    overflow: hidden;
+    display: inline-block;
+    height: 1.2em;
+    line-height: 1.2em;
   }
 
-  .csp-root .csp-cta span {
+  .csp-root .csp-cta-letter-track {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .csp-root .csp-cta-letter {
+    display: block;
+    height: 1.2em;
+    line-height: 1.2em;
+    transition: color 0.2s ease;
+  }
+
+  .csp-root .csp-cta:hover .csp-cta-letter-track {
+    transform: translateY(-1.2em);
+  }
+
+  .csp-root .csp-cta:hover .csp-cta-letter {
+    color: #001b41;
+  }
+
+  .csp-root .csp-cta-icon {
+    display: flex;
+    align-items: center;
     position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease, color 0.25s ease;
+  }
+
+  .csp-root .csp-cta:hover .csp-cta-icon {
+    color: #001b41;
+    transform: translateX(30%) rotate(-45deg);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) var(--csp-cta-icon-delay, 0ms), color 0.25s ease;
+  }
+
+  /* ── active-slide entrance: staggered rise-in + slow image zoom ── */
+  @keyframes cspRise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes cspStatPop {
+    0% { opacity: 0; transform: translateY(8px) scale(0.85); }
+    65% { opacity: 1; transform: translateY(0) scale(1.06); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes cspKenBurns {
+    from { transform: scale(1); }
+    to { transform: scale(1.07); }
+  }
+
+  .csp-root .csp-slide.is-active .csp-client {
+    animation: cspRise 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+  }
+
+  .csp-root .csp-slide.is-active .csp-title {
+    animation: cspRise 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+  }
+
+  .csp-root .csp-slide.is-active .csp-excerpt {
+    animation: cspRise 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.19s both;
+  }
+
+  .csp-root .csp-slide.is-active .csp-stats {
+    animation: cspRise 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.26s both;
+  }
+
+  .csp-root .csp-slide.is-active .csp-stat-value {
+    animation: cspStatPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.32s both;
+  }
+
+  .csp-root .csp-slide.is-active .csp-cta {
+    animation: cspRise 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.38s both;
+  }
+
+  .csp-root .csp-slide.is-active .csp-media img {
+    animation: cspKenBurns 9s cubic-bezier(0.25, 0.1, 0.25, 1) both;
   }
 
   @media (max-width: 768px) {
+    .csp-root .csp-track {
+      align-items: flex-start;
+    }
     .csp-root .csp-slide {
       grid-template-columns: 1fr;
       min-height: 0;
@@ -224,20 +310,31 @@ export const caseStudySpotlightCss = `
     .csp-root .csp-media {
       border-right: none;
       border-bottom: 1px solid var(--csp-line);
-      min-height: 220px;
+      aspect-ratio: 4 / 3;
+      min-height: 0;
     }
     .csp-root .csp-content {
       padding: 28px 22px 32px;
     }
   }
 
-  /* ── nav ── */
+  /* ── tabs row: slide tabs left, prev/next + counter right ──
+     the row itself never wraps, so the arrow cluster stays pinned on the right;
+     .csp-tabs wraps its own buttons internally instead when space is tight. */
+  .csp-root .csp-tabs-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 16px;
+    margin-top: 18px;
+  }
+
   .csp-root .csp-nav {
     display: flex;
     align-items: center;
     gap: 16px;
-    margin-top: 22px;
-    flex-wrap: wrap;
+    flex-shrink: 0;
   }
 
   .csp-root .csp-arrow {
@@ -291,37 +388,147 @@ export const caseStudySpotlightCss = `
     transform: scale(0.95);
   }
 
-  .csp-root .csp-dots {
+  /* ── tab indicators (avatar + client name) ── */
+  .csp-root .csp-tabs {
     display: flex;
-    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
-  .csp-root .csp-dot {
-    width: 22px;
-    height: 3px;
-    background: var(--csp-line);
-    border: none;
+  .csp-root .csp-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 6px 16px 6px 6px;
+    background: var(--csp-panel);
+    border: 1px solid var(--csp-line);
+    border-radius: 999px;
     cursor: pointer;
-    padding: 0;
-    border-radius: 2px;
-    transition: background 0.3s ease, width 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .csp-root .csp-dot.is-active {
-    background: var(--csp-cyan);
-    width: 32px;
+  .csp-root .csp-tab:hover {
+    border-color: rgba(16, 200, 229, 0.5);
   }
 
-  .csp-root .csp-counter {
-    font-size: 12.5px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
+  .csp-root .csp-tab.is-active {
+    border-color: var(--csp-cyan);
+    box-shadow: 0 0 0 1px rgba(16, 200, 229, 0.35), 0 0 16px rgba(16, 200, 229, 0.18);
+  }
+
+  .csp-root .csp-tab-avatar {
+    position: relative;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--csp-field);
+    border: 1px solid var(--csp-line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .csp-root .csp-tab-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1);
+    opacity: 0.65;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+  }
+
+  .csp-root .csp-tab-avatar span {
+    font-size: 11.5px;
+    font-weight: 700;
     color: var(--csp-dim);
+  }
+
+  .csp-root .csp-tab.is-active .csp-tab-avatar img {
+    filter: grayscale(0);
+    opacity: 1;
+  }
+
+  .csp-root .csp-tab.is-active .csp-tab-avatar {
+    border-color: var(--csp-cyan);
+  }
+
+  .csp-root .csp-tab-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--csp-dim);
+    white-space: nowrap;
+    transition: color 0.3s ease;
+  }
+
+  .csp-root .csp-tab.is-active .csp-tab-label {
+    color: var(--csp-head);
+  }
+
+  .csp-root .csp-tab-label--short {
+    display: none;
+  }
+
+  /* ≤991px: swap the full client name for its short form */
+  @media (max-width: 991px) {
+    .csp-root .csp-tab-label--full {
+      display: none;
+    }
+    .csp-root .csp-tab-label--short {
+      display: inline;
+    }
+  }
+
+  /* ≤768px: avatar only, no label at all */
+  @media (max-width: 768px) {
+    .csp-root .csp-tab {
+      padding: 0px;
+    }
+    .csp-root .csp-tab-avatar {
+      width: 32px;
+      height: 32px;
+    }
+    .csp-root .csp-tab-label--full,
+    .csp-root .csp-tab-label--short {
+      display: none;
+    }
+    /* the avatar already gets its own cyan ring when active — with the label
+       gone and the button now just a tight wrap around it, the button's own
+       border-color + box-shadow double up on top of that ring, so drop them. */
+    .csp-root .csp-tab.is-active {
+      border-color: var(--csp-line);
+      box-shadow: none;
+    }
+  }
+
+  /* ≤479px: tabs stay on one (scrollable) line, arrows drop to their own row */
+  @media (max-width: 479px) {
+    .csp-root .csp-tabs-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .csp-root .csp-tabs {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-bottom: 2px;
+    }
+    .csp-root .csp-tabs::-webkit-scrollbar {
+      display: none;
+    }
+    .csp-root .csp-nav {
+      justify-content: flex-end;
+    }
   }
 
   .csp-root .csp-arrow:focus-visible,
   .csp-root .csp-cta:focus-visible,
-  .csp-root .csp-dot:focus-visible {
+  .csp-root .csp-tab:focus-visible {
     outline: 2px solid var(--csp-cyan);
     outline-offset: 2px;
   }
@@ -329,11 +536,25 @@ export const caseStudySpotlightCss = `
   @media (prefers-reduced-motion: reduce) {
     .csp-root .csp-track,
     .csp-root .csp-cta,
-    .csp-root .csp-cta::before,
+    .csp-root .csp-cta::after,
+    .csp-root .csp-cta-letter-track,
+    .csp-root .csp-cta-icon,
     .csp-root .csp-arrow,
     .csp-root .csp-arrow::before,
-    .csp-root .csp-dot {
+    .csp-root .csp-tab,
+    .csp-root .csp-tab-avatar img,
+    .csp-root .csp-tab-label {
       transition: none;
+    }
+
+    .csp-root .csp-slide.is-active .csp-client,
+    .csp-root .csp-slide.is-active .csp-title,
+    .csp-root .csp-slide.is-active .csp-excerpt,
+    .csp-root .csp-slide.is-active .csp-stats,
+    .csp-root .csp-slide.is-active .csp-stat-value,
+    .csp-root .csp-slide.is-active .csp-cta,
+    .csp-root .csp-slide.is-active .csp-media img {
+      animation: none;
     }
   }
 `;

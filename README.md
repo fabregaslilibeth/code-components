@@ -71,29 +71,37 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ## Webflow Deployment
 
-This project contains React components that can be published to Webflow and used in your Webflow sites.
+This project contains React components that can be published to Webflow and used in your Webflow sites, via the Webflow CLI (`@webflow/webflow-cli`, installed as a dev dependency).
 
-### Step 1: Publish Components to Webflow
+### Step 1: Authenticate with Webflow
 
-1. **Login to Webflow CLI** (first time only):
-   ```bash
-   npm run webflow:login
-   ```
-   This will open a browser window for authentication.
+```bash
+npm run webflow:login
+```
 
-2. **Publish your components**:
-   ```bash
-   npm run webflow:publish
-   ```
-   This publishes your component library (defined in `webflow.json`) to Webflow. Your components will be available in the Webflow Designer under the "Components" panel.
+Runs `webflow auth login` — opens a browser window to authenticate and saves credentials to a local `.env` file.
 
-3. **Development mode** (optional):
-   ```bash
-   npm run webflow:dev
-   ```
-   This runs the components in development mode with hot-reloading for testing.
+**Never commit `.env`** — it holds your Webflow credentials. It's already listed in `.gitignore`. If you ever need to re-authenticate (e.g. expired session), run `npx webflow auth login --force`.
 
-### Step 2: Publish Your Site to Live
+### Step 2: Share your library to Webflow
+
+```bash
+npm run webflow:share
+```
+
+Runs `webflow library share` — bundles every component matched by `webflow.json` and shares the library to your Webflow Workspace, using the credentials saved in Step 1. Once it finishes, the library shows up in the Webflow Designer's "Components" panel on any site in that Workspace.
+
+To share from a script or CI without an interactive login, set `WEBFLOW_WORKSPACE_API_TOKEN` (or pass `--api-token <token>`) instead of running Step 1.
+
+### Local bundle only (optional)
+
+```bash
+npm run webflow:bundle
+```
+
+Runs `webflow library bundle` — bundles the library to `./dist` for inspection without sharing it to Webflow. Useful for a quick sanity check before sharing.
+
+### Step 3: Publish Your Site to Live
 
 After your components are published and added to your Webflow site:
 
@@ -116,16 +124,49 @@ After your components are published and added to your Webflow site:
 ### Component Library
 
 Your component library is configured in `webflow.json`:
-- **Library Name:** Intouch Tech Components
-- **Components:** All files matching `./src/**/*.webflow.@(js|jsx|mjs|ts|tsx)`
+- **Library name:** Intouch Tech Components
+- **Components matched:** any file under `./src/` ending in `.webflow.@(js|jsx|mjs|ts|tsx)`
 
-Current components:
-- `Card.webflow.tsx`
-- `Icon.webflow.tsx`
-- `PricingCalculator.webflow.tsx`
+Current components (31):
+
+| Component | Source | Description |
+|---|---|---|
+| Button | `src/components/button/` | Pill CTA button — label, icon, link, dark/light theme |
+| CTA Button | `src/components/cta-button/` | Link button — colour, icon, size, corner shape and per-breakpoint centring as props |
+| CTA Banner | `src/components/cta-banner/` | Full-width blue gradient CTA banner with heading, contacts and two action buttons |
+| Expert CTA | `src/components/expert-cta/` | Dark section with expert photo anchored to the bottom, a chat popup, and a WhatsApp CTA |
+| Marquee | `src/components/marquee/` | Infinite scrolling pill strip — icon + label items |
+| Points | `src/components/points/` | Feature card with title, body and a grid of icon points |
+| Compare Card | `src/components/compare-card/` | Pro vs con comparison card with icons and custom colours |
+| Icon Card | `src/components/card/` | Single icon card with title and body — dark or light theme |
+| Grid | `src/components/grid/` | Uniform icon-card grid, fixed 8 item slots — dark or light theme |
+| Grid Array | `src/components/grid-array/` | Uniform icon-card grid — accepts items as a JSON array |
+| Slider | `src/components/slider/Slider.webflow.tsx` | Scroll-snap card slider — paste a JSON array into the Slides prop |
+| Slider Item | `src/components/slider/SliderItem.webflow.tsx` | Standalone slide component. ⚠️ `Slider` does not declare a child slot for it, so composing it inside `Slider` on the canvas is unverified — the proven pattern is `Slider`'s own `slides` JSON prop |
+| Header Group | `src/components/header-group/` | Section heading with optional eyebrow, gradient highlight, and intro paragraph |
+| Why Bento | `src/components/why-bento/WhyBento.webflow.tsx` | Bento-style "why us" section with a feature tile and icon cards |
+| Why Bento (Light) | `src/components/why-bento/WhyBentoLight.webflow.tsx` | Light-mode bento "why us" section with white/grey tiles and navy text |
+| Why Bento Array | `src/components/why-bento-array/` | Bento-style "why us" grid — items as a JSON array, dark and light themes |
+| Bento Grid | `src/components/bento/` | Why Intouch bento grid with icons, feature cells and photo cards |
+| How Timeline | `src/components/timeline/` | Vertical process timeline (4–7 steps) with scroll reveal, animated connector lines and photo parallax |
+| Delivery Process | `src/components/process/` | Interactive five-step Power BI delivery process with step navigation, photos and progress bar |
+| Pricing Card | `src/components/pricing-card/` | Sticky pricing panel — selectable price bands, checklist, CTA. All text and colours are props |
+| Pricing Calculator | `src/components/PricingCalculator.webflow.tsx` | Dynamic pricing calculator with payment frequency, employee slider, and multiple plan cards |
+| Certification Pricing | `src/components/CertificationPricing.webflow.tsx` | Pricing comparison with Cyber Essentials / Cyber Essentials Plus toggle and three plan cards |
+| Case Study Spotlight | `src/components/case-study/` | One case study at a time, full-bleed and editorial — paste a JSON array into the Case studies prop |
+| Bullet List | `src/components/bullet-list/` | Icon-bulleted list with optional body text — dark/light, responsive alignment |
+| Numbered List | `src/components/numbered-list/` | Numbered rows with icon, title and body — light or dark theme |
+| Pill List | `src/components/pill-list/` | Flex-wrap pill list — icon + label, alignment per breakpoint, optional per-item link |
+| Service List | `src/components/service-list/` | Numbered clickable service rows with logo, title, body and arrow |
+| Text With Image | `src/components/text-with-image/` | Image beside a text block (eyebrow, title, body); stacks on mobile |
+| Feature Item | `src/components/feature-item/` | One comparison-table row: check/cross icon, label, optional tooltip |
+| Stats Grid | `src/components/stats-grid/` | Grid of stat cards — value, optional unit superscript, and label |
+| Icon | `src/components/Icon.webflow.tsx` | Renders an arbitrary icon from a raw SVG HTML string prop |
+
+Run `npm start` to preview components locally — it renders `src/App.js`, a dev harness that mounts most of the library side by side.
 
 ### Troubleshooting
 
-- If `webflow:publish` fails, make sure you're logged in: `npm run webflow:login`
-- Ensure your `webflow.json` configuration is correct
-- Check that all component files follow the `.webflow.tsx` naming convention
+- If `webflow:login` or `webflow:share` fails with an auth error, re-run `npm run webflow:login` (add `--force` to force re-authentication)
+- If `webflow:share` doesn't pick up a component, check `webflow.json`'s `library.components` glob and confirm the file ends in `.webflow.tsx` (or `.js`/`.jsx`/`.mjs`/`.ts`) — `Card.webflow.legacy.tsx` is intentionally excluded this way
+- Never commit `.env` — it holds your Webflow credentials

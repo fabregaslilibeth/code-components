@@ -8,12 +8,16 @@ const ButtonWebflow = ({
   icon,
   href,
   target,
+  bgColor,
+  hoverColor,
 }: {
   theme?: string;
   label?: string;
   icon?: string;
   href?: string;
   target?: string;
+  bgColor?: string;
+  hoverColor?: string;
 }) => {
   const safeTheme: ButtonTheme = theme === 'dark' ? 'dark' : 'light';
   return (
@@ -23,6 +27,8 @@ const ButtonWebflow = ({
       icon={icon}
       href={href || undefined}
       target={target || undefined}
+      bgColor={bgColor}
+      hoverColor={hoverColor}
     />
   );
 };
@@ -37,5 +43,18 @@ export default declareComponent(ButtonWebflow, {
     icon:   props.Text({ name: 'Icon (lucide name)',       defaultValue: 'arrow-up-right' }),
     href:   props.Text({ name: 'Link URL',                defaultValue: '' }),
     target: props.Text({ name: 'Link target (_blank…)',   defaultValue: '' }),
+
+    bgColor: props.Text({
+      name: 'Background colour',
+      defaultValue: 'transparent',
+      tooltip: 'Colour at rest. Default is transparent (outline style).',
+      group: 'Style',
+    }),
+    hoverColor: props.Text({
+      name: 'Hover colour',
+      defaultValue: '#10C8E5',
+      tooltip: 'Colour the hover wipe reveals.',
+      group: 'Style',
+    }),
   },
 });

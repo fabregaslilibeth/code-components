@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { pricingDetailsStyles as styles } from './PricingDetails.styles';
+import { WaveLabel } from './WaveLabel';
 
 const FEATURES = [
   'Includes Cyber Essentials certification',
@@ -59,10 +60,56 @@ export function PricingDetails() {
           .pricing-details-layout { grid-template-columns: 1fr !important; }
           .pricing-details-sidebar { position: static !important; }
         }
+        .pricing-details-buy-btn::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: #0891b2;
+          transform-origin: left center;
+          transform: scaleX(0);
+          transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+          pointer-events: none;
+          z-index: 0;
+        }
+        .pricing-details-buy-btn:hover::after {
+          transform: scaleX(1);
+        }
         .pricing-details-buy-btn:hover {
-          opacity: 0.95;
           transform: translateY(-2px);
           box-shadow: 0 10px 28px rgba(34, 211, 238, 0.4);
+        }
+        .pricing-details-buy-btn > * {
+          position: relative;
+          z-index: 1;
+        }
+        .pd-buy-label-mask {
+          display: inline-flex;
+        }
+        .pd-buy-letter-mask {
+          overflow: hidden;
+          display: inline-block;
+          height: 1.2em;
+          line-height: 1.2em;
+        }
+        .pd-buy-letter-track {
+          display: flex;
+          flex-direction: column;
+          transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .pd-buy-letter {
+          display: block;
+          height: 1.2em;
+          line-height: 1.2em;
+        }
+        .pricing-details-buy-btn:hover .pd-buy-letter-track {
+          transform: translateY(-1.2em);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .pricing-details-buy-btn,
+          .pricing-details-buy-btn::after,
+          .pd-buy-letter-track {
+            transition: none;
+          }
         }
         .pricing-details-related-card:hover {
           border-color: rgba(34, 211, 238, 0.4);
@@ -305,7 +352,9 @@ export function PricingDetails() {
             </select>
           </div>
           <div className="pricing-details-block">
-            <a href="/contact" style={styles.buyButton} className="pricing-details-buy-btn">Buy now</a>
+            <a href="/contact" style={styles.buyButton} className="pricing-details-buy-btn">
+              <WaveLabel label="Buy now" prefix="pd-buy" />
+            </a>
           </div>
         </aside>
       </div>

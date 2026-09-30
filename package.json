@@ -18,9 +18,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "webflow:login": "webflow login",
-    "webflow:publish": "webflow publish",
-    "webflow:dev": "webflow dev"
+    "webflow:login": "webflow auth login",
+    "webflow:share": "webflow library share",
+    "webflow:bundle": "webflow library bundle"
   },
   "eslintConfig": {
     "extends": [

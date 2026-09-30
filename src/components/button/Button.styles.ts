@@ -8,28 +8,24 @@ export const buttonCss = `
 
   /* ── dark theme ── */
   .btn-root.btn-dark {
-    --btn-bg:           transparent;
-    --btn-bg-hover:     rgba(16, 200, 229, 0.08);
     --btn-border:       rgba(125, 170, 215, 0.22);
-    --btn-border-hover: rgba(16, 200, 229, 0.55);
+    --btn-border-hover: rgba(16, 200, 229, 0.85);
     --btn-text:         rgba(221, 233, 249, 0.85);
-    --btn-text-hover:   #ffffff;
+    --btn-text-hover:   #001b41;
     --btn-icon:         #10C8E5;
-    --btn-glow:         rgba(16, 200, 229, 0.18);
-    --btn-shine:        rgba(255, 255, 255, 0.06);
+    --btn-icon-hover:   #001b41;
+    --btn-glow:         rgba(16, 200, 229, 0.24);
   }
 
   /* ── light theme ── */
   .btn-root.btn-light {
-    --btn-bg:           transparent;
-    --btn-bg-hover:     rgba(16, 200, 229, 0.06);
     --btn-border:       rgba(3, 36, 71, 0.18);
-    --btn-border-hover: rgba(16, 200, 229, 0.55);
+    --btn-border-hover: rgba(16, 200, 229, 0.85);
     --btn-text:         rgba(0, 27, 65, 0.80);
     --btn-text-hover:   #001b41;
     --btn-icon:         #10C8E5;
-    --btn-glow:         rgba(16, 200, 229, 0.14);
-    --btn-shine:        rgba(16, 200, 229, 0.08);
+    --btn-icon-hover:   #001b41;
+    --btn-glow:         rgba(16, 200, 229, 0.20);
   }
 
   .btn-root {
@@ -50,54 +46,69 @@ export const buttonCss = `
     text-decoration: none;
     overflow: hidden;
     outline: none;
-    transition:
-      background   0.30s ease,
-      border-color 0.30s ease,
-      box-shadow   0.30s ease,
-      color        0.20s ease;
+    transition: border-color 0.30s ease, box-shadow 0.30s ease;
   }
 
-  /* shine sweep pseudo */
-  .btn-el::before {
+  /* solid colour wipe, left → right */
+  .btn-el::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      110deg,
-      transparent 30%,
-      var(--btn-shine) 50%,
-      transparent 70%
-    );
-    transform: translateX(-100%);
-    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    background: var(--btn-fill);
+    transform-origin: left center;
+    transform: scaleX(0);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     pointer-events: none;
-    border-radius: inherit;
+    z-index: 0;
   }
 
-  .btn-el:hover::before {
-    transform: translateX(100%);
+  .btn-el:hover::after {
+    transform: scaleX(1);
   }
 
   .btn-el:hover {
-    background:    var(--btn-bg-hover);
-    border-color:  var(--btn-border-hover);
+    border-color: var(--btn-border-hover);
     box-shadow:
       0 0 0 3px var(--btn-glow),
       0 0 18px var(--btn-glow);
   }
 
-  .btn-label {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--btn-text);
-    transition: color 0.20s ease;
+  .btn-label-mask {
     position: relative;
     z-index: 1;
+    display: inline-flex;
   }
 
-  .btn-el:hover .btn-label {
+  .btn-letter-mask {
+    overflow: hidden;
+    display: inline-block;
+    height: 1.2em;
+    line-height: 1.2em;
+  }
+
+  .btn-letter-track {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-letter {
+    display: block;
+    height: 1.2em;
+    line-height: 1.2em;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--btn-text);
+    transition: color 0.2s ease;
+  }
+
+  .btn-el:hover .btn-letter-track {
+    transform: translateY(-1.2em);
+  }
+
+  .btn-el:hover .btn-letter {
     color: var(--btn-text-hover);
   }
 
@@ -107,11 +118,13 @@ export const buttonCss = `
     color: var(--btn-icon);
     position: relative;
     z-index: 1;
-    transition: transform 0.30s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: transform 0.3s ease, color 0.25s ease;
   }
 
   .btn-el:hover .btn-icon {
-    transform: translate(2px, -2px);
+    color: var(--btn-icon-hover);
+    transform: translateX(30%) rotate(-45deg);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) var(--btn-icon-delay, 0ms), color 0.25s ease;
   }
 
   /* icon-only: no gap, equal padding */

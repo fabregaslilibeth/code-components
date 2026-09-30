@@ -116,6 +116,7 @@ export const certificationPricingStyles = {
   } as CSSProperties,
 
   ctaButton: {
+    position: 'relative',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -125,11 +126,12 @@ export const certificationPricingStyles = {
     color: BG_DARK,
     border: 'none',
     borderRadius: '9999px',
+    overflow: 'hidden',
     fontSize: '0.95rem',
     fontWeight: '600',
     cursor: 'pointer',
     textDecoration: 'none',
-    transition: 'opacity 0.2s, transform 0.15s',
+    transition: 'transform 0.15s',
     marginBottom: '1.25rem',
   } as CSSProperties,
 

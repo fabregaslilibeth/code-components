@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { bannerStyles as styles } from './Banner.styles';
+import { WaveLabel } from './WaveLabel';
 
 export interface BannerProps {
   /** URL for the hero image that overlaps the bottom (e.g. team photo). Place image in public folder or pass full URL. */
@@ -61,7 +62,7 @@ export const Banner = ({
               style={styles.ctaPrimary}
               className="banner-cta-primary"
             >
-              Get a Free IT & Security Assessment
+              <WaveLabel label="Get a Free IT & Security Assessment" prefix="banner-cta" />
             </a>
             <div style={styles.trustLine}>
               <span>Excellent on Trustpilot</span>
@@ -112,7 +113,7 @@ export const Banner = ({
                 style={styles.rightBoxCta}
                 className="banner-right-cta"
               >
-                Run Free Security Check
+                <WaveLabel label="Run Free Security Check" prefix="banner-cta" />
               </a>
               <p style={styles.rightBoxMicro}>
                 Takes ~2 minutes • Results emailed

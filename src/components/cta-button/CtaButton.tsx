@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ctaButtonCss } from './CtaButton.styles';
 import { LucideIcon } from '../LucideIcon';
+import { WaveLabel, waveEndMs } from '../WaveLabel';
 
 /** Corner style. "pill" is fully rounded, "square" has no radius. */
 export type CtaButtonShape = 'pill' | 'rounded' | 'square';
@@ -71,7 +72,6 @@ export const CtaButton = ({
 
   const withIcon = showIcon && !!icon;
   const iconOnly = !label && withIcon;
-  const diagonal = withIcon && icon.includes('up-right');
 
   const Tag = href ? 'a' : 'button';
   const elProps = href
@@ -83,7 +83,6 @@ export const CtaButton = ({
     `cb-size-${safeSize}`,
     `cb-shape-${safeShape}`,
     iconOnly ? 'cb-icon-only' : '',
-    diagonal ? 'cb-diag' : '',
   ]
     .filter(Boolean)
     .join(' ');
@@ -97,12 +96,13 @@ export const CtaButton = ({
           '--cb-text': textColor,
           '--cb-bg-hover': hoverColor || `color-mix(in srgb, ${bgColor} 88%, #000)`,
           '--cb-glow': `color-mix(in srgb, ${bgColor} 30%, transparent)`,
+          '--cb-icon-delay': `${waveEndMs(label)}ms`,
         } as React.CSSProperties
       }
     >
       <style>{ctaButtonCss}</style>
-      <Tag className={classes} {...elProps}>
-        {label && <span className="cb-label">{label}</span>}
+      <Tag className={classes} aria-label={label || undefined} {...elProps}>
+        {label && <WaveLabel label={label} prefix="cb" />}
         {withIcon && (
           <span className="cb-icon">
             <LucideIcon name={icon} size={ICON_SIZE[safeSize]} strokeWidth={2.4} />

@@ -68,6 +68,6 @@ export default declareComponent(HeaderGroupWebflow, {
     intro: props.Text({ name: 'Intro paragraph', defaultValue: '' }),
     introColor: props.Text({ name: 'Intro colour (optional, overrides heading colour)', defaultValue: '' }),
     eyebrowColor: props.Text({ name: 'Eyebrow colour (optional, overrides default cyan)', defaultValue: '' }),
-    maxWidth: props.Text({ name: 'Max width', defaultValue: '760px' }),
+    maxWidth: props.Text({ name: 'Max width', defaultValue: 'none', tooltip: 'CSS max-width for the whole group. Defaults to full width — set a value like "760px" to constrain it.' }),
   },
 });

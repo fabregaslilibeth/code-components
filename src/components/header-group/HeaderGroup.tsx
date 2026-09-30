@@ -28,7 +28,7 @@ export const HeaderGroup = ({
   intro = '',
   introColor,
   eyebrowColor,
-  maxWidth = '760px',
+  maxWidth = 'none',
 }: HeaderGroupProps) => {
   const rootStyle: React.CSSProperties = { maxWidth };
   const Heading = headingTag as React.ElementType;
