@@ -301,6 +301,15 @@ export const ctaBannerCss = `
       min-width: 0;
       width: 100%;
     }
+
+    .ctab-left {
+      text-align: center;
+    }
+
+    .ctab-eyebrow,
+    .ctab-contacts {
+      justify-content: center;
+    }
   }
 
   @media (max-width: 480px) {
@@ -319,6 +328,7 @@ export const ctaBannerCss = `
 
     .ctab-contacts {
       flex-direction: column;
+      align-items: center;
       gap: 10px;
     }
 
