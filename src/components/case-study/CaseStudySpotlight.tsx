@@ -155,7 +155,7 @@ export const CaseStudySpotlight = ({
     <>
       <div className="csp-media">
         {item.image && (
-          <img src={item.image} alt={item.imageAlt || item.title || ''} decoding="async" />
+          <img src={item.image} alt={item.imageAlt || item.title || ''} loading="lazy" decoding="async" />
         )}
         {item.tag && <span className="csp-tag">{item.tag}</span>}
       </div>
@@ -243,7 +243,7 @@ export const CaseStudySpotlight = ({
                 onClick={() => goTo(i)}
               >
                 <span className="csp-tab-avatar">
-                  {item.image ? <img src={item.image} alt="" decoding="async" /> : <span>{initial}</span>}
+                  {item.image ? <img src={item.image} alt="" loading="lazy" decoding="async" /> : <span>{initial}</span>}
                 </span>
                 <span className="csp-tab-label csp-tab-label--full">{label}</span>
                 <span className="csp-tab-label csp-tab-label--short">{shortLabel}</span>
