@@ -15,7 +15,6 @@ export const caseStudySpotlightCss = `
     --csp-head: #ffffff;
     --csp-dim: rgba(221, 233, 249, 0.56);
     --csp-cyan: #10C8E5;
-    --csp-tagbg: rgba(7, 12, 24, 0.68);
     --csp-media1: #0A1325;
     --csp-media2: #070C18;
   }
@@ -29,7 +28,6 @@ export const caseStudySpotlightCss = `
     --csp-head: #001b41;
     --csp-dim: rgba(0, 27, 65, 0.60);
     --csp-cyan: #10C8E5;
-    --csp-tagbg: rgba(255, 255, 255, 0.80);
     --csp-media1: #e8edf5;
     --csp-media2: #dde6f2;
   }
@@ -87,15 +85,13 @@ export const caseStudySpotlightCss = `
     display: inline-flex;
     align-items: center;
     padding: 6px 12px;
-    background: var(--csp-tagbg);
-    backdrop-filter: blur(6px);
-    border: 1px solid var(--csp-line-strong);
+    background: var(--csp-cyan);
     border-radius: 999px;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--csp-cyan);
+    color: #001b41;
   }
 
   /* ── content ── */
