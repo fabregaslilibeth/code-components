@@ -96,7 +96,7 @@ export const compareCardCss = `
 
   /* ── title ── */
   .cc-title {
-    font-size: var(--_typography---font-size--h4, 1.5rem);
+    font-size: var(--_typography---font-size--h3, 2.125rem);
     font-weight: 500;
     color: var(--cc-title);
     margin: 0 0 6px;

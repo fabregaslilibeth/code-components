@@ -115,7 +115,7 @@ export const numberedListCss = `
   }
 
   .nl-root .nl-title {
-    font-size: var(--_typography---font-size--h6, 1.125rem);
+    font-size: var(--_typography---font-size--h3, 2.125rem);
     font-weight: 500;
     color: var(--nl-title);
     margin: 0 0 4px;

@@ -194,7 +194,7 @@ export const sliderCss = `
   /* ── text ── */
   .sl-root .sl-title {
     font-weight: 500;
-    font-size: var(--_typography---font-size--h4, 1.5rem);
+    font-size: var(--_typography---font-size--h3, 2.125rem);
     color: var(--sl-head);
     margin: 28px 0 10px;
     overflow-wrap: anywhere;

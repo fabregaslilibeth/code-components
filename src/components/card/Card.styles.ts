@@ -158,7 +158,7 @@ export const cardCss = `
   /* ── text ── */
   .card-root .card-title {
     font-weight: 500;
-    font-size: var(--_typography---font-size--h4, 1.5rem);
+    font-size: var(--_typography---font-size--h3, 2.125rem);
     line-height: 1.3;
     color: var(--card-head);
     margin: 0 0 8px;

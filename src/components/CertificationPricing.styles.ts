@@ -15,7 +15,6 @@ const CROSS_RED = '#ef4444';
 // Site type scale (Webflow variables cross the shadow root); fallbacks used outside Webflow.
 const FS_SMALL = 'var(--_typography---font-size--text-small, 0.9375rem)';
 const FS_MAIN = 'var(--_typography---font-size--text-main, 1.125rem)';
-const FS_H4 = 'var(--_typography---font-size--h4, 1.5rem)';
 const FS_H3 = 'var(--_typography---font-size--h3, 2.125rem)';
 
 export const certificationPricingStyles = {
@@ -89,7 +88,7 @@ export const certificationPricingStyles = {
   } as CSSProperties,
 
   cardTitle: {
-    fontSize: FS_H4,
+    fontSize: FS_H3,
     fontWeight: '500',
     lineHeight: 1.3,
     margin: '0 0 0.5rem 0',
