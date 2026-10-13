@@ -54,28 +54,26 @@ export const statsGridCss = `
   }
 
   .sg-value {
-    font-size: clamp(2.5rem, 6vw, 3.5rem);
-    font-weight: 800;
+    font-size: var(--_typography---font-size--h2, 3rem);
+    font-weight: 700;
     color: var(--sg-value);
-    line-height: 1;
-    letter-spacing: -0.02em;
+    line-height: 1.2;
   }
 
   .sg-unit {
-    font-size: clamp(0.8rem, 2vw, 1.05rem);
-    font-weight: 700;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    font-weight: 400;
+    line-height: 1.5;
     color: var(--sg-unit);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
     align-self: flex-start;
     margin-top: 0.3em;
   }
 
   .sg-label {
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    font-weight: 400;
     color: var(--sg-label);
-    line-height: 1.4;
+    line-height: 1.5;
   }
 
   /* ── responsive ── */

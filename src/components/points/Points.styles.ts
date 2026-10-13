@@ -96,18 +96,16 @@ export const pointsCss = `
   }
 
   .pt-title {
-    font-weight: 800;
-    font-size: 20px;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
+    font-weight: 500;
+    font-size: var(--_typography---font-size--h4, 1.5rem);
     color: var(--pt-head);
     margin: 0 0 10px;
-    line-height: 1.15;
+    line-height: 1.3;
   }
 
   .pt-body {
-    font-size: 15px;
-    line-height: 1.62;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
+    line-height: 1.5;
     color: var(--pt-txt-dim);
     margin: 0;
     max-width: 640px;
@@ -196,10 +194,9 @@ export const pointsCss = `
   }
 
   .pt-point-title {
-    font-weight: 800;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
+    font-weight: 500;
+    font-size: var(--_typography---font-size--h6, 1.125rem);
+    line-height: 1.5;
     color: var(--pt-head);
     margin: 0 0 5px;
     transition: color 0.3s var(--pt-ease);
@@ -210,8 +207,8 @@ export const pointsCss = `
   }
 
   .pt-point-desc {
-    font-size: 13.5px;
-    line-height: 1.55;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
+    line-height: 1.5;
     color: var(--pt-txt-dim);
     margin: 0;
   }

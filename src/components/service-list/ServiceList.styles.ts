@@ -92,10 +92,10 @@ export const serviceListCss = `
 
   /* ── number ── */
   .svl-root .svl-num {
-    font-size: 0.9rem;
-    font-weight: 700;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    font-weight: 400;
+    line-height: 1.5;
     color: var(--svl-num);
-    letter-spacing: 0.04em;
     font-variant-numeric: tabular-nums;
     user-select: none;
     transition: color 0.2s;
@@ -142,13 +142,11 @@ export const serviceListCss = `
   }
 
   .svl-root .svl-title {
-    font-size: 0.9rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+    font-size: var(--_typography---font-size--h6, 1.125rem);
+    font-weight: 500;
     color: var(--svl-title);
     margin: 0 0 3px;
-    line-height: 1.2;
+    line-height: 1.5;
   }
 
   /* inline (not inline-flex) keeps the real spaces between words, so titles can wrap */
@@ -190,7 +188,7 @@ export const serviceListCss = `
   }
 
   .svl-root .svl-body {
-    font-size: 0.875rem;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
     line-height: 1.5;
     color: var(--svl-body);
     margin: 0;
@@ -221,21 +219,9 @@ export const serviceListCss = `
       padding: 16px 16px;
     }
 
-    .svl-root .svl-num {
-      font-size: 0.78rem;
-    }
-
     .svl-root .svl-logo {
       width: 38px;
       height: 38px;
-    }
-
-    .svl-root .svl-title {
-      font-size: 0.78rem;
-    }
-
-    .svl-root .svl-body {
-      font-size: 0.75rem;
     }
   }
 

@@ -51,19 +51,17 @@ export const textWithImageCss = `
   .twi-root .twi-eyebrow {
     display: inline-flex;
     align-items: center;
-    font-weight: 700;
-    font-size: clamp(0.95rem, calc(0.07143vw + 0.9357rem), 1rem);
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
+    font-size: var(--_typography---font-size--h6, 1.125rem);
+    font-weight: 500;
+    line-height: 1.5;
     color: var(--twi-eyebrow);
     margin: 0 0 20px;
   }
 
   .twi-root .twi-title {
-    font-weight: 800;
-    font-size: clamp(28px, 3.4vw, 44px);
-    line-height: 1.1;
-    letter-spacing: -0.03em;
+    font-weight: 700;
+    font-size: var(--_typography---font-size--h2, 3rem);
+    line-height: 1.2;
     color: var(--twi-title);
     margin: 0;
     overflow-wrap: normal;
@@ -72,8 +70,8 @@ export const textWithImageCss = `
   }
 
   .twi-root .twi-body {
-    font-size: 17px;
-    line-height: 1.65;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
+    line-height: 1.5;
     color: var(--twi-body);
     margin: 22px 0 0;
     overflow-wrap: anywhere;
@@ -89,7 +87,6 @@ export const textWithImageCss = `
     }
 
     .twi-root .twi-body {
-      font-size: 16px;
       margin-top: 18px;
     }
   }
@@ -124,16 +121,10 @@ export const textWithImageCss = `
     }
 
     .twi-root .twi-eyebrow {
-      letter-spacing: 0.18em;
       margin-bottom: 16px;
     }
 
-    .twi-root .twi-title {
-      font-size: clamp(22px, 7vw, 30px);
-    }
-
     .twi-root .twi-body {
-      font-size: 15px;
       margin-top: 16px;
     }
   }

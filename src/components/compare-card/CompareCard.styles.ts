@@ -96,13 +96,11 @@ export const compareCardCss = `
 
   /* ── title ── */
   .cc-title {
-    font-size: 18px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
+    font-size: var(--_typography---font-size--h4, 1.5rem);
+    font-weight: 500;
     color: var(--cc-title);
     margin: 0 0 6px;
-    line-height: 1.2;
+    line-height: 1.3;
     position: relative;
     z-index: 1;
   }
@@ -219,13 +217,10 @@ export const compareCardCss = `
   }
 
   .cc-row-label {
-    font-size: 12px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-size: var(--_typography---font-size--h6, 1.125rem);
+    font-weight: 500;
     margin: 0;
-    line-height: 1.2;
-    transition: letter-spacing 0.35s var(--cc-ease);
+    line-height: 1.5;
   }
 
   .cc-row--pro .cc-row-label {
@@ -236,12 +231,8 @@ export const compareCardCss = `
     color: var(--cc-con-label-color, var(--cc-title));
   }
 
-  .cc-row:hover .cc-row-label {
-    letter-spacing: 0.07em;
-  }
-
   .cc-row-desc {
-    font-size: 13.5px;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
     line-height: 1.5;
     margin: 0;
   }

@@ -71,11 +71,10 @@ export const numberedListCss = `
 
   /* ── number ── */
   .nl-root .nl-num {
-    font-size: 1.5rem;
-    font-weight: 800;
+    font-size: var(--_typography---font-size--h4, 1.5rem);
+    font-weight: 500;
     color: var(--nl-num);
-    letter-spacing: -0.03em;
-    line-height: 1;
+    line-height: 1.3;
     font-variant-numeric: tabular-nums;
     transition: color 0.25s ease;
     user-select: none;
@@ -116,18 +115,16 @@ export const numberedListCss = `
   }
 
   .nl-root .nl-title {
-    font-size: 0.9rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+    font-size: var(--_typography---font-size--h6, 1.125rem);
+    font-weight: 500;
     color: var(--nl-title);
     margin: 0 0 4px;
-    line-height: 1.2;
+    line-height: 1.5;
   }
 
   .nl-root .nl-body {
-    font-size: 0.875rem;
-    line-height: 1.55;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
+    line-height: 1.5;
     color: var(--nl-body);
     margin: 0;
   }
@@ -140,21 +137,9 @@ export const numberedListCss = `
       padding: 18px 16px;
     }
 
-    .nl-root .nl-num {
-      font-size: 1.15rem;
-    }
-
     .nl-root .nl-icon-wrap {
       width: 38px;
       height: 38px;
-    }
-
-    .nl-root .nl-title {
-      font-size: 0.8rem;
-    }
-
-    .nl-root .nl-body {
-      font-size: 0.8rem;
     }
   }
 `;

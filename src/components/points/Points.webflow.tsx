@@ -1,6 +1,7 @@
 ﻿import { Points, PointsTheme, PointItem } from './Points';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
+import { HEADING_TAGS, toHeadingTag } from '../headingTag';
 
 const DEFAULT_POINTS_JSON = `[
   {"icon":"workflow","title":"Automated workflows","body":"Trigger Power Automate flows from any action in your app."},
@@ -23,16 +24,18 @@ const PointsWebflow = ({
   body,
   points,
   tickColor,
+  headingTag,
 }: {
   theme?: string;
   title?: string;
   body?: string;
   points?: string;
   tickColor?: string;
+  headingTag?: string;
 }) => {
   const safeTheme: PointsTheme = theme === 'light' ? 'light' : 'dark';
   const safePoints = parsePoints(points || DEFAULT_POINTS_JSON);
-  return <Points theme={safeTheme} title={title} body={body} points={safePoints} tickColor={tickColor} />;
+  return <Points theme={safeTheme} title={title} body={body} points={safePoints} tickColor={tickColor} headingTag={toHeadingTag(headingTag, 'h3')} />;
 };
 
 export default declareComponent(PointsWebflow, {
@@ -45,5 +48,6 @@ export default declareComponent(PointsWebflow, {
     body:   props.Text({ name: 'Body',                 defaultValue: 'Pair Power Apps with Power Automate and Microsoft Teams to handle approvals, notifications and back-end tasks automatically.' }),
     points:    props.Text({ name: 'Points (JSON array)',  defaultValue: DEFAULT_POINTS_JSON }),
     tickColor: props.Text({ name: 'Tick colour',          defaultValue: '' }),
+    headingTag: props.Variant({ name: 'Heading level', defaultValue: 'h3', options: HEADING_TAGS }),
   },
 });

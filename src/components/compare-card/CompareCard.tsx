@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { compareCardCss } from './CompareCard.styles';
 import { LucideIcon } from '../LucideIcon';
+import { HeadingTag } from '../headingTag';
 
 export type CompareCardTheme = 'dark' | 'light';
 
@@ -19,6 +20,7 @@ export interface CompareCardProps {
   conColor?: string;
   conLabelColor?: string;
   conDescColor?: string;
+  headingTag?: HeadingTag;
 }
 
 export const CompareCard = ({
@@ -36,7 +38,9 @@ export const CompareCard = ({
   conColor = '#ef4444',
   conLabelColor,
   conDescColor,
+  headingTag = 'h3',
 }: CompareCardProps) => {
+  const Heading = headingTag as React.ElementType;
   const cardStyle = {
     '--cc-pro-color': proColor,
     '--cc-con-color': conColor,
@@ -50,7 +54,7 @@ export const CompareCard = ({
     <div className={`cc-root cc-${theme}`}>
       <style>{compareCardCss}</style>
       <div className="cc-card" style={cardStyle}>
-        <h3 className="cc-title">{title}</h3>
+        <Heading className="cc-title">{title}</Heading>
 
         <div className="cc-row cc-row--pro">
           <span className="cc-row-icon">

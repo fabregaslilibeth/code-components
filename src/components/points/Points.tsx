@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { pointsCss } from './Points.styles';
 import { LucideIcon } from '../LucideIcon';
+import { HeadingTag } from '../headingTag';
 
 export type PointsTheme = 'dark' | 'light';
 
@@ -16,6 +17,7 @@ export interface PointsProps {
   body?: string;
   points?: PointItem[];
   tickColor?: string;
+  headingTag?: HeadingTag;
 }
 
 const DEFAULT_POINTS: PointItem[] = [
@@ -44,8 +46,10 @@ export const Points = ({
   body = 'Pair Power Apps with Power Automate and Microsoft Teams to handle approvals, notifications and back-end tasks automatically.',
   points = DEFAULT_POINTS,
   tickColor,
+  headingTag = 'h3',
 }: PointsProps) => {
   const safePoints = points.length > 0 ? points : DEFAULT_POINTS;
+  const Heading = headingTag as React.ElementType;
 
   return (
     <div className={`pt-root pt-${theme}`}>
@@ -53,7 +57,7 @@ export const Points = ({
       <div className="pt-card">
         <Ticks color={tickColor} />
         <div className="pt-header">
-          <h3 className="pt-title">{title}</h3>
+          <Heading className="pt-title">{title}</Heading>
           <p className="pt-body">{body}</p>
         </div>
         <div className="pt-grid">

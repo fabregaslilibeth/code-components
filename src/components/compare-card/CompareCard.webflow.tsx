@@ -1,11 +1,13 @@
 ﻿import { CompareCard, CompareCardTheme } from './CompareCard';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
+import { HEADING_TAGS, toHeadingTag } from '../headingTag';
 
 const CompareCardWebflow = ({
   theme, title, titleColor,
   proIcon, proLabel, proDesc, proColor, proDescColor,
   conIcon, conLabel, conDesc, conColor, conLabelColor, conDescColor,
+  headingTag,
 }: {
   theme?: string;
   title?: string;
@@ -21,6 +23,7 @@ const CompareCardWebflow = ({
   conColor?: string;
   conLabelColor?: string;
   conDescColor?: string;
+  headingTag?: string;
 }) => (
   <CompareCard
     theme={(theme === 'dark' ? 'dark' : 'light') as CompareCardTheme}
@@ -37,6 +40,7 @@ const CompareCardWebflow = ({
     conColor={conColor}
     conLabelColor={conLabelColor}
     conDescColor={conDescColor}
+    headingTag={toHeadingTag(headingTag, 'h3')}
   />
 );
 
@@ -59,5 +63,6 @@ export default declareComponent(CompareCardWebflow, {
     conColor:     props.Text({ name: 'Con colour',               defaultValue: '#ef4444' }),
     conLabelColor: props.Text({ name: 'Con label colour',        defaultValue: '' }),
     conDescColor: props.Text({ name: 'Con description colour',   defaultValue: '' }),
+    headingTag:   props.Variant({ name: 'Heading level', defaultValue: 'h3', options: HEADING_TAGS }),
   },
 });
