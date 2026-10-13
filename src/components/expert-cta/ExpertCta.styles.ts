@@ -3,7 +3,7 @@ import { CSSProperties } from 'react';
 export const S = {
   root: {
     position: 'relative',
-    fontFamily: "'Montserrat', system-ui, -apple-system, sans-serif",
+    fontFamily: 'inherit',
     backgroundColor: '#080c14',
     color: '#ffffff',
     minHeight: '320px',
@@ -29,43 +29,44 @@ export const S = {
   } as CSSProperties,
 
   eyebrow: {
-    fontSize: '0.875rem',
-    fontWeight: 700,
+    fontSize: 'var(--_typography---font-size--h6, 1.125rem)',
+    fontWeight: 500,
+    lineHeight: 1.5,
     color: '#3b82f6',
     marginBottom: '0.5rem',
     margin: '0 0 0.5rem 0',
   } as CSSProperties,
 
   headline: {
-    fontSize: 'clamp(1.4rem, 2.5vw, 1.9rem)',
-    fontWeight: 700,
+    fontSize: 'var(--_typography---font-size--h3, 2.125rem)',
+    fontWeight: 500,
     color: '#ffffff',
     margin: '0 0 0.1rem 0',
     lineHeight: 1.2,
   } as CSSProperties,
 
   name: {
-    fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-    fontWeight: 900,
+    fontSize: 'var(--_typography---font-size--h2, 3rem)',
+    fontWeight: 700,
     background: 'linear-gradient(90deg, #0F63F3 0%, #00D4FF 50%, #10C8E5 100%)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     backgroundClip: 'text',
     margin: '0 0 1.5rem 0',
-    lineHeight: 1.05,
-    letterSpacing: '-0.01em',
+    lineHeight: 1.2,
   } as CSSProperties,
 
   tagline: {
-    fontSize: '1rem',
-    fontWeight: 700,
+    fontSize: 'var(--_typography---font-size--h6, 1.125rem)',
+    fontWeight: 500,
+    lineHeight: 1.5,
     color: '#ffffff',
     margin: '0 0 0.65rem 0',
   } as CSSProperties,
 
   body: {
-    fontSize: '0.95rem',
-    lineHeight: 1.65,
+    fontSize: 'var(--_typography---font-size--text-main, 1.125rem)',
+    lineHeight: 1.5,
     color: 'rgba(255,255,255,0.75)',
     margin: '0 0 1.5rem 0',
     maxWidth: '520px',
@@ -86,9 +87,9 @@ export const S = {
   } as CSSProperties,
 
   badgeText: {
-    fontSize: '0.9rem',
+    fontSize: 'var(--_typography---font-size--text-small, 0.9375rem)',
     color: 'rgba(255,255,255,0.85)',
-    lineHeight: 1.45,
+    lineHeight: 1.5,
     margin: 0,
   } as CSSProperties,
 
@@ -101,8 +102,9 @@ export const S = {
     color: '#ffffff',
     border: 'none',
     borderRadius: '999px',
-    fontSize: '0.95rem',
-    fontWeight: 600,
+    font: 'inherit',
+    fontSize: 'var(--_typography---font-size--text-main, 1.125rem)',
+    fontWeight: 400,
     cursor: 'pointer',
     textDecoration: 'none',
     position: 'relative',
@@ -162,7 +164,7 @@ export const S = {
     overflow: 'hidden',
     boxShadow: '0 20px 60px rgba(0,0,0,0.6)',
     zIndex: 101,
-    fontFamily: "'Montserrat', system-ui, -apple-system, sans-serif",
+    fontFamily: 'inherit',
   } as CSSProperties,
 
   popupHeader: {
@@ -190,15 +192,16 @@ export const S = {
   } as CSSProperties,
 
   popupName: {
-    fontSize: '0.95rem',
-    fontWeight: 700,
+    fontSize: 'var(--_typography---font-size--h6, 1.125rem)',
+    fontWeight: 500,
     color: '#ffffff',
     margin: 0,
-    lineHeight: 1.2,
+    lineHeight: 1.5,
   } as CSSProperties,
 
   popupRole: {
-    fontSize: '0.75rem',
+    fontSize: 'var(--_typography---font-size--text-small, 0.9375rem)',
+    lineHeight: 1.5,
     color: '#22c55e',
     margin: 0,
     display: 'flex',
@@ -220,7 +223,8 @@ export const S = {
     border: 'none',
     color: 'rgba(255,255,255,0.6)',
     cursor: 'pointer',
-    fontSize: '1.1rem',
+    font: 'inherit',
+    fontSize: 'var(--_typography---font-size--text-main, 1.125rem)',
     padding: '0.25rem',
     lineHeight: 1,
     display: 'flex',
@@ -236,7 +240,8 @@ export const S = {
 
   popupTimestamp: {
     textAlign: 'center',
-    fontSize: '0.7rem',
+    fontSize: 'var(--_typography---font-size--text-small, 0.9375rem)',
+    lineHeight: 1.5,
     color: 'rgba(255,255,255,0.4)',
     marginBottom: '0.75rem',
   } as CSSProperties,
@@ -262,7 +267,7 @@ export const S = {
     color: '#1a1a1a',
     borderRadius: '14px 14px 14px 2px',
     padding: '0.75rem 1rem',
-    fontSize: '0.875rem',
+    fontSize: 'var(--_typography---font-size--text-small, 0.9375rem)',
     lineHeight: 1.5,
     maxWidth: '240px',
     boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
@@ -274,8 +279,9 @@ export const S = {
   } as CSSProperties,
 
   popupCtaLabel: {
-    fontSize: '0.8rem',
-    fontWeight: 700,
+    fontSize: 'var(--_typography---font-size--text-small, 0.9375rem)',
+    fontWeight: 400,
+    lineHeight: 1.5,
     color: '#ffffff',
     marginBottom: '0.5rem',
     display: 'block',
@@ -292,8 +298,8 @@ export const S = {
     color: '#ffffff',
     border: 'none',
     borderRadius: '8px',
-    fontSize: '1rem',
-    fontWeight: 700,
+    fontSize: 'var(--_typography---font-size--text-main, 1.125rem)',
+    fontWeight: 400,
     cursor: 'pointer',
     textDecoration: 'none',
     position: 'relative',

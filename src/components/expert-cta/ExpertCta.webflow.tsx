@@ -1,8 +1,16 @@
-import { ExpertCta } from './ExpertCta';
+import { ExpertCta, ExpertCtaProps } from './ExpertCta';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
+import { HEADING_TAGS, toHeadingTag } from '../headingTag';
 
-export default declareComponent(ExpertCta, {
+const ExpertCtaWebflow = ({
+  headingTag,
+  ...rest
+}: Omit<ExpertCtaProps, 'headingTag'> & { headingTag?: string }) => (
+  <ExpertCta {...rest} headingTag={toHeadingTag(headingTag, 'h3')} />
+);
+
+export default declareComponent(ExpertCtaWebflow, {
   name: 'Expert CTA',
   description: 'Dark section with expert photo anchored to the bottom, a chat popup, and a WhatsApp CTA',
   group: 'Marketing',
@@ -15,9 +23,10 @@ export default declareComponent(ExpertCta, {
       name: 'Headline',
       defaultValue: 'Ask our inhouse Power BI expert,',
     }),
+    headingTag: props.Variant({ name: 'Heading level', defaultValue: 'h3', options: HEADING_TAGS }),
     expertName: props.Text({
       name: 'Expert Name (large)',
-      defaultValue: 'GEORGE',
+      defaultValue: 'George',
     }),
     tagline: props.Text({
       name: 'Tagline',
@@ -43,7 +52,7 @@ export default declareComponent(ExpertCta, {
     }),
     ctaLabel: props.Text({
       name: 'CTA Button Label',
-      defaultValue: 'Chat With George',
+      defaultValue: 'Chat with George',
     }),
     expertPhotoSrc: props.Text({
       name: 'Expert Photo URL (full body, transparent BG)',
@@ -51,7 +60,7 @@ export default declareComponent(ExpertCta, {
     }),
     expertPhotoAlt: props.Text({
       name: 'Expert Photo Alt Text',
-      defaultValue: 'George Brown – In-House Power BI Expert',
+      defaultValue: 'George Brown, in-house Power BI expert',
     }),
     expertAvatarSrc: props.Text({
       name: 'Expert Avatar URL (used in popup, falls back to photo)',
@@ -59,7 +68,7 @@ export default declareComponent(ExpertCta, {
     }),
     expertRole: props.Text({
       name: 'Expert Role (shown in popup)',
-      defaultValue: 'In-House PowerBi Expert',
+      defaultValue: 'In-house Power BI expert',
     }),
     whatsappNumber: props.Text({
       name: 'WhatsApp Number (no + or spaces, e.g. 447700900000)',
@@ -80,7 +89,7 @@ export default declareComponent(ExpertCta, {
     }),
     popupCtaLabel: props.Text({
       name: 'Popup CTA Label',
-      defaultValue: 'Start Chat with:',
+      defaultValue: 'Start chat with:',
     }),
     whatsappBtnLabel: props.Text({
       name: 'WhatsApp Button Label',

@@ -39,7 +39,7 @@ export default declareComponent(ButtonWebflow, {
   group: 'Content',
   props: {
     theme:  props.Variant({ name: 'Theme', defaultValue: 'light', options: ['light', 'dark'] }),
-    label:  props.Text({ name: 'Label',                   defaultValue: 'Ask about Power BI Training' }),
+    label:  props.Text({ name: 'Label',                   defaultValue: 'Ask about Power BI training' }),
     icon:   props.Text({ name: 'Icon (lucide name)',       defaultValue: 'arrow-up-right' }),
     href:   props.Text({ name: 'Link URL',                defaultValue: '' }),
     target: props.Text({ name: 'Link target (_blank…)',   defaultValue: '' }),

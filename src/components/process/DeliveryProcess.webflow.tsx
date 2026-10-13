@@ -2,6 +2,7 @@ import { DeliveryProcess } from './DeliveryProcess';
 import { DEFAULT_DELIVERY_STEPS, DeliveryProcessStep } from './DeliveryProcess.data';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
+import { HEADING_TAGS, toHeadingTag } from '../headingTag';
 
 const DeliveryProcessWebflow = ({
   step1Number,
@@ -24,6 +25,7 @@ const DeliveryProcessWebflow = ({
   step5Title,
   step5Body,
   step5Photo,
+  headingTag,
 }: {
   step1Number?: string;
   step1Title?: string;
@@ -45,6 +47,7 @@ const DeliveryProcessWebflow = ({
   step5Title?: string;
   step5Body?: string;
   step5Photo?: string;
+  headingTag?: string;
 }) => {
   const defaults = DEFAULT_DELIVERY_STEPS;
   const steps: DeliveryProcessStep[] = [
@@ -83,6 +86,7 @@ const DeliveryProcessWebflow = ({
   return (
     <DeliveryProcess
       steps={steps}
+      headingTag={toHeadingTag(headingTag, 'h3')}
     />
   );
 };
@@ -92,6 +96,7 @@ export default declareComponent(DeliveryProcessWebflow, {
   description: 'Interactive five-step Power BI delivery process with step navigation, photos and progress bar',
   group: 'Content',
   props: {
+    headingTag: props.Variant({ name: 'Heading level', defaultValue: 'h3', options: HEADING_TAGS }),
     step1Number: props.Text({ name: 'Step 1 number', defaultValue: '01' }),
     step1Title: props.Text({
       name: 'Step 1 title',

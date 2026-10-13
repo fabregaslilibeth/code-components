@@ -35,10 +35,8 @@ export const ctaButtonCss = `
     align-items: center;
     justify-content: center;
     gap: 9px;
-    font-family: inherit;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font: inherit;
+    font-weight: 400;
     text-decoration: none;
     text-align: center;
     border: 1px solid transparent;
@@ -119,13 +117,13 @@ export const ctaButtonCss = `
   /* ── size variants ── */
   .cb-el.cb-size-small {
     padding: 11px 20px;
-    font-size: 12px;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
     gap: 7px;
   }
 
   .cb-el.cb-size-big {
     padding: 16px 32px;
-    font-size: 14px;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
     gap: 10px;
   }
 

@@ -19,7 +19,7 @@ export interface ButtonProps {
 
 export const Button = ({
   theme = 'light',
-  label = 'Ask about Power BI Training',
+  label = 'Ask about Power BI training',
   icon = 'arrow-up-right',
   href,
   target,

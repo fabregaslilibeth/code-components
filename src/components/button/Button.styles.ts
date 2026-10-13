@@ -46,6 +46,8 @@ export const buttonCss = `
     text-decoration: none;
     overflow: hidden;
     outline: none;
+    font: inherit;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
     transition: border-color 0.30s ease, box-shadow 0.30s ease;
   }
 
@@ -96,10 +98,7 @@ export const buttonCss = `
     display: block;
     height: 1.2em;
     line-height: 1.2em;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
+    font-weight: 400;
     color: var(--btn-text);
     transition: color 0.2s ease;
   }

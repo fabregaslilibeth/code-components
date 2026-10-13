@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ctaBannerCss } from './CtaBanner.styles';
 import { WaveLabel, waveEndMs } from '../WaveLabel';
+import { HeadingTag } from '../headingTag';
 
 export interface CtaBannerProps {
   eyebrow?: string;
@@ -13,6 +14,7 @@ export interface CtaBannerProps {
   primaryHref?: string;
   secondaryLabel?: string;
   secondaryHref?: string;
+  headingTag?: HeadingTag;
 }
 
 const PhoneIcon = () => (
@@ -45,7 +47,10 @@ export const CtaBanner = ({
   primaryHref      = '#contact',
   secondaryLabel   = 'Talk to an expert',
   secondaryHref    = 'tel:03333707000',
-}: CtaBannerProps) => (
+  headingTag       = 'h2',
+}: CtaBannerProps) => {
+  const Heading = headingTag as React.ElementType;
+  return (
   <div className="ctab-root">
     <style>{ctaBannerCss}</style>
     <div className="ctab-card">
@@ -61,10 +66,10 @@ export const CtaBanner = ({
           {eyebrow && (
             <p className="ctab-eyebrow">{eyebrow}</p>
           )}
-          <h2 className="ctab-heading">
+          <Heading className="ctab-heading">
             {headingBefore}
             <span className="ctab-heading-highlight">{headingHighlight}</span>
-          </h2>
+          </Heading>
           <div className="ctab-contacts">
             <a className="ctab-contact" href={phoneHref}>
               <PhoneIcon />{phone}
@@ -95,4 +100,5 @@ export const CtaBanner = ({
       </div>
     </div>
   </div>
-);
+  );
+};

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { DEFAULT_DELIVERY_STEPS, DeliveryProcessStep } from './DeliveryProcess.data';
 import { deliveryProcessCss, deliveryProcessStyles as styles } from './DeliveryProcess.styles';
+import { HeadingTag } from '../headingTag';
 
 export type { DeliveryProcessStep };
 
@@ -10,6 +11,7 @@ export interface DeliveryProcessProps {
   headingHighlight?: string;
   description?: string;
   steps?: DeliveryProcessStep[];
+  headingTag?: HeadingTag;
 }
 
 interface PhotoProps {
@@ -110,7 +112,9 @@ function useDeliveryEffects(
 
 export const DeliveryProcess = ({
   steps = DEFAULT_DELIVERY_STEPS,
+  headingTag = 'h3',
 }: DeliveryProcessProps) => {
+  const Heading = headingTag as React.ElementType;
   const rootRef = React.useRef<HTMLElement>(null);
   const [active, setActive] = React.useState(0);
   const [hoveredStep, setHoveredStep] = React.useState<number | null>(null);
@@ -174,7 +178,7 @@ export const DeliveryProcess = ({
               </div>
             </div>
             <div className="dp-detail-body">
-              <h3 className="dp-detail-title">{activeStep.title}</h3>
+              <Heading className="dp-detail-title">{activeStep.title}</Heading>
               <p className="dp-detail-text">{activeStep.body}</p>
             </div>
           </div>

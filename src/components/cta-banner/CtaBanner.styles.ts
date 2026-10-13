@@ -89,10 +89,9 @@ export const ctaBannerCss = `
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
+    font-size: var(--_typography---font-size--h6, 1.125rem);
+    font-weight: 500;
+    line-height: 1.5;
     color: #10C8E5;
     margin: 0 0 18px;
   }
@@ -107,11 +106,9 @@ export const ctaBannerCss = `
 
   /* heading */
   .ctab-heading {
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: -0.03em;
-    line-height: 1.0;
+    font-size: var(--_typography---font-size--h2, 3rem);
+    font-weight: 700;
+    line-height: 1.2;
     margin: 0 0 28px;
     color: #ffffff;
     word-break: normal;
@@ -139,8 +136,9 @@ export const ctaBannerCss = `
     align-items: center;
     gap: 8px;
     color: rgba(255,255,255,0.75);
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
+    font-weight: 400;
+    line-height: 1.5;
     text-decoration: none;
     transition: color 0.2s;
   }
@@ -170,10 +168,8 @@ export const ctaBannerCss = `
     gap: 9px;
     padding: 15px 28px;
     border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
+    font-weight: 400;
     text-decoration: none;
     cursor: pointer;
     white-space: nowrap;
@@ -322,7 +318,6 @@ export const ctaBannerCss = `
     }
 
     .ctab-heading {
-      font-size: clamp(1.6rem, 8vw, 2.2rem);
       margin-bottom: 20px;
     }
 
@@ -333,7 +328,6 @@ export const ctaBannerCss = `
     }
 
     .ctab-btn {
-      font-size: 0.7rem;
       padding: 14px 20px;
     }
   }

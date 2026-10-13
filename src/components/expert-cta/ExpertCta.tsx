@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { S } from './ExpertCta.styles';
 import { WaveLabel } from '../WaveLabel';
+import { HeadingTag } from '../headingTag';
 
 export interface ExpertCtaProps {
   eyebrow?: string;
@@ -30,6 +31,7 @@ export interface ExpertCtaProps {
   popupCtaLabel?: string;
   /** WhatsApp button label */
   whatsappBtnLabel?: string;
+  headingTag?: HeadingTag;
 }
 
 const WhatsAppIcon = () => (
@@ -47,24 +49,26 @@ const ChatIcon = () => (
 export const ExpertCta = ({
   eyebrow = 'Reports taking too long? Dashboards messy?',
   headline = 'Ask our inhouse Power BI expert,',
-  expertName = 'GEORGE',
+  expertName = 'George',
   tagline = 'Make every decision data-driven.',
   body = 'Custom dashboards, KPI tracking, automated reporting, and board-ready insights. Ask our inhouse Power BI expert about our comprehensive BI consultancy services and level up how you run your business.',
   badgeImageSrc = 'https://cdn.prod.website-files.com/6900d0af5ebb1f2065599d70/6936c5d41fc73d5cc0188ec3_Microsoft-Solutions-Partner-Logo.avif',
   badgeImageAlt = 'Microsoft Solutions Partner',
   badgeText = 'George works within a <strong>Microsoft Solutions Partner</strong> & <strong>Microsoft Certified Expert</strong> team.',
-  ctaLabel = 'Chat With George',
+  ctaLabel = 'Chat with George',
   expertPhotoSrc = 'https://cdn.prod.website-files.com/6900d0af5ebb1f2065599d70/695fbf29a3a902ef8880f3de_Untitled-2.avif',
-  expertPhotoAlt = 'George Brown – In-House Power BI Expert',
+  expertPhotoAlt = 'George Brown, in-house Power BI expert',
   expertAvatarSrc = 'https://cdn.prod.website-files.com/6900d0af5ebb1f2065599d70/695fbf29a3a902ef8880f3de_Untitled-2.avif',
-  expertRole = 'In-House PowerBi Expert',
+  expertRole = 'In-house Power BI expert',
   whatsappNumber = '447967889889',
   whatsappMessage = 'Hi George, I have a question about Power BI.',
   popupTime = '30',
   popupMessage = "Do you have any questions about our Microsoft PowerBI?\n\nDrop me a line and I'll gladly help you 😍",
-  popupCtaLabel = 'Start Chat with:',
+  popupCtaLabel = 'Start chat with:',
   whatsappBtnLabel = 'WhatsApp',
+  headingTag = 'h3',
 }: ExpertCtaProps) => {
+  const Heading = headingTag as React.ElementType;
   const [popupOpen, setPopupOpen] = React.useState(false);
   const btnRef = React.useRef<HTMLButtonElement>(null);
   const [popupPos, setPopupPos] = React.useState<{ top: number; left: number } | null>(null);
@@ -106,8 +110,8 @@ export const ExpertCta = ({
         {/* Left: content */}
         <div style={S.contentCol} className="expert-cta-content">
           <p style={S.eyebrow}>{eyebrow}</p>
-          <h3 style={S.headline}>{headline}</h3>
-          <h4 style={S.name}>{expertName}</h4>
+          <Heading style={S.headline}>{headline}</Heading>
+          <p style={S.name}>{expertName}</p>
           <p style={S.tagline}>{tagline}</p>
           <p style={S.body}>{body}</p>
 

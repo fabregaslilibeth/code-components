@@ -69,10 +69,9 @@ export const deliveryProcessCss = `
     align-items: center;
     gap: 12px;
     max-width: 100%;
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
+    font-size: var(--_typography---font-size--h6, 1.125rem);
+    font-weight: 500;
+    line-height: 1.5;
     color: var(--dp-cyan);
     margin-bottom: 22px;
   }
@@ -86,12 +85,10 @@ export const deliveryProcessCss = `
   }
 
   .delivery-process-root .dp-heading {
-    font-weight: 800;
-    font-size: clamp(30px, 4.4vw, 56px);
-    text-transform: uppercase;
+    font-weight: 700;
+    font-size: var(--_typography---font-size--h2, 3rem);
     color: var(--dp-head);
-    letter-spacing: -0.035em;
-    line-height: 1.05;
+    line-height: 1.2;
     margin: 0;
     overflow-wrap: anywhere;
     word-break: break-word;
@@ -106,8 +103,8 @@ export const deliveryProcessCss = `
   }
 
   .delivery-process-root .dp-desc {
-    font-size: 16px;
-    line-height: 1.65;
+    font-size: var(--_typography---font-size--text-large, 1.25rem);
+    line-height: 1.5;
     color: var(--dp-txt-dim);
     margin: 20px 0 0;
     max-width: 620px;
@@ -150,7 +147,7 @@ export const deliveryProcessCss = `
     display: flex;
     align-items: center;
     gap: 20px;
-    font-family: inherit;
+    font: inherit;
     transition:
       background var(--dp-dur-base),
       transform var(--dp-dur-smooth) var(--dp-ease-out);
@@ -230,10 +227,9 @@ export const deliveryProcessCss = `
   .delivery-process-root .dp-step-num {
     position: relative;
     z-index: 1;
-    font-weight: 800;
-    font-size: 18px;
+    font-weight: 500;
+    font-size: var(--_typography---font-size--h6, 1.125rem);
     font-variant-numeric: tabular-nums;
-    letter-spacing: -0.02em;
     color: var(--dp-faint);
     transition:
       color 0.6s var(--dp-ease-out),
@@ -248,7 +244,7 @@ export const deliveryProcessCss = `
   }
 
   .delivery-process-root .dp-step-btn.is-active .dp-step-num {
-    font-size: 20px;
+    font-size: var(--_typography---font-size--h5, 1.25rem);
     color: var(--dp-cyan);
   }
 
@@ -273,17 +269,14 @@ export const deliveryProcessCss = `
   .delivery-process-root .dp-step-title {
     flex: 1;
     min-width: 0;
-    font-weight: 800;
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
+    font-weight: 500;
+    font-size: var(--_typography---font-size--h6, 1.125rem);
     color: var(--dp-txt-dim);
     transition:
       transform 0.65s var(--dp-ease-out),
-      letter-spacing 0.65s var(--dp-ease-out),
       color 0.65s var(--dp-ease-out),
       text-shadow 0.65s var(--dp-ease-out);
-    line-height: 1.1;
+    line-height: 1.5;
     overflow-wrap: anywhere;
     word-break: break-word;
   }
@@ -299,13 +292,12 @@ export const deliveryProcessCss = `
   }
 
   .delivery-process-root .dp-step-btn.is-active .dp-step-title {
-    font-size: 19px;
+    font-size: var(--_typography---font-size--h5, 1.25rem);
     color: var(--dp-head);
   }
 
   .delivery-process-root .dp-step-btn.is-hovered .dp-step-title {
     transform: translateX(6px);
-    letter-spacing: 0.01em;
     color: #ffffff;
     text-shadow: 0 0 24px rgba(16, 200, 229, 0.18);
   }
@@ -420,9 +412,9 @@ export const deliveryProcessCss = `
     left: 30px;
     bottom: 24px;
     z-index: 2;
-    font-weight: 800;
-    font-size: 13px;
-    letter-spacing: 0.16em;
+    font-weight: 400;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    line-height: 1.5;
     color: #fff;
     font-variant-numeric: tabular-nums;
   }
@@ -438,17 +430,15 @@ export const deliveryProcessCss = `
   }
 
   .delivery-process-root .dp-detail-title {
-    font-weight: 800;
-    font-size: 22px;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
+    font-weight: 500;
+    font-size: var(--_typography---font-size--h4, 1.5rem);
+    line-height: 1.3;
     color: var(--dp-head);
     margin: 0;
     overflow-wrap: anywhere;
     word-break: break-word;
     transition:
       transform 0.65s var(--dp-ease-out),
-      letter-spacing 0.65s var(--dp-ease-out),
       color 0.65s var(--dp-ease-out),
       text-shadow 0.65s var(--dp-ease-out);
   }
@@ -464,8 +454,8 @@ export const deliveryProcessCss = `
   }
 
   .delivery-process-root .dp-detail-text {
-    font-size: 15.5px;
-    line-height: 1.6;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
+    line-height: 1.5;
     color: var(--dp-txt-dim);
     margin: 10px 0 0;
     min-height: 50px;
@@ -477,7 +467,6 @@ export const deliveryProcessCss = `
 
   .delivery-process-root .dp-detail-col.is-hovered .dp-detail-title {
     transform: translateX(8px);
-    letter-spacing: 0.01em;
     color: #ffffff;
     text-shadow: 0 0 24px rgba(16, 200, 229, 0.18);
   }
@@ -520,12 +509,7 @@ export const deliveryProcessCss = `
       margin-bottom: 28px;
     }
 
-    .delivery-process-root .dp-heading {
-      font-size: clamp(26px, 7.5vw, 40px);
-    }
-
     .delivery-process-root .dp-desc {
-      font-size: 15px;
       margin-top: 16px;
     }
 
@@ -555,12 +539,7 @@ export const deliveryProcessCss = `
       padding: 22px 20px 24px;
     }
 
-    .delivery-process-root .dp-detail-title {
-      font-size: 18px;
-    }
-
     .delivery-process-root .dp-detail-text {
-      font-size: 15px;
       min-height: 0;
     }
   }
@@ -575,20 +554,7 @@ export const deliveryProcessCss = `
     }
 
     .delivery-process-root .dp-eyebrow {
-      font-size: 11px;
-      letter-spacing: 0.18em;
       margin-bottom: 18px;
-    }
-
-    .delivery-process-root .dp-heading {
-      font-size: clamp(22px, 7vw, 30px);
-      line-height: 1.08;
-      letter-spacing: -0.02em;
-    }
-
-    .delivery-process-root .dp-desc {
-      font-size: 14px;
-      line-height: 1.6;
     }
 
     .delivery-process-root .dp-step-btn {
@@ -596,38 +562,13 @@ export const deliveryProcessCss = `
       gap: 12px;
     }
 
-    .delivery-process-root .dp-step-num {
-      font-size: 16px;
-    }
-
     .delivery-process-root .dp-step-num-wrap {
       width: 40px;
       height: 40px;
     }
 
-    .delivery-process-root .dp-step-btn.is-active .dp-step-num {
-      font-size: 17px;
-    }
-
-    .delivery-process-root .dp-step-title {
-      font-size: 12px;
-      line-height: 1.2;
-    }
-
-    .delivery-process-root .dp-step-btn.is-active .dp-step-title {
-      font-size: 13px;
-    }
-
     .delivery-process-root .dp-photo-wrap {
       min-height: 180px;
-    }
-
-    .delivery-process-root .dp-detail-title {
-      font-size: 16px;
-    }
-
-    .delivery-process-root .dp-detail-text {
-      font-size: 14px;
     }
   }
 
