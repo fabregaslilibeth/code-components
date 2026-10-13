@@ -46,10 +46,9 @@ export const bentoCss = `
     align-items: center;
     gap: 12px;
     max-width: 100%;
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
+    font-size: var(--_typography---font-size--h6, 1.125rem);
+    font-weight: 500;
+    line-height: 1.5;
     color: var(--b-cyan);
     margin-bottom: 22px;
   }
@@ -63,12 +62,10 @@ export const bentoCss = `
   }
 
   .bento-root .bento-heading {
-    font-weight: 800;
-    font-size: clamp(30px, 4.4vw, 56px);
-    text-transform: uppercase;
+    font-size: var(--_typography---font-size--h2, 3rem);
+    font-weight: 700;
     color: var(--b-head);
-    letter-spacing: -0.035em;
-    line-height: 1.05;
+    line-height: 1.2;
     margin: 0;
     overflow-wrap: anywhere;
     word-break: break-word;
@@ -83,8 +80,8 @@ export const bentoCss = `
   }
 
   .bento-root .bento-desc {
-    font-size: 16px;
-    line-height: 1.65;
+    font-size: var(--_typography---font-size--text-large, 1.25rem);
+    line-height: 1.5;
     color: var(--b-txt-dim);
     margin: 20px 0 0;
     max-width: 620px;
@@ -302,16 +299,15 @@ export const bentoCss = `
   }
 
   .bento-root .bento-cell-title {
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: -0.015em;
+    font-size: var(--_typography---font-size--h4, 1.5rem);
+    font-weight: 500;
+    line-height: 1.3;
     color: var(--b-head);
     margin: 0 0 10px;
     overflow-wrap: anywhere;
     word-break: break-word;
     transition:
       transform 0.65s var(--b-ease-out),
-      letter-spacing 0.65s var(--b-ease-out),
       color 0.65s var(--b-ease-out),
       text-shadow 0.65s var(--b-ease-out);
   }
@@ -326,17 +322,14 @@ export const bentoCss = `
     transition: width 0.7s var(--b-ease-out);
   }
 
-  .bento-root .bento-cell--default .bento-cell-title {
-    font-size: 18px;
-  }
-
   .bento-root .bento-cell--feature .bento-cell-title {
-    font-size: 24px;
+    font-size: var(--_typography---font-size--h3, 2.125rem);
+    line-height: 1.2;
   }
 
   .bento-root .bento-cell-text {
-    font-size: 14.5px;
-    line-height: 1.6;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
+    line-height: 1.5;
     color: var(--b-txt-dim);
     margin: 0;
     overflow-wrap: anywhere;
@@ -347,7 +340,6 @@ export const bentoCss = `
 
   .bento-root .bento-cell.is-visible:hover .bento-cell-title {
     transform: translateX(6px);
-    letter-spacing: 0.005em;
     color: #ffffff;
     text-shadow: 0 0 20px rgba(16, 200, 229, 0.16);
   }
@@ -362,7 +354,6 @@ export const bentoCss = `
   }
 
   .bento-root .bento-cell--feature .bento-cell-text {
-    font-size: 15.5px;
     max-width: 360px;
   }
 
@@ -486,14 +477,11 @@ export const bentoCss = `
   }
 
   .bento-root .bento-cell--photo .bento-cell-title {
-    font-size: 22px;
     color: #fff;
     margin-bottom: 8px;
   }
 
   .bento-root .bento-cell--photo .bento-cell-text {
-    font-size: 14.5px;
-    line-height: 1.55;
     color: rgba(255, 255, 255, 0.82);
     max-width: 440px;
   }
@@ -513,12 +501,7 @@ export const bentoCss = `
       margin-bottom: 32px;
     }
 
-    .bento-root .bento-heading {
-      font-size: clamp(26px, 7.5vw, 40px);
-    }
-
     .bento-root .bento-desc {
-      font-size: 15px;
       margin-top: 16px;
     }
 
@@ -551,17 +534,7 @@ export const bentoCss = `
     }
 
     .bento-root .bento-eyebrow {
-      font-size: 11px;
-      letter-spacing: 0.18em;
       margin-bottom: 18px;
-    }
-
-    .bento-root .bento-heading {
-      font-size: clamp(22px, 7vw, 30px);
-    }
-
-    .bento-root .bento-desc {
-      font-size: 14px;
     }
 
     .bento-root .bento-cell--default,
@@ -571,15 +544,6 @@ export const bentoCss = `
 
     .bento-root .bento-photo-content {
       padding: 24px 20px;
-    }
-
-    .bento-root .bento-cell--default .bento-cell-title,
-    .bento-root .bento-cell--photo .bento-cell-title {
-      font-size: 17px;
-    }
-
-    .bento-root .bento-cell--feature .bento-cell-title {
-      font-size: 20px;
     }
   }
 

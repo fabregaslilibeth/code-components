@@ -2,6 +2,7 @@ import { WhyBentoLight } from './WhyBentoLight';
 import { WhyTile, DEFAULT_WHY_TILES } from './WhyBento.data';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
+import { HEADING_TAGS, toHeadingTag } from '../headingTag';
 
 type TileFields = { icon?: string; title?: string; body?: string; img?: string };
 
@@ -19,12 +20,14 @@ const WhyBentoLightWebflow = ({
   tile3Icon, tile3Title, tile3Body,
   tile4Icon, tile4Title, tile4Body,
   tile5Icon, tile5Title, tile5Body,
+  headingTag,
 }: {
   tile1Icon?: string; tile1Title?: string; tile1Body?: string; tile1Img?: string;
   tile2Icon?: string; tile2Title?: string; tile2Body?: string;
   tile3Icon?: string; tile3Title?: string; tile3Body?: string;
   tile4Icon?: string; tile4Title?: string; tile4Body?: string;
   tile5Icon?: string; tile5Title?: string; tile5Body?: string;
+  headingTag?: string;
 }) => {
   const d = DEFAULT_WHY_TILES;
   const items: WhyTile[] = [
@@ -34,7 +37,7 @@ const WhyBentoLightWebflow = ({
     buildTile({ icon: tile4Icon, title: tile4Title, body: tile4Body }, d[3]),
     buildTile({ icon: tile5Icon, title: tile5Title, body: tile5Body }, d[4]),
   ];
-  return <WhyBentoLight items={items} />;
+  return <WhyBentoLight items={items} headingTag={toHeadingTag(headingTag, 'h3')} />;
 };
 
 export default declareComponent(WhyBentoLightWebflow, {
@@ -42,6 +45,7 @@ export default declareComponent(WhyBentoLightWebflow, {
   description: 'Light-mode bento "why us" section with white/grey tiles and navy text',
   group: 'Content',
   props: {
+    headingTag: props.Variant({ name: 'Heading level', defaultValue: 'h3', options: HEADING_TAGS }),
     tile1Icon:  props.Text({ name: 'Tile 1 icon', defaultValue: DEFAULT_WHY_TILES[0].icon }),
     tile1Title: props.Text({ name: 'Tile 1 title', defaultValue: DEFAULT_WHY_TILES[0].title }),
     tile1Body:  props.Text({ name: 'Tile 1 body', defaultValue: DEFAULT_WHY_TILES[0].body }),

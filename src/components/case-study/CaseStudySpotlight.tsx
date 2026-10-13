@@ -2,6 +2,7 @@ import * as React from 'react';
 import { caseStudySpotlightCss } from './CaseStudySpotlight.styles';
 import { LucideIcon } from '../LucideIcon';
 import { WaveLabel, waveEndMs } from '../WaveLabel';
+import type { HeadingTag } from '../headingTag';
 
 export type CaseStudySpotlightTheme = 'dark' | 'light';
 
@@ -22,6 +23,7 @@ export interface CaseStudySpotlightProps {
   theme?: CaseStudySpotlightTheme;
   ctaLabel?: string;
   cases?: CaseStudyCase[];
+  headingTag?: HeadingTag;
 }
 
 const ArrowLeft = () => (
@@ -42,10 +44,10 @@ const DEFAULT_CASES: CaseStudyCase[] = [
   {
     image: 'https://cdn.prod.website-files.com/6900d0af5ebb1f2065599d70/69e8a2c24734fc59acb6bf33_case-study3.avif',
     imageAlt: 'Healthcare clinician in a treatment room',
-    tag: 'Cloud Telephony',
+    tag: 'Cloud telephony',
     client: 'NHS',
     clientShort: 'NHS',
-    title: 'Five Times More Call Capacity for Frontline Clinical Teams',
+    title: 'Five times more call capacity for frontline clinical teams',
     excerpt: '"Intouch provided a cloud phone system with five times more call capacity, real-time queue updates and separate lines for outbound clinical calls."',
     statValue: '5×',
     statLabel: 'More call capacity',
@@ -53,10 +55,10 @@ const DEFAULT_CASES: CaseStudyCase[] = [
   {
     image: 'https://cdn.prod.website-files.com/6900d0af5ebb1f2065599d70/69e8a2c23b6623550b879b52_case-study2.avif',
     imageAlt: 'Two colleagues in a modern office setting',
-    tag: 'VoIP Platform',
+    tag: 'VoIP platform',
     client: 'Aristone',
     clientShort: 'Aristone',
-    title: 'Local Luton Numbers and Unlimited Support Under One Licence',
+    title: 'Local Luton numbers and unlimited support under one licence',
     excerpt: '"Intouch Communications quickly set up Aristone on our scalable Hosted Communicator VoIP platform, providing local Luton numbers, call recording, remote apps and unlimited support under one simple license."',
     statValue: '1',
     statLabel: 'Simple licence, unlimited support',
@@ -64,27 +66,27 @@ const DEFAULT_CASES: CaseStudyCase[] = [
   {
     image: 'https://cdn.prod.website-files.com/6900d0af5ebb1f2065599d70/69e8a18794c57a5699024c62_case-study1.avif',
     imageAlt: 'Exterior of The Regis School building with signage',
-    tag: 'Cloud Phone System',
+    tag: 'Cloud phone system',
     client: 'The Regis School',
     clientShort: 'Regis',
-    title: 'Replacing an Outdated On-Site ISDN System With 3CX Cloud',
+    title: 'Replacing an outdated on-site ISDN system with 3CX cloud',
     excerpt: '"We were struggling with an outdated on-site ISDN phone system that was costly, space-consuming and difficult to maintain. After speaking with Intouch, they upgraded to a 3CX Cloud Phone System."',
   },
   {
-    tag: 'Cyber Security',
+    tag: 'Cyber security',
     client: 'Linthouse Housing Association',
     clientShort: 'Linthouse',
-    title: 'Moving From Manual Checks to Always-On Security',
+    title: 'Moving from manual checks to always-on security',
     excerpt: "Intouch Tech helped Linthouse replace largely manual security checks with automated testing and additional email protection, giving its ICT team greater visibility of vulnerabilities, clearer priorities and measurable progress over time.",
     statValue: '197',
     statLabel: 'Malicious emails quarantined in 30 days',
     href: '/case-studies/linthouse-housing-association-cyber-security',
   },
   {
-    tag: 'Penetration Testing',
-    client: 'Fashion Retailer',
+    tag: 'Penetration testing',
+    client: 'Fashion retailer',
     clientShort: 'FR',
-    title: 'Making Penetration Testing Part of an Ongoing Security Strategy',
+    title: 'Making penetration testing part of an ongoing security strategy',
     excerpt: 'Intouch Tech introduced regular penetration testing, helping the internal IT team identify weaknesses, prioritise remediation and build repeated security testing into its wider cyber security strategy.',
     statValue: '3',
     statLabel: 'Vulnerability types uncovered',
@@ -94,9 +96,11 @@ const DEFAULT_CASES: CaseStudyCase[] = [
 
 export const CaseStudySpotlight = ({
   theme = 'dark',
-  ctaLabel = 'View Case Study',
+  ctaLabel = 'View case study',
   cases,
+  headingTag = 'h3',
 }: CaseStudySpotlightProps) => {
+  const Heading = headingTag as React.ElementType;
   const items = cases && cases.length > 0 ? cases : DEFAULT_CASES;
   const total = items.length;
 
@@ -161,7 +165,7 @@ export const CaseStudySpotlight = ({
       </div>
       <div className="csp-content">
         {item.client && <p className="csp-client">{item.client}</p>}
-        {item.title && <h3 className="csp-title">{item.title}</h3>}
+        {item.title && <Heading className="csp-title">{item.title}</Heading>}
         {item.excerpt && <p className="csp-excerpt">{item.excerpt}</p>}
         {(item.statValue || item.statLabel) && (
           <div className="csp-stats">

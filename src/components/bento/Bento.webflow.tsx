@@ -1,6 +1,7 @@
 import { Bento, BentoCell } from './Bento';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
+import { HEADING_TAGS, toHeadingTag } from '../headingTag';
 
 type CellFields = {
   number?: string;
@@ -16,8 +17,8 @@ type CellFields = {
 const buildCell = (fields: CellFields): BentoCell => ({
   n: fields.number?.trim() || 'N',
   icon: fields.icon?.trim() || 'layers',
-  title: fields.title?.trim() || 'TEST',
-  body: fields.body?.trim() || 'TEST',
+  title: fields.title?.trim() || 'Test',
+  body: fields.body?.trim() || 'Test',
   photo: fields.allowPhoto ? fields.photo?.trim() || undefined : undefined,
   feature: fields.feature,
   area: fields.area,
@@ -30,6 +31,7 @@ const BentoWebflow = ({
   cell4Number, cell4Icon, cell4Title, cell4Body,
   cell5Number, cell5Icon, cell5Title, cell5Body, cell5Photo,
   cell6Number, cell6Icon, cell6Title, cell6Body,
+  headingTag,
 }: {
   cell1Number?: string; cell1Icon?: string; cell1Title?: string; cell1Body?: string;
   cell2Number?: string; cell2Icon?: string; cell2Title?: string; cell2Body?: string; cell2Photo?: string;
@@ -37,6 +39,7 @@ const BentoWebflow = ({
   cell4Number?: string; cell4Icon?: string; cell4Title?: string; cell4Body?: string;
   cell5Number?: string; cell5Icon?: string; cell5Title?: string; cell5Body?: string; cell5Photo?: string;
   cell6Number?: string; cell6Icon?: string; cell6Title?: string; cell6Body?: string;
+  headingTag?: string;
 }) => {
   const cells: BentoCell[] = [
     buildCell({ number: cell1Number, icon: cell1Icon, title: cell1Title, body: cell1Body, feature: true, area: { col: '1', row: '1 / span 2' }, allowPhoto: false }),
@@ -47,7 +50,7 @@ const BentoWebflow = ({
     buildCell({ number: cell6Number, icon: cell6Icon, title: cell6Title, body: cell6Body, area: { col: '3', row: '3' }, allowPhoto: false }),
   ];
 
-  return <Bento cells={cells} />;
+  return <Bento cells={cells} headingTag={toHeadingTag(headingTag, 'h3')} />;
 };
 
 export default declareComponent(BentoWebflow, {
@@ -55,36 +58,38 @@ export default declareComponent(BentoWebflow, {
   description: 'Why Intouch bento grid with icons, feature cells and photo cards',
   group: 'Content',
   props: {
+    headingTag: props.Variant({ name: 'Heading level', defaultValue: 'h3', options: HEADING_TAGS }),
+
     cell1Number: props.Text({ name: 'Cell 1 number', defaultValue: '01' }),
     cell1Icon: props.Text({ name: 'Cell 1 icon (Lucide name)', defaultValue: 'layers' }),
-    cell1Title: props.Text({ name: 'Cell 1 title', defaultValue: 'TEST' }),
-    cell1Body: props.Text({ name: 'Cell 1 body', defaultValue: 'TEST' }),
+    cell1Title: props.Text({ name: 'Cell 1 title', defaultValue: 'Test' }),
+    cell1Body: props.Text({ name: 'Cell 1 body', defaultValue: 'Test' }),
 
     cell2Number: props.Text({ name: 'Cell 2 number', defaultValue: '02' }),
     cell2Icon: props.Text({ name: 'Cell 2 icon (Lucide name)', defaultValue: 'layers' }),
-    cell2Title: props.Text({ name: 'Cell 2 title', defaultValue: 'TEST' }),
-    cell2Body: props.Text({ name: 'Cell 2 body', defaultValue: 'TEST' }),
+    cell2Title: props.Text({ name: 'Cell 2 title', defaultValue: 'Test' }),
+    cell2Body: props.Text({ name: 'Cell 2 body', defaultValue: 'Test' }),
     cell2Photo: props.Text({ name: 'Cell 2 photo URL', defaultValue: '' }),
 
     cell3Number: props.Text({ name: 'Cell 3 number', defaultValue: '03' }),
     cell3Icon: props.Text({ name: 'Cell 3 icon (Lucide name)', defaultValue: 'layers' }),
-    cell3Title: props.Text({ name: 'Cell 3 title', defaultValue: 'TEST' }),
-    cell3Body: props.Text({ name: 'Cell 3 body', defaultValue: 'TEST' }),
+    cell3Title: props.Text({ name: 'Cell 3 title', defaultValue: 'Test' }),
+    cell3Body: props.Text({ name: 'Cell 3 body', defaultValue: 'Test' }),
 
     cell4Number: props.Text({ name: 'Cell 4 number', defaultValue: '04' }),
     cell4Icon: props.Text({ name: 'Cell 4 icon (Lucide name)', defaultValue: 'layers' }),
-    cell4Title: props.Text({ name: 'Cell 4 title', defaultValue: 'TEST' }),
-    cell4Body: props.Text({ name: 'Cell 4 body', defaultValue: 'TEST' }),
+    cell4Title: props.Text({ name: 'Cell 4 title', defaultValue: 'Test' }),
+    cell4Body: props.Text({ name: 'Cell 4 body', defaultValue: 'Test' }),
 
     cell5Number: props.Text({ name: 'Cell 5 number', defaultValue: '05' }),
     cell5Icon: props.Text({ name: 'Cell 5 icon (Lucide name)', defaultValue: 'layers' }),
-    cell5Title: props.Text({ name: 'Cell 5 title', defaultValue: 'TEST' }),
-    cell5Body: props.Text({ name: 'Cell 5 body', defaultValue: 'TEST' }),
+    cell5Title: props.Text({ name: 'Cell 5 title', defaultValue: 'Test' }),
+    cell5Body: props.Text({ name: 'Cell 5 body', defaultValue: 'Test' }),
     cell5Photo: props.Text({ name: 'Cell 5 photo URL', defaultValue: '' }),
 
     cell6Number: props.Text({ name: 'Cell 6 number', defaultValue: '06' }),
     cell6Icon: props.Text({ name: 'Cell 6 icon (Lucide name)', defaultValue: 'layers' }),
-    cell6Title: props.Text({ name: 'Cell 6 title', defaultValue: 'TEST' }),
-    cell6Body: props.Text({ name: 'Cell 6 body', defaultValue: 'TEST' }),
+    cell6Title: props.Text({ name: 'Cell 6 title', defaultValue: 'Test' }),
+    cell6Body: props.Text({ name: 'Cell 6 body', defaultValue: 'Test' }),
   },
 });

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { LucideIcon } from '../LucideIcon';
 import { bentoCss } from './Bento.styles';
+import type { HeadingTag } from '../headingTag';
 
 export interface BentoCell {
   n: string;
@@ -13,16 +14,17 @@ export interface BentoCell {
 }
 
 const DEFAULT_BENTO_CELLS: BentoCell[] = [
-  { n: '01', icon: 'layers', title: 'TITLE 1', body: 'BODY 1', area: { col: '1', row: '1 / span 2' }, feature: true },
-  { n: '02', icon: 'layers', title: 'TITLE 2', body: 'BODY 2', area: { col: '2 / span 2', row: '1' } },
-  { n: '03', icon: 'layers', title: 'TITLE 3', body: 'BODY 3', area: { col: '2', row: '2' } },
-  { n: '04', icon: 'layers', title: 'TITLE 4', body: 'BODY 4', area: { col: '3', row: '2' } },
-  { n: '05', icon: 'layers', title: 'TITLE 5', body: 'BODY 5', area: { col: '1 / span 2', row: '3' } },
-  { n: '06', icon: 'layers', title: 'TITLE 6', body: 'BODY 6', area: { col: '3', row: '3' } },
+  { n: '01', icon: 'layers', title: 'Title 1', body: 'Body 1', area: { col: '1', row: '1 / span 2' }, feature: true },
+  { n: '02', icon: 'layers', title: 'Title 2', body: 'Body 2', area: { col: '2 / span 2', row: '1' } },
+  { n: '03', icon: 'layers', title: 'Title 3', body: 'Body 3', area: { col: '2', row: '2' } },
+  { n: '04', icon: 'layers', title: 'Title 4', body: 'Body 4', area: { col: '3', row: '2' } },
+  { n: '05', icon: 'layers', title: 'Title 5', body: 'Body 5', area: { col: '1 / span 2', row: '3' } },
+  { n: '06', icon: 'layers', title: 'Title 6', body: 'Body 6', area: { col: '3', row: '3' } },
 ];
 
 export interface BentoProps {
   cells?: BentoCell[];
+  headingTag?: HeadingTag;
 }
 
 const Ticks = ({ className = '' }: { className?: string }) => (
@@ -118,6 +120,7 @@ function useBentoEffects(
 interface BentoCellViewProps {
   cell: BentoCell;
   index: number;
+  headingTag: HeadingTag;
 }
 
 const CellTop: React.FC<{ cell: BentoCell; feature?: boolean; photo?: boolean }> = ({
@@ -132,14 +135,17 @@ const CellTop: React.FC<{ cell: BentoCell; feature?: boolean; photo?: boolean }>
   </div>
 );
 
-const CellBody: React.FC<{ cell: BentoCell }> = ({ cell }) => (
-  <div className="bento-cell-body">
-    <h3 className="bento-cell-title">{cell.title}</h3>
-    <p className="bento-cell-text">{cell.body}</p>
-  </div>
-);
+const CellBody: React.FC<{ cell: BentoCell; headingTag: HeadingTag }> = ({ cell, headingTag }) => {
+  const Heading = headingTag as React.ElementType;
+  return (
+    <div className="bento-cell-body">
+      <Heading className="bento-cell-title">{cell.title}</Heading>
+      <p className="bento-cell-text">{cell.body}</p>
+    </div>
+  );
+};
 
-const BentoCellView: React.FC<BentoCellViewProps> = ({ cell, index }) => {
+const BentoCellView: React.FC<BentoCellViewProps> = ({ cell, index, headingTag }) => {
   const gridStyle: React.CSSProperties = {
     gridColumn: cell.area.col,
     gridRow: cell.area.row,
@@ -169,7 +175,7 @@ const BentoCellView: React.FC<BentoCellViewProps> = ({ cell, index }) => {
         <Ticks className="bento-photo-ticks" />
         <div className="bento-photo-content">
           <CellTop cell={cell} photo />
-          <CellBody cell={cell} />
+          <CellBody cell={cell} headingTag={headingTag} />
         </div>
       </article>
     );
@@ -186,13 +192,14 @@ const BentoCellView: React.FC<BentoCellViewProps> = ({ cell, index }) => {
       {cell.feature && <div className="bento-cell-grid-bg" aria-hidden />}
       <Ticks />
       <CellTop cell={cell} feature={cell.feature} />
-      <CellBody cell={cell} />
+      <CellBody cell={cell} headingTag={headingTag} />
     </article>
   );
 };
 
 export const Bento = ({
   cells = DEFAULT_BENTO_CELLS,
+  headingTag = 'h3',
 }: BentoProps) => {
   const rootRef = React.useRef<HTMLElement>(null);
   const safeCells = cells.length > 0 ? cells : DEFAULT_BENTO_CELLS;
@@ -206,7 +213,7 @@ export const Bento = ({
       <div className="bento-container">
         <div className="bento-grid">
           {safeCells.map((cell, index) => (
-            <BentoCellView key={cell.n} cell={cell} index={index} />
+            <BentoCellView key={cell.n} cell={cell} index={index} headingTag={headingTag} />
           ))}
         </div>
       </div>

@@ -240,9 +240,8 @@ export const whyBentoCss = `
   .wb-root .wb-num {
     position: relative;
     z-index: 1;
-    font-weight: 800;
-    font-size: 11px;
-    letter-spacing: 0.14em;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    font-weight: 400;
     color: var(--wb-faint);
     font-variant-numeric: tabular-nums;
     flex-shrink: 0;
@@ -277,16 +276,15 @@ export const whyBentoCss = `
   }
 
   .wb-root .wb-tile-title {
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: -0.015em;
+    font-size: var(--_typography---font-size--h4, 1.5rem);
+    font-weight: 500;
+    line-height: 1.3;
     color: var(--wb-head);
     margin: 0 0 10px;
     overflow-wrap: anywhere;
     word-break: break-word;
     transition:
       transform 0.65s var(--wb-ease-out),
-      letter-spacing 0.65s var(--wb-ease-out),
       color 0.65s var(--wb-ease-out),
       text-shadow 0.65s var(--wb-ease-out);
   }
@@ -301,12 +299,11 @@ export const whyBentoCss = `
     transition: width 0.7s var(--wb-ease-out);
   }
 
-  .wb-root .wb-tile--default .wb-tile-title { font-size: 18px; }
-  .wb-root .wb-tile--big .wb-tile-title { font-size: 24px; }
+  .wb-root .wb-tile--big .wb-tile-title { font-size: var(--_typography---font-size--h3, 2.125rem); line-height: 1.2; }
 
   .wb-root .wb-tile-text {
-    font-size: 14.5px;
-    line-height: 1.6;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
+    line-height: 1.5;
     color: var(--wb-txt-dim);
     margin: 0;
     overflow-wrap: anywhere;
@@ -316,13 +313,11 @@ export const whyBentoCss = `
   }
 
   .wb-root .wb-tile--big .wb-tile-text {
-    font-size: 15.5px;
     max-width: 360px;
   }
 
   .wb-root .wb-tile.is-visible:hover .wb-tile-title {
     transform: translateX(6px);
-    letter-spacing: 0.005em;
     color: #ffffff;
     text-shadow: 0 0 20px rgba(16, 200, 229, 0.16);
   }
@@ -474,14 +469,11 @@ export const whyBentoCss = `
   }
 
   .wb-root .wb-tile--photo .wb-tile-title {
-    font-size: 22px;
     color: #fff;
     margin-bottom: 8px;
   }
 
   .wb-root .wb-tile--photo .wb-tile-text {
-    font-size: 14.5px;
-    line-height: 1.55;
     color: rgba(255, 255, 255, 0.82);
     max-width: 440px;
   }
@@ -525,15 +517,6 @@ export const whyBentoCss = `
 
     .wb-root .wb-photo-content {
       padding: 24px 20px;
-    }
-
-    .wb-root .wb-tile--default .wb-tile-title,
-    .wb-root .wb-tile--photo .wb-tile-title {
-      font-size: 17px;
-    }
-
-    .wb-root .wb-tile--big .wb-tile-title {
-      font-size: 20px;
     }
   }
 

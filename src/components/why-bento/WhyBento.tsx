@@ -2,11 +2,13 @@ import * as React from 'react';
 import { WhyTile, DEFAULT_WHY_TILES } from './WhyBento.data';
 import { WhyBentoIcon } from './WhyBentoIcon';
 import { whyBentoCss } from './WhyBento.styles';
+import type { HeadingTag } from '../headingTag';
 
 export type { WhyTile };
 
 export interface WhyBentoProps {
   items?: WhyTile[];
+  headingTag?: HeadingTag;
 }
 
 const Ticks = () => (
@@ -104,14 +106,17 @@ const TileTop: React.FC<{ tile: WhyTile; big?: boolean; photo?: boolean }> = ({ 
   </div>
 );
 
-const TileBody: React.FC<{ tile: WhyTile }> = ({ tile }) => (
-  <div className="wb-tile-body">
-    <h3 className="wb-tile-title">{tile.title}</h3>
-    <p className="wb-tile-text">{tile.body}</p>
-  </div>
-);
+const TileBody: React.FC<{ tile: WhyTile; headingTag: HeadingTag }> = ({ tile, headingTag }) => {
+  const Heading = headingTag as React.ElementType;
+  return (
+    <div className="wb-tile-body">
+      <Heading className="wb-tile-title">{tile.title}</Heading>
+      <p className="wb-tile-text">{tile.body}</p>
+    </div>
+  );
+};
 
-const WbTile: React.FC<{ tile: WhyTile; index: number }> = ({ tile, index }) => {
+const WbTile: React.FC<{ tile: WhyTile; index: number; headingTag: HeadingTag }> = ({ tile, index, headingTag }) => {
   const style = { '--wb-index': index } as React.CSSProperties;
 
   if (tile.big && tile.img) {
@@ -133,7 +138,7 @@ const WbTile: React.FC<{ tile: WhyTile; index: number }> = ({ tile, index }) => 
         <Ticks />
         <div className="wb-photo-content">
           <TileTop tile={tile} big photo />
-          <TileBody tile={tile} />
+          <TileBody tile={tile} headingTag={headingTag} />
         </div>
       </article>
     );
@@ -145,7 +150,7 @@ const WbTile: React.FC<{ tile: WhyTile; index: number }> = ({ tile, index }) => 
         <div className="wb-tile-grid-bg" aria-hidden />
         <Ticks />
         <TileTop tile={tile} big />
-        <TileBody tile={tile} />
+        <TileBody tile={tile} headingTag={headingTag} />
       </article>
     );
   }
@@ -154,13 +159,14 @@ const WbTile: React.FC<{ tile: WhyTile; index: number }> = ({ tile, index }) => 
     <article className="wb-tile wb-tile--default" style={style} data-wb-item>
       <Ticks />
       <TileTop tile={tile} />
-      <TileBody tile={tile} />
+      <TileBody tile={tile} headingTag={headingTag} />
     </article>
   );
 };
 
 export const WhyBento = ({
   items = DEFAULT_WHY_TILES,
+  headingTag = 'h3',
 }: WhyBentoProps) => {
   const rootRef = React.useRef<HTMLElement>(null);
   const safeTiles = items.length > 0 ? items : DEFAULT_WHY_TILES;
@@ -173,7 +179,7 @@ export const WhyBento = ({
       <div className="wb-container">
         <div className="wb-grid">
           {safeTiles.map((tile, i) => (
-            <WbTile key={i} tile={tile} index={i} />
+            <WbTile key={i} tile={tile} index={i} headingTag={headingTag} />
           ))}
         </div>
       </div>

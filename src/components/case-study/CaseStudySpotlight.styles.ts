@@ -87,10 +87,8 @@ export const caseStudySpotlightCss = `
     padding: 6px 12px;
     background: var(--csp-cyan);
     border-radius: 999px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    font-weight: 400;
     color: #001b41;
   }
 
@@ -104,28 +102,26 @@ export const caseStudySpotlightCss = `
   }
 
   .csp-root .csp-client {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: var(--_typography---font-size--h6, 1.125rem);
+    font-weight: 500;
+    line-height: 1.5;
     color: var(--csp-cyan);
     opacity: 0.85;
     margin: 0 0 14px;
   }
 
   .csp-root .csp-title {
-    font-size: clamp(21px, 2.4vw, 28px);
-    font-weight: 800;
-    line-height: 1.28;
-    letter-spacing: -0.01em;
+    font-size: var(--_typography---font-size--h3, 2.125rem);
+    font-weight: 500;
+    line-height: 1.2;
     color: var(--csp-head);
     margin: 0 0 14px;
     overflow-wrap: anywhere;
   }
 
   .csp-root .csp-excerpt {
-    font-size: 14.5px;
-    line-height: 1.7;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
+    line-height: 1.5;
     color: var(--csp-dim);
     margin: 0 0 24px;
     max-width: 46ch;
@@ -142,19 +138,19 @@ export const caseStudySpotlightCss = `
   }
 
   .csp-root .csp-stat-value {
-    font-size: 32px;
-    font-weight: 800;
+    font-size: var(--_typography---font-size--h3, 2.125rem);
+    font-weight: 500;
     color: var(--csp-cyan);
-    line-height: 1;
+    line-height: 1.2;
     white-space: nowrap;
   }
 
   .csp-root .csp-stat-label {
-    font-size: 12px;
-    font-weight: 600;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    font-weight: 400;
     color: var(--csp-dim);
     max-width: 200px;
-    line-height: 1.35;
+    line-height: 1.5;
   }
 
   /* ── CTA ── */
@@ -167,11 +163,9 @@ export const caseStudySpotlightCss = `
     background: transparent;
     border: 1px solid var(--csp-line);
     border-radius: 999px;
-    font-family: inherit;
-    font-size: 12.5px;
-    font-weight: 700;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
+    font: inherit;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
+    font-weight: 400;
     color: var(--csp-head);
     text-decoration: none;
     cursor: pointer;
@@ -334,6 +328,7 @@ export const caseStudySpotlightCss = `
   }
 
   .csp-root .csp-arrow {
+    font: inherit;
     flex-shrink: 0;
     width: 42px;
     height: 42px;
@@ -395,6 +390,7 @@ export const caseStudySpotlightCss = `
   }
 
   .csp-root .csp-tab {
+    font: inherit;
     display: inline-flex;
     align-items: center;
     gap: 9px;
@@ -439,8 +435,8 @@ export const caseStudySpotlightCss = `
   }
 
   .csp-root .csp-tab-avatar span {
-    font-size: 11.5px;
-    font-weight: 700;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    font-weight: 400;
     color: var(--csp-dim);
   }
 
@@ -454,8 +450,8 @@ export const caseStudySpotlightCss = `
   }
 
   .csp-root .csp-tab-label {
-    font-size: 13px;
-    font-weight: 600;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    font-weight: 400;
     color: var(--csp-dim);
     white-space: nowrap;
     transition: color 0.3s ease;

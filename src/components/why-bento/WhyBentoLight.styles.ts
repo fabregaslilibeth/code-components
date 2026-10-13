@@ -243,9 +243,8 @@ export const whyBentoLightCss = `
   .wbl-root .wbl-num {
     position: relative;
     z-index: 1;
-    font-weight: 800;
-    font-size: 11px;
-    letter-spacing: 0.14em;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    font-weight: 400;
     color: var(--wbl-faint);
     font-variant-numeric: tabular-nums;
     flex-shrink: 0;
@@ -280,16 +279,15 @@ export const whyBentoLightCss = `
   }
 
   .wbl-root .wbl-tile-title {
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: -0.015em;
+    font-size: var(--_typography---font-size--h4, 1.5rem);
+    font-weight: 500;
+    line-height: 1.3;
     color: var(--wbl-head);
     margin: 0 0 10px;
     overflow-wrap: anywhere;
     word-break: break-word;
     transition:
       transform 0.65s var(--wbl-ease-out),
-      letter-spacing 0.65s var(--wbl-ease-out),
       color 0.65s var(--wbl-ease-out),
       text-shadow 0.65s var(--wbl-ease-out);
   }
@@ -304,12 +302,11 @@ export const whyBentoLightCss = `
     transition: width 0.7s var(--wbl-ease-out);
   }
 
-  .wbl-root .wbl-tile--default .wbl-tile-title { font-size: 18px; }
-  .wbl-root .wbl-tile--big .wbl-tile-title { font-size: 24px; }
+  .wbl-root .wbl-tile--big .wbl-tile-title { font-size: var(--_typography---font-size--h3, 2.125rem); line-height: 1.2; }
 
   .wbl-root .wbl-tile-text {
-    font-size: 14.5px;
-    line-height: 1.6;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
+    line-height: 1.5;
     color: var(--wbl-txt-dim);
     margin: 0;
     overflow-wrap: anywhere;
@@ -319,13 +316,11 @@ export const whyBentoLightCss = `
   }
 
   .wbl-root .wbl-tile--big .wbl-tile-text {
-    font-size: 15.5px;
     max-width: 360px;
   }
 
   .wbl-root .wbl-tile.is-visible:hover .wbl-tile-title {
     transform: translateX(6px);
-    letter-spacing: 0.005em;
     color: #032447;
     text-shadow: 0 0 20px rgba(15, 99, 243, 0.10);
   }
@@ -478,14 +473,11 @@ export const whyBentoLightCss = `
   }
 
   .wbl-root .wbl-tile--photo .wbl-tile-title {
-    font-size: 22px;
     color: #fff;
     margin-bottom: 8px;
   }
 
   .wbl-root .wbl-tile--photo .wbl-tile-text {
-    font-size: 14.5px;
-    line-height: 1.55;
     color: rgba(255, 255, 255, 0.85);
     max-width: 440px;
   }
@@ -529,15 +521,6 @@ export const whyBentoLightCss = `
 
     .wbl-root .wbl-photo-content {
       padding: 24px 20px;
-    }
-
-    .wbl-root .wbl-tile--default .wbl-tile-title,
-    .wbl-root .wbl-tile--photo .wbl-tile-title {
-      font-size: 17px;
-    }
-
-    .wbl-root .wbl-tile--big .wbl-tile-title {
-      font-size: 20px;
     }
   }
 

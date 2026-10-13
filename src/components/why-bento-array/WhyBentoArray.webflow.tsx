@@ -2,6 +2,7 @@
 import { WhyTile } from '../why-bento/WhyBento.data';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
+import { HEADING_TAGS, toHeadingTag } from '../headingTag';
 
 const DEFAULT_ITEMS_JSON = `[
   {"icon":"users","title":"In-house specialists","body":"Senior UK consultants with deep technical expertise who own the outcome, security-led from day one."},
@@ -20,9 +21,9 @@ const parseItems = (raw: string): WhyTile[] => {
   }
 };
 
-const WhyBentoArrayWebflow = ({ theme, items }: { theme?: string; items?: string }) => {
+const WhyBentoArrayWebflow = ({ theme, items, headingTag }: { theme?: string; items?: string; headingTag?: string }) => {
   const safeTheme: WhyBentoArrayTheme = theme === 'light' ? 'light' : 'dark';
-  return <WhyBentoArray theme={safeTheme} items={parseItems(items || DEFAULT_ITEMS_JSON)} />;
+  return <WhyBentoArray theme={safeTheme} items={parseItems(items || DEFAULT_ITEMS_JSON)} headingTag={toHeadingTag(headingTag, 'h3')} />;
 };
 
 export default declareComponent(WhyBentoArrayWebflow, {
@@ -32,5 +33,6 @@ export default declareComponent(WhyBentoArrayWebflow, {
   props: {
     theme: props.Variant({ name: 'Theme', defaultValue: 'dark', options: ['dark', 'light'] }),
     items: props.Text({ name: 'Items (JSON array)', defaultValue: DEFAULT_ITEMS_JSON }),
+    headingTag: props.Variant({ name: 'Heading level', defaultValue: 'h3', options: HEADING_TAGS }),
   },
 });
