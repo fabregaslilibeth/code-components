@@ -6,6 +6,7 @@ import {
   DEFAULT_HOW_TIMELINE_STEP_7,
   HowTimelineStep,
 } from './HowTimeline.data';
+import { HEADING_TAGS, toHeadingTag } from '../headingTag';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
 
@@ -41,6 +42,7 @@ const HowTimelineWebflow = ({
   step7Title,
   step7Body,
   step7Photo,
+  headingTag,
 }: {
   showStep5?: boolean;
   showStep6?: boolean;
@@ -73,6 +75,7 @@ const HowTimelineWebflow = ({
   step7Title?: string;
   step7Body?: string;
   step7Photo?: string;
+  headingTag?: string;
 }) => {
   const defaults = DEFAULT_HOW_TIMELINE_STEPS;
   const steps: HowTimelineStep[] = [
@@ -129,7 +132,7 @@ const HowTimelineWebflow = ({
     });
   }
 
-  return <HowTimeline steps={steps} />;
+  return <HowTimeline steps={steps} headingTag={toHeadingTag(headingTag, 'h3')} />;
 };
 
 export default declareComponent(HowTimelineWebflow, {
@@ -138,6 +141,7 @@ export default declareComponent(HowTimelineWebflow, {
     'Vertical process timeline (4–7 steps) with scroll reveal, animated connector lines and photo parallax',
   group: 'Content',
   props: {
+    headingTag: props.Variant({ name: 'Heading level', defaultValue: 'h3', options: HEADING_TAGS }),
     step1Number: props.Text({ name: 'Step 1 number', defaultValue: '01' }),
     step1Title: props.Text({
       name: 'Step 1 title',

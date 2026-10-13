@@ -82,8 +82,8 @@ export const howTimelineCss = `
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 800;
-    font-size: 18px;
+    font-weight: 500;
+    font-size: var(--_typography---font-size--h6, 1.125rem);
     color: var(--ht-cyan);
     background: var(--ht-field);
     font-variant-numeric: tabular-nums;
@@ -179,16 +179,14 @@ export const howTimelineCss = `
 
   .how-timeline-root .ht-tl-title {
     position: relative;
-    font-weight: 800;
-    font-size: 21px;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
+    font-weight: 500;
+    font-size: var(--_typography---font-size--h4, 1.5rem);
+    line-height: 1.3;
     color: var(--ht-head);
     margin: 0;
     overflow-wrap: anywhere;
     transition:
       transform 0.65s var(--ht-ease),
-      letter-spacing 0.65s var(--ht-ease),
       color 0.65s var(--ht-ease),
       text-shadow 0.65s var(--ht-ease);
   }
@@ -207,8 +205,8 @@ export const howTimelineCss = `
   }
 
   .how-timeline-root .ht-tl-text {
-    font-size: 15px;
-    line-height: 1.6;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
+    line-height: 1.5;
     color: var(--ht-txt-dim);
     margin: 9px 0 0;
     max-width: 520px;
@@ -221,7 +219,6 @@ export const howTimelineCss = `
 
   .how-timeline-root .ht-tl-item.is-visible:hover .ht-tl-title {
     transform: translateX(8px);
-    letter-spacing: 0.01em;
     color: #ffffff;
     text-shadow: 0 0 24px rgba(16, 200, 229, 0.18);
   }

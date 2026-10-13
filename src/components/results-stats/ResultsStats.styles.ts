@@ -66,18 +66,18 @@ export const resultsStatsCss = `
   }
 
   .rs-root .rs-value {
-    font-size: 34px;
-    font-weight: 800;
+    font-size: var(--_typography---font-size--h2, 3rem);
+    font-weight: 700;
     color: var(--rs-cyan);
-    line-height: 1;
+    line-height: 1.2;
     margin: 0 0 10px;
-    letter-spacing: -0.01em;
     overflow-wrap: anywhere;
   }
 
   .rs-root .rs-label {
-    font-size: 13px;
-    line-height: 1.4;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    font-weight: 400;
+    line-height: 1.5;
     color: var(--rs-dim);
     margin: 0;
     overflow-wrap: anywhere;

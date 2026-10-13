@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { GridIcon } from './GridIcon';
 import { gridCss } from './Grid.styles';
+import { HeadingTag } from '../headingTag';
 
 export interface GridItem {
   icon: string;
@@ -10,8 +11,8 @@ export interface GridItem {
 
 const DEFAULT_GRID_ITEMS: GridItem[] = Array.from({ length: 8 }, (_, i) => ({
   icon: 'layers',
-  title: 'TITLE 1',
-  body: 'BODY 1',
+  title: 'Title 1',
+  body: 'Body 1',
 }));
 
 export type GridTheme = 'dark' | 'light';
@@ -21,6 +22,7 @@ export interface GridProps {
   items?: GridItem[];
   gap?: string;
   columns?: number;
+  headingTag?: HeadingTag;
 }
 
 const Ticks = () => (
@@ -88,7 +90,12 @@ function useGridEffects(rootRef: React.RefObject<HTMLElement | null>, count: num
   }, [rootRef, count]);
 }
 
-const GridCard: React.FC<{ item: GridItem; index: number }> = ({ item, index }) => {
+const GridCard: React.FC<{ item: GridItem; index: number; headingTag: HeadingTag }> = ({
+  item,
+  index,
+  headingTag,
+}) => {
+  const Heading = headingTag as React.ElementType;
   const style = { '--grid-index': index } as React.CSSProperties;
 
   return (
@@ -98,7 +105,7 @@ const GridCard: React.FC<{ item: GridItem; index: number }> = ({ item, index }) 
         <span className="grid-icon-shine" aria-hidden />
         <GridIcon name={item.icon} />
       </span>
-      <h3 className="grid-title">{item.title}</h3>
+      <Heading className="grid-title">{item.title}</Heading>
       <p className="grid-body">{item.body}</p>
     </article>
   );
@@ -109,6 +116,7 @@ export const Grid = ({
   items = DEFAULT_GRID_ITEMS,
   gap,
   columns,
+  headingTag = 'h3',
 }: GridProps) => {
   const rootRef = React.useRef<HTMLElement>(null);
   const safeItems = (items.length > 0 ? items : DEFAULT_GRID_ITEMS).filter(item => item.title?.trim());
@@ -125,7 +133,7 @@ export const Grid = ({
       <style>{gridCss}</style>
       <div className="grid-grid" style={gridStyle}>
         {safeItems.map((item, i) => (
-          <GridCard key={i} item={item} index={i} />
+          <GridCard key={i} item={item} index={i} headingTag={headingTag} />
         ))}
       </div>
     </section>

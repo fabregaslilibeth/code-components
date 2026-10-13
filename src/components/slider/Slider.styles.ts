@@ -193,15 +193,13 @@ export const sliderCss = `
 
   /* ── text ── */
   .sl-root .sl-title {
-    font-weight: 800;
-    font-size: 18px;
-    text-transform: uppercase;
-    letter-spacing: -0.015em;
+    font-weight: 500;
+    font-size: var(--_typography---font-size--h4, 1.5rem);
     color: var(--sl-head);
     margin: 28px 0 10px;
     overflow-wrap: anywhere;
     word-break: break-word;
-    line-height: 1.2;
+    line-height: 1.3;
     transition:
       transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
       text-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -213,8 +211,8 @@ export const sliderCss = `
   }
 
   .sl-root .sl-body {
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
+    line-height: 1.5;
     color: var(--sl-txt-dim);
     margin: 0;
     overflow-wrap: anywhere;
@@ -234,6 +232,7 @@ export const sliderCss = `
   }
 
   .sl-root .sl-arrow {
+    font: inherit;
     position: relative;
     flex-shrink: 0;
     overflow: hidden;

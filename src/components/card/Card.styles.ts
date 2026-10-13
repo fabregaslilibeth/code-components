@@ -157,17 +157,15 @@ export const cardCss = `
 
   /* ── text ── */
   .card-root .card-title {
-    font-weight: 800;
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: -0.015em;
+    font-weight: 500;
+    font-size: var(--_typography---font-size--h4, 1.5rem);
+    line-height: 1.3;
     color: var(--card-head);
     margin: 0 0 8px;
     overflow-wrap: anywhere;
     word-break: break-word;
     transition:
       transform 0.65s var(--card-ease-out),
-      letter-spacing 0.65s var(--card-ease-out),
       color 0.65s var(--card-ease-out),
       text-shadow 0.65s var(--card-ease-out);
   }
@@ -183,8 +181,8 @@ export const cardCss = `
   }
 
   .card-root .card-body {
-    font-size: 13.5px;
-    line-height: 1.55;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
+    line-height: 1.5;
     color: var(--card-txt-dim);
     margin: 0;
     overflow-wrap: anywhere;
@@ -195,7 +193,6 @@ export const cardCss = `
 
   .card-root .card.is-visible:hover .card-title {
     transform: translateX(6px);
-    letter-spacing: 0.005em;
     color: var(--card-head);
     text-shadow: 0 0 20px rgba(16, 200, 229, 0.16);
   }

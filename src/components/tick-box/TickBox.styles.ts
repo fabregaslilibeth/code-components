@@ -64,20 +64,19 @@ export const tickBoxCss = `
   }
 
   .tb-root .tb-label {
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    font-weight: 400;
+    line-height: 1.5;
     color: var(--tb-cyan);
     margin: 0 0 8px;
   }
 
   .tb-root .tb-value {
-    font-size: 14.5px;
-    line-height: 1.55;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
+    line-height: 1.5;
     color: var(--tb-head);
     margin: 0;
-    font-weight: 500;
+    font-weight: 400;
     overflow-wrap: anywhere;
   }
 `;

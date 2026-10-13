@@ -1,15 +1,16 @@
 ﻿import * as React from 'react';
 import { Slider, SliderTheme } from './Slider';
 import { SliderItem } from './SliderItem';
+import { HEADING_TAGS, toHeadingTag } from '../headingTag';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
 
 const DEFAULT_SLIDES = `[
-  {"icon":"megaphone","title":"Marketing & Digital","body":"Marketing and digital dashboards across every channel and campaign."},
-  {"icon":"truck","title":"Supply Chain & Logistics","body":"Supply chain, logistics, procurement and supplier performance in one view."},
-  {"icon":"package","title":"Inventory & Stock","body":"Inventory management, stock and warehouse management dashboards."},
-  {"icon":"bar-chart","title":"Finance & Reporting","body":"Real-time financial dashboards built around your chart of accounts."},
-  {"icon":"users","title":"HR & People","body":"Headcount, turnover and workforce planning at a glance."}
+  {"icon":"megaphone","title":"Marketing & digital","body":"Marketing and digital dashboards across every channel and campaign."},
+  {"icon":"truck","title":"Supply chain & logistics","body":"Supply chain, logistics, procurement and supplier performance in one view."},
+  {"icon":"package","title":"Inventory & stock","body":"Inventory management, stock and warehouse management dashboards."},
+  {"icon":"bar-chart","title":"Finance & reporting","body":"Real-time financial dashboards built around your chart of accounts."},
+  {"icon":"users","title":"HR & people","body":"Headcount, turnover and workforce planning at a glance."}
 ]`;
 
 type SlideData = { icon?: string; title?: string; body?: string };
@@ -28,13 +29,16 @@ const SliderWebflow = ({
   theme,
   basis,
   slides,
+  headingTag,
 }: {
   theme?: string;
   basis?: string;
   slides?: string;
+  headingTag?: string;
 }) => {
   const safeTheme: SliderTheme = theme === 'light' ? 'light' : 'dark';
   const items = parseSlides(slides || DEFAULT_SLIDES);
+  const safeHeadingTag = toHeadingTag(headingTag, 'h3');
 
   return (
     <Slider theme={safeTheme} basis={basis}>
@@ -44,6 +48,7 @@ const SliderWebflow = ({
           icon={s.icon || 'layers'}
           title={s.title}
           body={s.body}
+          headingTag={safeHeadingTag}
         />
       ))}
     </Slider>
@@ -58,5 +63,6 @@ export default declareComponent(SliderWebflow, {
     theme:  props.Variant({ name: 'Theme', defaultValue: 'dark', options: ['dark', 'light'] }),
     basis:  props.Text({ name: 'Slide width (CSS value)', defaultValue: 'clamp(258px, 82%, 340px)' }),
     slides: props.Text({ name: 'Slides (JSON array)', defaultValue: DEFAULT_SLIDES }),
+    headingTag: props.Variant({ name: 'Heading level', defaultValue: 'h3', options: HEADING_TAGS }),
   },
 });

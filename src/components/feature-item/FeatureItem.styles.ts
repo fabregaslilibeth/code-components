@@ -41,9 +41,9 @@ export const featureItemCss = `
   .fi-root .fi-label {
     flex: 1 1 auto;
     min-width: 0;
-    font-size: 15px;
-    line-height: 1.45;
-    font-weight: 500;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
+    line-height: 1.5;
+    font-weight: 400;
     overflow-wrap: anywhere;
   }
 
@@ -105,9 +105,9 @@ export const featureItemCss = `
     color: var(--fi-tip-text);
     border: 1px solid var(--fi-tip-border);
     border-radius: 6px;
-    font-size: 13px;
-    line-height: 1.45;
-    font-weight: 500;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    line-height: 1.5;
+    font-weight: 400;
     text-align: left;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
     opacity: 0;

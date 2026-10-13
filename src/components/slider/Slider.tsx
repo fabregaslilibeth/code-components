@@ -26,11 +26,11 @@ const ArrowRight = () => (
 
 const DEMO_SLIDES: SliderProps['children'] = (
   <>
-    <SliderItem icon="megaphone" title="Marketing & Digital" body="Marketing and digital marketing dashboards across every channel and campaign." />
-    <SliderItem icon="truck" title="Supply Chain & Logistics" body="Supply chain, logistics, procurement and supplier performance in one view." />
-    <SliderItem icon="package" title="Inventory & Stock" body="Inventory management, stock and warehouse management dashboards." />
-    <SliderItem icon="bar-chart" title="Finance & Reporting" body="Real-time financial dashboards built around your chart of accounts." />
-    <SliderItem icon="users" title="HR & People" body="Headcount, turnover and workforce planning at a glance." />
+    <SliderItem icon="megaphone" title="Marketing & digital" body="Marketing and digital marketing dashboards across every channel and campaign." />
+    <SliderItem icon="truck" title="Supply chain & logistics" body="Supply chain, logistics, procurement and supplier performance in one view." />
+    <SliderItem icon="package" title="Inventory & stock" body="Inventory management, stock and warehouse management dashboards." />
+    <SliderItem icon="bar-chart" title="Finance & reporting" body="Real-time financial dashboards built around your chart of accounts." />
+    <SliderItem icon="users" title="HR & people" body="Headcount, turnover and workforce planning at a glance." />
   </>
 );
 

@@ -1,15 +1,16 @@
 ﻿import { GridArray } from './GridArray';
 import { GridItem } from '../grid/Grid';
+import { HEADING_TAGS, toHeadingTag } from '../headingTag';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
 
 const DEFAULT_ITEMS_JSON = `[
-  {"icon":"layers","title":"TEST","body":"TEST"},
-  {"icon":"layers","title":"TEST","body":"TEST"},
-  {"icon":"layers","title":"TEST","body":"TEST"},
-  {"icon":"layers","title":"TEST","body":"TEST"},
-  {"icon":"layers","title":"TEST","body":"TEST"},
-  {"icon":"layers","title":"TEST","body":"TEST"}
+  {"icon":"layers","title":"Test","body":"Test"},
+  {"icon":"layers","title":"Test","body":"Test"},
+  {"icon":"layers","title":"Test","body":"Test"},
+  {"icon":"layers","title":"Test","body":"Test"},
+  {"icon":"layers","title":"Test","body":"Test"},
+  {"icon":"layers","title":"Test","body":"Test"}
 ]`;
 
 const parseItems = (raw: string): GridItem[] => {
@@ -26,11 +27,13 @@ const GridArrayWebflow = ({
   columns,
   gap,
   items,
+  headingTag,
 }: {
   theme?: string;
   columns?: string;
   gap?: string;
   items?: string;
+  headingTag?: string;
 }) => {
   const safeTheme = theme === 'light' ? 'light' as const : 'dark' as const;
   const safeColumns = columns ? parseInt(columns, 10) || undefined : undefined;
@@ -40,6 +43,7 @@ const GridArrayWebflow = ({
       columns={safeColumns}
       gap={gap}
       items={parseItems(items || DEFAULT_ITEMS_JSON)}
+      headingTag={toHeadingTag(headingTag, 'h3')}
     />
   );
 };
@@ -53,5 +57,6 @@ export default declareComponent(GridArrayWebflow, {
     columns: props.Text({ name: 'Columns (desktop)',    defaultValue: '3' }),
     gap:     props.Text({ name: 'Grid gap (CSS value)', defaultValue: '14px' }),
     items:   props.Text({ name: 'Items (JSON array)',   defaultValue: DEFAULT_ITEMS_JSON }),
+    headingTag: props.Variant({ name: 'Heading level', defaultValue: 'h3', options: HEADING_TAGS }),
   },
 });

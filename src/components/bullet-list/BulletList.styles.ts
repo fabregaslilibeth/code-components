@@ -56,19 +56,19 @@ export const bulletListCss = `
   }
 
   .bl-title {
-    font-size: 15px;
-    font-weight: 700;
+    font-size: var(--_typography---font-size--h6, 1.125rem);
+    font-weight: 500;
     color: var(--bl-title);
     margin: 0;
-    line-height: 1.4;
+    line-height: 1.5;
   }
 
   .bl-body {
-    font-size: 14px;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
     font-weight: 400;
     color: var(--bl-body);
     margin: 0;
-    line-height: 1.55;
+    line-height: 1.5;
   }
 
   /* ── alignment: left (default) ── */

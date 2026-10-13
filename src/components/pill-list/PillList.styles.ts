@@ -75,8 +75,8 @@ export const pillListCss = `
   }
 
   .pl-pill-label {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    font-weight: 400;
     color: var(--pl-label);
     transition: color 0.25s ease;
     white-space: nowrap;

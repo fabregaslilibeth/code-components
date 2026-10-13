@@ -3,14 +3,14 @@ import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
 
 const DEFAULT_ITEMS_JSON = `[
-  {"icon":"hard-hat","label":"Construction & Building"},
-  {"icon":"factory","label":"Manufacturing & Engineering"},
-  {"icon":"landmark","label":"Financial Services"},
-  {"icon":"building-2","label":"Public Sector & Government"},
-  {"icon":"scale","label":"Legal Services"},
+  {"icon":"hard-hat","label":"Construction & building"},
+  {"icon":"factory","label":"Manufacturing & engineering"},
+  {"icon":"landmark","label":"Financial services"},
+  {"icon":"building-2","label":"Public sector & government"},
+  {"icon":"scale","label":"Legal services"},
   {"icon":"shield","label":"Insurance"},
-  {"icon":"utensils","label":"Hospitality & Leisure"},
-  {"icon":"users","label":"Recruitment & Staffing"},
+  {"icon":"utensils","label":"Hospitality & leisure"},
+  {"icon":"users","label":"Recruitment & staffing"},
   {"icon":"sprout","label":"Agriculture"},
   {"icon":"cpu","label":"Technology & SaaS"},
   {"icon":"stethoscope","label":"Healthcare"},

@@ -36,8 +36,8 @@ export const pullQuoteCss = `
   }
 
   .pq-root .pq-mark {
-    font-family: Georgia, serif;
-    font-size: 56px;
+    font-family: inherit;
+    font-size: var(--_typography---font-size--h2, 3rem);
     line-height: 1;
     color: var(--pq-cyan);
     opacity: 0.55;
@@ -48,9 +48,9 @@ export const pullQuoteCss = `
   }
 
   .pq-root .pq-text {
-    font-size: 22px;
+    font-size: var(--_typography---font-size--text-large, 1.25rem);
     line-height: 1.5;
-    font-weight: 600;
+    font-weight: 400;
     color: var(--pq-head);
     margin: 0 0 14px;
     overflow-wrap: anywhere;
@@ -63,10 +63,10 @@ export const pullQuoteCss = `
   .pq-root .pq-cite {
     display: block;
     font-style: normal;
-    font-size: 13.5px;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
     line-height: 1.5;
     color: var(--pq-dim);
-    font-weight: 500;
+    font-weight: 400;
   }
 
   .pq-root .pq-name {

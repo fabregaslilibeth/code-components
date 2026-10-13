@@ -54,17 +54,17 @@ export const solutionStepsCss = `
   }
 
   .ss-root .ss-title {
-    font-size: 16.5px;
-    font-weight: 700;
-    letter-spacing: -0.005em;
+    font-size: var(--_typography---font-size--h4, 1.5rem);
+    font-weight: 500;
+    line-height: 1.3;
     color: var(--ss-head);
     margin: 0 0 10px;
     overflow-wrap: anywhere;
   }
 
   .ss-root .ss-body {
-    font-size: 14px;
-    line-height: 1.65;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
+    line-height: 1.5;
     color: var(--ss-dim);
     margin: 0;
     overflow-wrap: anywhere;

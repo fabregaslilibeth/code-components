@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { LucideIcon } from '../LucideIcon';
 import { cardCss } from './Card.styles';
+import { HeadingTag } from '../headingTag';
 
 export type CardTheme = 'dark' | 'light';
 
@@ -9,6 +10,7 @@ export interface CardProps {
   icon?: string;
   title?: string;
   body?: string;
+  headingTag?: HeadingTag;
 }
 
 const Ticks = () => (
@@ -23,9 +25,11 @@ const Ticks = () => (
 export const Card = ({
   theme = 'dark',
   icon = 'layers',
-  title = 'TEST',
-  body = 'TEST',
+  title = 'Test',
+  body = 'Test',
+  headingTag = 'h3',
 }: CardProps) => {
+  const Heading = headingTag as React.ElementType;
   const cardRef = React.useRef<HTMLElement>(null);
 
   React.useEffect(() => {
@@ -72,7 +76,7 @@ export const Card = ({
           <span className="card-icon-shine" aria-hidden />
           <LucideIcon name={icon} size={22} strokeWidth={1.6} />
         </span>
-        <h3 className="card-title">{title}</h3>
+        <Heading className="card-title">{title}</Heading>
         <p className="card-body">{body}</p>
       </article>
     </div>

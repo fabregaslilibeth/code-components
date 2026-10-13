@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { DEFAULT_HOW_TIMELINE_STEPS, HowTimelineStep } from './HowTimeline.data';
 import { howTimelineCss } from './HowTimeline.styles';
+import { HeadingTag } from '../headingTag';
 
 export type { HowTimelineStep };
 
 export interface HowTimelineProps {
   steps?: HowTimelineStep[];
+  headingTag?: HeadingTag;
 }
 
 function useTimelineEffects(
@@ -89,7 +91,11 @@ function useTimelineEffects(
   }, [rootRef, stepCount]);
 }
 
-export const HowTimeline = ({ steps = DEFAULT_HOW_TIMELINE_STEPS }: HowTimelineProps) => {
+export const HowTimeline = ({
+  steps = DEFAULT_HOW_TIMELINE_STEPS,
+  headingTag = 'h3',
+}: HowTimelineProps) => {
+  const Heading = headingTag as React.ElementType;
   const rootRef = React.useRef<HTMLElement>(null);
   const safeSteps = steps.length > 0 ? steps : DEFAULT_HOW_TIMELINE_STEPS;
   const lastIndex = safeSteps.length - 1;
@@ -124,7 +130,7 @@ export const HowTimeline = ({ steps = DEFAULT_HOW_TIMELINE_STEPS }: HowTimelineP
               </div>
               <div className="ht-tl-body">
                 <div className="ht-tl-copy">
-                  <h3 className="ht-tl-title">{step.title}</h3>
+                  <Heading className="ht-tl-title">{step.title}</Heading>
                   <p className="ht-tl-text">{step.body}</p>
                 </div>
                 <div className="ht-tl-thumb" data-ht-parallax-wrap>
