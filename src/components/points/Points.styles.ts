@@ -97,7 +97,7 @@ export const pointsCss = `
 
   .pt-title {
     font-weight: 500;
-    font-size: var(--_typography---font-size--h3, 2.125rem);
+    font-size: var(--_typography---font-size--h4, 1.5rem);
     color: var(--pt-head);
     margin: 0 0 10px;
     line-height: 1.3;

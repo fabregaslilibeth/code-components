@@ -54,7 +54,7 @@ export const solutionStepsCss = `
   }
 
   .ss-root .ss-title {
-    font-size: var(--_typography---font-size--h3, 2.125rem);
+    font-size: var(--_typography---font-size--h4, 1.5rem);
     font-weight: 500;
     line-height: 1.3;
     color: var(--ss-head);

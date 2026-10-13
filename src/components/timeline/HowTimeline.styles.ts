@@ -180,7 +180,7 @@ export const howTimelineCss = `
   .how-timeline-root .ht-tl-title {
     position: relative;
     font-weight: 500;
-    font-size: var(--_typography---font-size--h3, 2.125rem);
+    font-size: var(--_typography---font-size--h4, 1.5rem);
     line-height: 1.3;
     color: var(--ht-head);
     margin: 0;

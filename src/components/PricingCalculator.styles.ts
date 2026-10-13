@@ -142,7 +142,7 @@ export const styles = {
   } as CSSProperties,
 
   planTitle: {
-    fontSize: FS_H3,
+    fontSize: FS_H4,
     fontWeight: "500",
     lineHeight: 1.3,
     margin: 0,
