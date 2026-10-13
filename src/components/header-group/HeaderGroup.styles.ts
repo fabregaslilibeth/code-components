@@ -59,6 +59,7 @@ export const headerGroupCss = `
     margin: 20px 0 0;
     max-width: 620px;
     overflow-wrap: anywhere;
+    white-space: pre-line;
     opacity: 0.65;
   }
 
