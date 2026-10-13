@@ -14,9 +14,9 @@ export interface BannerProps {
 }
 
 const SUPPORTING_POINTS = [
-  'Managed IT Support & Helpdesk',
-  'Cyber Security Monitoring & Protection',
-  'Microsoft 365 Support, Security & Backup',
+  'Managed IT support & helpdesk',
+  'Cyber security monitoring & protection',
+  'Microsoft 365 support, security & backup',
 ];
 
 const RIGHT_BOX_BULLETS = [
@@ -39,13 +39,13 @@ export const Banner = ({
         <div style={styles.heroInner} className="banner-hero-inner">
           {/* Left column: main content */}
           <div style={styles.contentCol} className="banner-content-col">
-            <p style={styles.eyebrow}>Secure IT. Smarter Growth.</p>
+            <p style={styles.eyebrow}>Secure IT. Smarter growth.</p>
             <h1 style={styles.h1}>
-              Managed IT & Cyber Security for UK Businesses
+              Managed IT & cyber security for UK businesses
             </h1>
             <p style={styles.subheadline}>
-              UK-wide Managed IT Support, Cyber Security and Microsoft 365
-              expertise. Secure, Reliable and Built to Scale.
+              UK-wide managed IT support, cyber security and Microsoft 365
+              expertise. Secure, reliable and built to scale.
             </p>
             <ul style={styles.supportingList}>
               {SUPPORTING_POINTS.map((text) => (
@@ -62,7 +62,7 @@ export const Banner = ({
               style={styles.ctaPrimary}
               className="banner-cta-primary"
             >
-              <WaveLabel label="Get a Free IT & Security Assessment" prefix="banner-cta" />
+              <WaveLabel label="Get a free IT & security assessment" prefix="banner-cta" />
             </a>
             <div style={styles.trustLine}>
               <span>Excellent on Trustpilot</span>
@@ -94,9 +94,9 @@ export const Banner = ({
 
             {/* Refined right-side box */}
             <div style={styles.rightBox} className="banner-right-box">
-              <h2 style={styles.rightBoxTitle}>Is Your Business Secure?</h2>
+              <h2 style={styles.rightBoxTitle}>Is your business secure?</h2>
               <p style={styles.rightBoxBadge}>
-                Free Cyber Security Check (UK Businesses)
+                Free cyber security check (UK businesses)
               </p>
               <ul style={styles.rightBoxList}>
                 {RIGHT_BOX_BULLETS.map((text) => (
@@ -113,7 +113,7 @@ export const Banner = ({
                 style={styles.rightBoxCta}
                 className="banner-right-cta"
               >
-                <WaveLabel label="Run Free Security Check" prefix="banner-cta" />
+                <WaveLabel label="Run free security check" prefix="banner-cta" />
               </a>
               <p style={styles.rightBoxMicro}>
                 Takes ~2 minutes • Results emailed

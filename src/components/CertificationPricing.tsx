@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { certificationPricingStyles as styles } from './CertificationPricing.styles';
 import { WaveLabel, waveEndMs } from './WaveLabel';
+import { HeadingTag } from './headingTag';
 
 export type FeatureItem = string | { label: string; included: false };
 
@@ -34,12 +35,14 @@ export interface CertificationPricingProps {
   getStartedUrl?: string;
   /** Override label for all "Get started" buttons (e.g. from Webflow) */
   getStartedLabel?: string;
+  /** Tag for each plan card title */
+  headingTag?: HeadingTag;
 }
 
 const DEFAULT_PLANS_CE: CertificationPlan[] = [
   {
     id: 'self',
-    title: 'Self-Certification',
+    title: 'Self-certification',
     description: 'Self-paced certification with basic support, essential tools, and resources.',
     priceLabel: '£420 + VAT',
     features: [
@@ -57,7 +60,7 @@ const DEFAULT_PLANS_CE: CertificationPlan[] = [
   },
   {
     id: 'little-help',
-    title: 'Get a Little Help',
+    title: 'Get a little help',
     description: 'Full support through the certification process with expert guidance.',
     priceLabel: '£720 + VAT',
     features: [
@@ -76,7 +79,7 @@ const DEFAULT_PLANS_CE: CertificationPlan[] = [
   },
   {
     id: 'lot-help',
-    title: 'Get a Lot of Help',
+    title: 'Get a lot of help',
     description: 'Comprehensive certification programme for complex organisations.',
     priceLabel: '£1,420 + VAT',
     features: [
@@ -116,7 +119,7 @@ const DEFAULT_PLANS_CE_PLUS: CertificationPlan[] = [
   },
   {
     id: 'little-help',
-    title: 'Get a Little Help',
+    title: 'Get a little help',
     description: 'Full support through the certification process with expert guidance.',
     priceLabel: '£2,355 + VAT',
     features: [
@@ -134,7 +137,7 @@ const DEFAULT_PLANS_CE_PLUS: CertificationPlan[] = [
   },
   {
     id: 'lot-help',
-    title: 'Get a Lot of Help',
+    title: 'Get a lot of help',
     description: 'Comprehensive support for complex organisations.',
     priceLabel: '£3,055 + VAT',
     features: [
@@ -169,7 +172,9 @@ export const CertificationPricing = ({
   baseUrl = '',
   getStartedUrl: getStartedUrlProp,
   getStartedLabel: getStartedLabelProp,
+  headingTag = 'h3',
 }: CertificationPricingProps) => {
+  const Heading = headingTag as React.ElementType;
   const tabLabels: [string, string] = tabLabelsProp ?? [tabLabel1, tabLabel2];
   const [activeTab, setActiveTab] = React.useState(0);
   const [inView, setInView] = React.useState(false);
@@ -361,7 +366,7 @@ export const CertificationPricing = ({
             {plan.mostPopular && (
               <div style={styles.badge}>Most popular</div>
             )}
-            <h3 style={styles.cardTitle}>{plan.title}</h3>
+            <Heading style={styles.cardTitle}>{plan.title}</Heading>
             <p style={styles.cardDescription}>{plan.description}</p>
             <div style={styles.priceWrap}>
               <div style={styles.priceFrom}>from</div>

@@ -12,10 +12,18 @@ const CHECK_GREEN = '#22c55e';
 const BOX_BG = 'rgba(255, 255, 255, 0.06)';
 const BOX_BORDER = 'rgba(255, 255, 255, 0.12)';
 
+// Site type scale (Webflow variables cross the shadow root); fallbacks used outside Webflow.
+const FS_SMALL = 'var(--_typography---font-size--text-small, 0.9375rem)';
+const FS_MAIN = 'var(--_typography---font-size--text-main, 1.125rem)';
+const FS_LARGE = 'var(--_typography---font-size--text-large, 1.25rem)';
+const FS_H6 = 'var(--_typography---font-size--h6, 1.125rem)';
+const FS_H5 = 'var(--_typography---font-size--h5, 1.25rem)';
+const FS_H1 = 'var(--_typography---font-size--h1, 3.75rem)';
+
 export const bannerStyles = {
   root: {
     position: 'relative' as const,
-    fontFamily: "'Montserrat', system-ui, -apple-system, sans-serif",
+    fontFamily: 'inherit',
     color: TEXT_WHITE,
     overflow: 'hidden',
   } as CSSProperties,
@@ -50,26 +58,25 @@ export const bannerStyles = {
   } as CSSProperties,
 
   eyebrow: {
-    fontSize: '0.8rem',
-    fontWeight: 700,
-    textTransform: 'uppercase' as const,
-    letterSpacing: '0.08em',
+    fontSize: FS_H6,
+    fontWeight: 500,
+    lineHeight: 1.5,
     color: EYEBROW_AMBER,
     marginBottom: '0.75rem',
   } as CSSProperties,
 
   h1: {
-    fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)',
-    fontWeight: 700,
-    lineHeight: 1.2,
+    fontSize: FS_H1,
+    fontWeight: 900,
+    lineHeight: 1.1,
     color: TEXT_WHITE,
     margin: '0 0 1rem 0',
     maxWidth: '520px',
   } as CSSProperties,
 
   subheadline: {
-    fontSize: '1rem',
-    lineHeight: 1.6,
+    fontSize: FS_LARGE,
+    lineHeight: 1.5,
     color: TEXT_MUTED,
     margin: '0 0 1.25rem 0',
     maxWidth: '480px',
@@ -88,14 +95,15 @@ export const bannerStyles = {
     display: 'flex',
     alignItems: 'center',
     gap: '0.5rem',
-    fontSize: '0.95rem',
+    fontSize: FS_MAIN,
+    lineHeight: 1.5,
     color: TEXT_MUTED,
   } as CSSProperties,
 
   checkIcon: {
     color: CHECK_GREEN,
     flexShrink: 0,
-    fontSize: '1.1rem',
+    fontSize: '1em',
     lineHeight: 1,
   } as CSSProperties,
 
@@ -110,8 +118,8 @@ export const bannerStyles = {
     border: 'none',
     borderRadius: '8px',
     overflow: 'hidden',
-    fontSize: '1rem',
-    fontWeight: 600,
+    fontSize: FS_MAIN,
+    fontWeight: 400,
     cursor: 'pointer',
     textDecoration: 'none',
     transition: 'transform 0.15s',
@@ -119,7 +127,8 @@ export const bannerStyles = {
   } as CSSProperties,
 
   trustLine: {
-    fontSize: '0.8rem',
+    fontSize: FS_SMALL,
+    lineHeight: 1.5,
     color: TEXT_LIGHT,
     display: 'flex',
     alignItems: 'center',
@@ -152,7 +161,7 @@ export const bannerStyles = {
     alignItems: 'center',
     justifyContent: 'center',
     color: TEXT_LIGHT,
-    fontSize: '0.9rem',
+    fontSize: FS_MAIN,
   } as CSSProperties,
 
   /** Image that "sticks out" - overlapping diagonal bottom edge (no rotation; banner is the slanted element) */
@@ -185,17 +194,17 @@ export const bannerStyles = {
   } as CSSProperties,
 
   rightBoxTitle: {
-    fontSize: '1.15rem',
-    fontWeight: 700,
+    fontSize: FS_H5,
+    fontWeight: 500,
+    lineHeight: 1.4,
     color: TEXT_WHITE,
     margin: '0 0 0.35rem 0',
   } as CSSProperties,
 
   rightBoxBadge: {
-    fontSize: '0.7rem',
-    fontWeight: 600,
-    textTransform: 'uppercase' as const,
-    letterSpacing: '0.04em',
+    fontSize: FS_SMALL,
+    fontWeight: 400,
+    lineHeight: 1.5,
     color: EYEBROW_AMBER,
     marginBottom: '1rem',
   } as CSSProperties,
@@ -210,7 +219,8 @@ export const bannerStyles = {
     display: 'flex',
     alignItems: 'flex-start',
     gap: '0.5rem',
-    fontSize: '0.875rem',
+    fontSize: FS_MAIN,
+    lineHeight: 1.5,
     color: TEXT_MUTED,
     marginBottom: '0.5rem',
   } as CSSProperties,
@@ -227,15 +237,16 @@ export const bannerStyles = {
     border: 'none',
     borderRadius: '8px',
     overflow: 'hidden',
-    fontSize: '0.9rem',
-    fontWeight: 600,
+    fontSize: FS_MAIN,
+    fontWeight: 400,
     cursor: 'pointer',
     textDecoration: 'none',
     marginBottom: '0.5rem',
   } as CSSProperties,
 
   rightBoxMicro: {
-    fontSize: '0.7rem',
+    fontSize: FS_SMALL,
+    lineHeight: 1.5,
     color: TEXT_LIGHT,
     textAlign: 'center' as const,
   } as CSSProperties,

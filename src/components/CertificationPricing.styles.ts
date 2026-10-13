@@ -12,9 +12,15 @@ const CHECK_GREEN = '#22c55e';
 const CHECK_CYAN = '#22d3ee';
 const CROSS_RED = '#ef4444';
 
+// Site type scale (Webflow variables cross the shadow root); fallbacks used outside Webflow.
+const FS_SMALL = 'var(--_typography---font-size--text-small, 0.9375rem)';
+const FS_MAIN = 'var(--_typography---font-size--text-main, 1.125rem)';
+const FS_H4 = 'var(--_typography---font-size--h4, 1.5rem)';
+const FS_H3 = 'var(--_typography---font-size--h3, 2.125rem)';
+
 export const certificationPricingStyles = {
   container: {
-    fontFamily: "'Montserrat', system-ui, -apple-system, sans-serif",
+    fontFamily: 'inherit',
     backgroundColor: 'transparent',
     color: TEXT_WHITE,
   } as CSSProperties,
@@ -40,8 +46,9 @@ export const certificationPricingStyles = {
     borderRadius: '9999px',
     border: 'none',
     cursor: 'pointer',
-    fontSize: '0.9rem',
-    fontWeight: '600',
+    font: 'inherit',
+    fontSize: FS_MAIN,
+    fontWeight: '400',
     backgroundColor: isActive ? ACCENT_CYAN : 'transparent',
     color: isActive ? BG_DARK : '#a1a1a1',
     transition: 'all 0.2s',
@@ -75,23 +82,22 @@ export const certificationPricingStyles = {
     transform: 'translateX(-50%)',
     backgroundColor: ACCENT_CYAN,
     color: BG_DARK,
-    fontSize: '0.75rem',
-    fontWeight: '700',
+    fontSize: FS_SMALL,
+    fontWeight: '400',
     padding: '0.35rem 0.75rem',
     borderRadius: '8px',
-    textTransform: 'uppercase',
-    letterSpacing: '0.02em',
   } as CSSProperties,
 
   cardTitle: {
-    fontSize: '1.5rem',
-    fontWeight: '700',
+    fontSize: FS_H4,
+    fontWeight: '500',
+    lineHeight: 1.3,
     margin: '0 0 0.5rem 0',
     color: TEXT_WHITE,
   } as CSSProperties,
 
   cardDescription: {
-    fontSize: '0.9rem',
+    fontSize: FS_MAIN,
     color: TEXT_MUTED,
     lineHeight: 1.5,
     marginBottom: '0px',
@@ -104,14 +110,16 @@ export const certificationPricingStyles = {
   } as CSSProperties,
 
   priceFrom: {
-    fontSize: '0.9rem',
+    fontSize: FS_SMALL,
+    lineHeight: 1.5,
     color: TEXT_MUTED,
     marginBottom: '0.15rem',
   } as CSSProperties,
 
   priceAmount: {
-    fontSize: '1.75rem',
-    fontWeight: '700',
+    fontSize: FS_H3,
+    fontWeight: '500',
+    lineHeight: 1.2,
     color: TEXT_WHITE,
   } as CSSProperties,
 
@@ -127,8 +135,8 @@ export const certificationPricingStyles = {
     border: 'none',
     borderRadius: '9999px',
     overflow: 'hidden',
-    fontSize: '0.95rem',
-    fontWeight: '600',
+    fontSize: FS_MAIN,
+    fontWeight: '400',
     cursor: 'pointer',
     textDecoration: 'none',
     transition: 'transform 0.15s',
@@ -155,7 +163,8 @@ export const certificationPricingStyles = {
     alignItems: 'center',
     gap: '0.5rem',
     marginBottom: '0.5rem',
-    fontSize: '0.9rem',
+    fontSize: FS_MAIN,
+    lineHeight: 1.5,
     color: TEXT_MUTED,
     textAlign: 'left',
   } as CSSProperties,
@@ -163,21 +172,21 @@ export const certificationPricingStyles = {
   checkIcon: {
     color: CHECK_GREEN,
     flexShrink: 0,
-    fontSize: '1rem',
+    fontSize: '1em',
     lineHeight: 1,
   } as CSSProperties,
 
   checkIconCyan: {
     color: CHECK_CYAN,
     flexShrink: 0,
-    fontSize: '1rem',
+    fontSize: '1em',
     lineHeight: 1,
   } as CSSProperties,
 
   crossIcon: {
     color: CROSS_RED,
     flexShrink: 0,
-    fontSize: '1rem',
+    fontSize: '1em',
     lineHeight: 1,
   } as CSSProperties,
 
@@ -186,13 +195,13 @@ export const certificationPricingStyles = {
   } as CSSProperties,
 
   detailsLink: {
-    fontSize: '0.875rem',
+    fontSize: FS_MAIN,
     color: ACCENT_CYAN_DIM,
     textDecoration: 'none',
     display: 'inline-flex',
     alignItems: 'center',
     gap: '0.35rem',
-    fontWeight: '500',
+    fontWeight: '400',
     marginTop: 'auto',
     transition: 'color 0.2s',
   } as CSSProperties,

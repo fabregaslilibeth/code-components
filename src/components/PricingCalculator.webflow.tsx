@@ -1,8 +1,18 @@
+import type { ComponentProps } from 'react';
 import { PricingCalculator } from './PricingCalculator';
+import { HEADING_TAGS, toHeadingTag } from './headingTag';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
 
-export default declareComponent(PricingCalculator, {
+type PricingCalculatorWebflowProps = Omit<ComponentProps<typeof PricingCalculator>, 'headingTag'> & {
+    headingTag?: string;
+};
+
+const PricingCalculatorWebflow = ({ headingTag, ...rest }: PricingCalculatorWebflowProps) => (
+    <PricingCalculator {...rest} headingTag={toHeadingTag(headingTag, 'h2')} />
+);
+
+export default declareComponent(PricingCalculatorWebflow, {
     name: 'Pricing Calculator',
     description: 'Dynamic pricing calculator with payment frequency, employee slider, and multiple plan cards',
     group: 'Commerce',
@@ -26,6 +36,11 @@ export default declareComponent(PricingCalculator, {
             name: "Max Employees",
             defaultValue: 100,
             min: 1,
+        }),
+        headingTag: props.Variant({
+            name: 'Heading level',
+            defaultValue: 'h2',
+            options: HEADING_TAGS,
         }),
     },
 });

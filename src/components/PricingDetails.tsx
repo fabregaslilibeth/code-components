@@ -13,17 +13,17 @@ const FEATURES = [
 const TAB_KEYS = ['product', 'benefits', 'conditions'] as const;
 
 const RELATED = [
-  { title: 'Cyber Essentials Plus – Assisted', desc: 'Extra preparation support to reduce retest risk.', url: '/ce-plus-assisted', label: 'View Assisted CE Plus' },
-  { title: 'Cyber Essentials Plus – Fully Managed', desc: 'Best for complex environments and multi-site organisations.', url: '/ce-plus-fully-managed', label: 'View Fully Managed CE Plus' },
-  { title: 'Vulnerability Management', desc: 'Ongoing scanning beyond certification.', url: '/vulnerability-scanning', label: 'View Vulnerability Scanning' },
-  { title: 'Managed Cyber Security', desc: 'Stay protected long after certification.', url: '/managed-security', label: 'View Managed Security' },
+  { title: 'Cyber Essentials Plus: Assisted', desc: 'Extra preparation support to reduce retest risk.', url: '/ce-plus-assisted', label: 'View Assisted CE Plus' },
+  { title: 'Cyber Essentials Plus: Fully Managed', desc: 'Best for complex environments and multi-site organisations.', url: '/ce-plus-fully-managed', label: 'View Fully Managed CE Plus' },
+  { title: 'Vulnerability management', desc: 'Ongoing scanning beyond certification.', url: '/vulnerability-scanning', label: 'View vulnerability scanning' },
+  { title: 'Managed cyber security', desc: 'Stay protected long after certification.', url: '/managed-security', label: 'View managed security' },
 ];
 
 const FAQ_ITEMS: { q: string; a: string }[] = [
   { q: 'What is Cyber Essentials Plus?', a: 'Cyber Essentials Plus is a higher-level certification that includes independent technical testing to verify your security controls.' },
   { q: 'What does the assessment include?', a: 'Testing typically includes vulnerability scanning, device sampling, MFA validation, patch verification and malware protection checks.' },
   { q: 'Do we need Cyber Essentials first?', a: 'Yes. Cyber Essentials must be completed before CE Plus certification can be issued.' },
-  { q: 'How long does Cyber Essentials Plus take?', a: 'Most organisations complete the process within 2–4 weeks depending on readiness and scheduling.' },
+  { q: 'How long does Cyber Essentials Plus take?', a: 'Most organisations complete the process within 2-4 weeks depending on readiness and scheduling.' },
   { q: 'What happens if vulnerabilities are found?', a: "You'll be given a remediation window and may require a retest before certification is issued." },
 ];
 
@@ -152,15 +152,15 @@ export function PricingDetails() {
       <div style={styles.layout} className="pricing-details-layout">
         <div style={styles.main}>
           <div className="pricing-details-block">
-            <p style={styles.eyebrow}>Independent Cyber Security Testing</p>
-            <h1 style={styles.title}>Cyber Essentials Plus – Core</h1>
+            <p style={styles.eyebrow}>Independent cyber security testing</p>
+            <h1 style={styles.title}>Cyber Essentials Plus: Core</h1>
             <p style={styles.subtitle}>Cyber Essentials Plus certification with independent technical verification</p>
           </div>
 
           <div style={styles.card} className="pricing-details-block pricing-details-card">
             <div style={styles.ratingRow}>
               <span style={styles.stars} aria-hidden>★★★★★</span>
-              <span style={styles.ratingLabel}>Higher-Assurance Certification</span>
+              <span style={styles.ratingLabel}>Higher-assurance certification</span>
             </div>
             <div style={styles.priceFrom}>From</div>
             <div style={styles.priceAmount}>£2,055.00 + VAT</div>
@@ -195,7 +195,7 @@ export function PricingDetails() {
                   onClick={() => setActiveTab(key)}
                   aria-pressed={activeTab === key}
                 >
-                  {key === 'product' && 'Product Description'}
+                  {key === 'product' && 'Product description'}
                   {key === 'benefits' && 'Benefits'}
                   {key === 'conditions' && 'Conditions'}
                 </button>
@@ -210,7 +210,7 @@ export function PricingDetails() {
               >
                 {activeTab === 'product' && (
                   <>
-                    <p style={styles.tabPanelHeading}>Cyber Essentials Plus – higher assurance, real verification</p>
+                    <p style={styles.tabPanelHeading}>Cyber Essentials Plus: higher assurance, real verification</p>
                     <p>
                       Cyber Essentials Plus is the advanced version of Cyber Essentials. Unlike standard certification, Plus includes independent technical testing to confirm your cybersecurity controls are properly implemented across your organisation.
                     </p>
@@ -224,7 +224,7 @@ export function PricingDetails() {
                       <li>User access and admin control review</li>
                     </ul>
                     <p>This certification is ideal for organisations working in regulated sectors or supply chains where higher security assurance is expected.</p>
-                    <p style={styles.tabPanelHeading}>What’s Included</p>
+                    <p style={styles.tabPanelHeading}>What’s included</p>
                     <ul style={styles.tabPanelList}>
                       <li>✔ Cyber Essentials certification support</li>
                       <li>✔ Cyber Essentials Plus technical assessment</li>
@@ -234,7 +234,7 @@ export function PricingDetails() {
                       <li>✔ Certification issued on success</li>
                       <li>✔ Certificate valid for 12 months</li>
                     </ul>
-                    <p style={styles.tabPanelHeading}>Who This Is Best For</p>
+                    <p style={styles.tabPanelHeading}>Who this is best for</p>
                     <p>This package is ideal if:</p>
                     <ul style={styles.tabPanelList}>
                       <li>Your customers require CE Plus</li>
@@ -281,7 +281,7 @@ export function PricingDetails() {
                 )}
                 {activeTab === 'conditions' && (
                   <>
-                    <p style={styles.tabPanelHeading}>Important Information Before Purchase</p>
+                    <p style={styles.tabPanelHeading}>Important information before purchase</p>
                     <ul style={styles.conditionsList}>
                       <li>Cyber Essentials must be achieved before Plus certification is issued.</li>
                       <li>Independent testing includes device sampling based on scheme requirements.</li>
@@ -310,7 +310,7 @@ export function PricingDetails() {
           </div>
 
           <div className="pricing-details-block">
-            <h2 style={styles.faqTitle}>Frequently Asked Questions</h2>
+            <h2 style={styles.faqTitle}>Frequently asked questions</h2>
             <div>
               {FAQ_ITEMS.map((item, i) => (
                 <div key={i} style={styles.faqItem} className={`pricing-details-faq-item ${openFaq === i ? 'open' : ''}`}>
@@ -322,7 +322,7 @@ export function PricingDetails() {
                     aria-expanded={openFaq === i}
                   >
                     {item.q}
-                    <span className="pricing-details-faq-chevron" aria-hidden style={{ fontSize: '0.8rem' }}>▼</span>
+                    <span className="pricing-details-faq-chevron" aria-hidden style={{ fontSize: 'var(--_typography---font-size--text-small, 0.9375rem)' }}>▼</span>
                   </button>
                   <div
                     className="pricing-details-faq-answer-wrap"
@@ -338,7 +338,7 @@ export function PricingDetails() {
 
         <aside style={styles.sidebar} className="pricing-details-sidebar">
           <div style={styles.sidebarCard} className="pricing-details-block">
-            <label style={styles.label} htmlFor="pd-employees"># Of Employees</label>
+            <label style={styles.label} htmlFor="pd-employees"># of employees</label>
             <select
               id="pd-employees"
               style={styles.select}

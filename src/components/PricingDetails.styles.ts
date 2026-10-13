@@ -15,7 +15,7 @@ const BORDER_SUBTLE = 'rgba(255, 255, 255, 0.12)';
 
 export const pricingDetailsStyles = {
   container: {
-    fontFamily: "'Montserrat', system-ui, -apple-system, sans-serif",
+    fontFamily: 'inherit',
     backgroundColor: 'transparent',
     color: TEXT_WHITE,
     padding: '2rem 1rem',
@@ -45,24 +45,23 @@ export const pricingDetailsStyles = {
   } as CSSProperties,
 
   eyebrow: {
-    fontSize: '0.8rem',
-    fontWeight: '600',
-    textTransform: 'uppercase' as const,
-    letterSpacing: '0.08em',
+    fontSize: 'var(--_typography---font-size--h6, 1.125rem)',
+    fontWeight: '500',
+    lineHeight: 1.5,
     color: ACCENT_CYAN,
     margin: '0 0 0.25rem 0',
   } as CSSProperties,
 
   title: {
-    fontSize: '1.75rem',
-    fontWeight: '700',
+    fontSize: 'var(--_typography---font-size--h1, 3.75rem)',
+    fontWeight: '900',
     margin: '0 0 0.35rem 0',
     color: TEXT_WHITE,
-    lineHeight: 1.25,
+    lineHeight: 1.1,
   } as CSSProperties,
 
   subtitle: {
-    fontSize: '1rem',
+    fontSize: 'var(--_typography---font-size--text-large, 1.25rem)',
     color: TEXT_MUTED,
     margin: '0 0 1rem 0',
     lineHeight: 1.5,
@@ -86,25 +85,28 @@ export const pricingDetailsStyles = {
 
   stars: {
     color: '#eab308',
-    fontSize: '1.1rem',
+    fontSize: 'var(--_typography---font-size--text-main, 1.125rem)',
     letterSpacing: '0.05em',
   } as CSSProperties,
 
   ratingLabel: {
-    fontSize: '0.9rem',
+    fontSize: 'var(--_typography---font-size--text-small, 0.9375rem)',
     color: TEXT_MUTED,
-    fontWeight: '500',
+    fontWeight: '400',
+    lineHeight: 1.5,
   } as CSSProperties,
 
   priceFrom: {
-    fontSize: '0.9rem',
+    fontSize: 'var(--_typography---font-size--text-small, 0.9375rem)',
+    lineHeight: 1.5,
     color: TEXT_MUTED,
     marginBottom: '0.2rem',
   } as CSSProperties,
 
   priceAmount: {
-    fontSize: '1.85rem',
-    fontWeight: '700',
+    fontSize: 'var(--_typography---font-size--h3, 2.125rem)',
+    fontWeight: '500',
+    lineHeight: 1.2,
     color: TEXT_WHITE,
     marginBottom: '1rem',
   } as CSSProperties,
@@ -120,14 +122,15 @@ export const pricingDetailsStyles = {
     alignItems: 'center',
     gap: '0.5rem',
     marginBottom: '0.5rem',
-    fontSize: '0.9rem',
+    fontSize: 'var(--_typography---font-size--text-main, 1.125rem)',
+    lineHeight: 1.5,
     color: TEXT_MUTED,
   } as CSSProperties,
 
   checkIcon: {
     color: CHECK_GREEN,
     flexShrink: 0,
-    fontSize: '1rem',
+    fontSize: '1em',
   } as CSSProperties,
 
   warningBox: {
@@ -144,26 +147,28 @@ export const pricingDetailsStyles = {
   warningIcon: {
     color: WARNING_AMBER,
     flexShrink: 0,
-    fontSize: '1.2rem',
+    fontSize: 'var(--_typography---font-size--text-large, 1.25rem)',
     lineHeight: 1,
   } as CSSProperties,
 
   warningText: {
-    fontSize: '0.875rem',
+    fontSize: 'var(--_typography---font-size--text-main, 1.125rem)',
     color: TEXT_MUTED,
     margin: 0,
     lineHeight: 1.5,
   } as CSSProperties,
 
   warningTitle: {
-    fontWeight: '700',
+    fontWeight: '500',
+    lineHeight: 1.5,
     color: TEXT_WHITE,
     marginBottom: '0.2rem',
   } as CSSProperties,
 
   sectionTitle: {
-    fontSize: '1.25rem',
+    fontSize: 'var(--_typography---font-size--h2, 3rem)',
     fontWeight: '700',
+    lineHeight: 1.2,
     margin: '0 0 0.75rem 0',
     color: TEXT_WHITE,
   } as CSSProperties,
@@ -182,8 +187,9 @@ export const pricingDetailsStyles = {
     border: 'none',
     background: 'none',
     color: active ? ACCENT_CYAN : TEXT_SOFT,
-    fontSize: '0.9rem',
-    fontWeight: '600',
+    font: 'inherit',
+    fontSize: 'var(--_typography---font-size--text-main, 1.125rem)',
+    fontWeight: '400',
     cursor: 'pointer',
     position: 'relative' as const,
     marginBottom: '-1px',
@@ -192,14 +198,15 @@ export const pricingDetailsStyles = {
   }),
 
   tabPanel: {
-    fontSize: '0.95rem',
+    fontSize: 'var(--_typography---font-size--text-main, 1.125rem)',
     color: TEXT_MUTED,
-    lineHeight: 1.65,
+    lineHeight: 1.5,
   } as CSSProperties,
 
   tabPanelHeading: {
-    fontSize: '1.05rem',
-    fontWeight: '700',
+    fontSize: 'var(--_typography---font-size--h6, 1.125rem)',
+    fontWeight: '500',
+    lineHeight: 1.5,
     color: TEXT_WHITE,
     margin: '0 0 0.5rem 0',
   } as CSSProperties,
@@ -218,17 +225,18 @@ export const pricingDetailsStyles = {
 
   benefitEmoji: {
     flexShrink: 0,
-    fontSize: '1.1rem',
+    fontSize: 'var(--_typography---font-size--text-main, 1.125rem)',
   } as CSSProperties,
 
   benefitTitle: {
-    fontWeight: '600',
+    fontWeight: '500',
+    lineHeight: 1.5,
     color: TEXT_WHITE,
     marginBottom: '0.15rem',
   } as CSSProperties,
 
   benefitDesc: {
-    fontSize: '0.9rem',
+    fontSize: 'var(--_typography---font-size--text-main, 1.125rem)',
     color: TEXT_SOFT,
     margin: 0,
     lineHeight: 1.5,
@@ -238,8 +246,8 @@ export const pricingDetailsStyles = {
     margin: 0,
     paddingLeft: '1.25rem',
     color: TEXT_MUTED,
-    lineHeight: 1.7,
-    fontSize: '0.9rem',
+    lineHeight: 1.5,
+    fontSize: 'var(--_typography---font-size--text-main, 1.125rem)',
   } as CSSProperties,
 
   sidebarCard: {
@@ -251,8 +259,9 @@ export const pricingDetailsStyles = {
   } as CSSProperties,
 
   label: {
-    fontSize: '0.85rem',
-    fontWeight: '600',
+    fontSize: 'var(--_typography---font-size--text-small, 0.9375rem)',
+    fontWeight: '400',
+    lineHeight: 1.5,
     color: TEXT_MUTED,
     marginBottom: '0.5rem',
     display: 'block',
@@ -265,7 +274,8 @@ export const pricingDetailsStyles = {
     border: `1px solid ${BORDER_SUBTLE}`,
     backgroundColor: CARD_BG_HIGHLIGHT,
     color: TEXT_WHITE,
-    fontSize: '0.95rem',
+    font: 'inherit',
+    fontSize: 'var(--_typography---font-size--text-main, 1.125rem)',
     cursor: 'pointer',
     appearance: 'none' as const,
     backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2388a0b0' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`,
@@ -285,8 +295,8 @@ export const pricingDetailsStyles = {
     border: 'none',
     borderRadius: '9999px',
     overflow: 'hidden',
-    fontSize: '1rem',
-    fontWeight: '700',
+    fontSize: 'var(--_typography---font-size--text-main, 1.125rem)',
+    fontWeight: '400',
     cursor: 'pointer',
     textDecoration: 'none',
     width: '100%',
@@ -294,8 +304,9 @@ export const pricingDetailsStyles = {
   } as CSSProperties,
 
   relatedTitle: {
-    fontSize: '1.15rem',
+    fontSize: 'var(--_typography---font-size--h2, 3rem)',
     fontWeight: '700',
+    lineHeight: 1.2,
     margin: '0 0 1rem 0',
     color: TEXT_WHITE,
   } as CSSProperties,
@@ -319,31 +330,34 @@ export const pricingDetailsStyles = {
   } as CSSProperties,
 
   relatedCardTitle: {
-    fontSize: '0.95rem',
-    fontWeight: '600',
+    fontSize: 'var(--_typography---font-size--h5, 1.25rem)',
+    fontWeight: '500',
+    lineHeight: 1.4,
     color: TEXT_WHITE,
     margin: '0 0 0.35rem 0',
   } as CSSProperties,
 
   relatedCardDesc: {
-    fontSize: '0.8rem',
+    fontSize: 'var(--_typography---font-size--text-main, 1.125rem)',
     color: TEXT_SOFT,
     margin: '0 0 0.5rem 0',
-    lineHeight: 1.4,
+    lineHeight: 1.5,
   } as CSSProperties,
 
   relatedCardLink: {
-    fontSize: '0.85rem',
+    fontSize: 'var(--_typography---font-size--text-main, 1.125rem)',
     color: ACCENT_CYAN,
-    fontWeight: '600',
+    fontWeight: '400',
+    lineHeight: 1.5,
     display: 'inline-flex',
     alignItems: 'center',
     gap: '0.25rem',
   } as CSSProperties,
 
   faqTitle: {
-    fontSize: '1.15rem',
+    fontSize: 'var(--_typography---font-size--h2, 3rem)',
     fontWeight: '700',
+    lineHeight: 1.2,
     margin: '0 0 1rem 0',
     color: TEXT_WHITE,
   } as CSSProperties,
@@ -359,8 +373,10 @@ export const pricingDetailsStyles = {
     border: 'none',
     background: 'none',
     color: TEXT_WHITE,
-    fontSize: '0.95rem',
-    fontWeight: '600',
+    font: 'inherit',
+    fontSize: 'var(--_typography---font-size--h6, 1.125rem)',
+    fontWeight: '500',
+    lineHeight: 1.5,
     textAlign: 'left' as const,
     cursor: 'pointer',
     display: 'flex',
@@ -371,9 +387,9 @@ export const pricingDetailsStyles = {
   } as CSSProperties,
 
   faqAnswer: {
-    fontSize: '0.9rem',
+    fontSize: 'var(--_typography---font-size--text-main, 1.125rem)',
     color: TEXT_MUTED,
-    lineHeight: 1.6,
+    lineHeight: 1.5,
     padding: '0 0 1rem 0',
     margin: 0,
     paddingTop: 0,

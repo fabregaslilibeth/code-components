@@ -8,7 +8,7 @@ export type PricingCardTheme = 'light' | 'dark';
 export interface PricingBand {
   /** Band name shown in bold, e.g. "Small" */
   label: string;
-  /** Small uppercase line under the name, e.g. "10–49 staff" */
+  /** Small line under the name, e.g. "10-49 staff" */
   sub?: string;
   /** Price shown when this band is selected, e.g. "£540" */
   price: string;

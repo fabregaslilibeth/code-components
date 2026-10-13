@@ -13,7 +13,7 @@ export default declareComponent(Card, {
         }),
         title: props.Text({
             name: "Title",
-            defaultValue: "Card Title",
+            defaultValue: "Card title",
         }),
         description: props.Text({
             name: "Description",

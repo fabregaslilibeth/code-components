@@ -18,8 +18,8 @@ export const DEFAULT_PLANS = [
     addonFeatures: ["Premium", "Certification Tools"],
     highlighted: false,
     bannerLabel: undefined as string | undefined,
-    primaryButtonLabel: "Get Certified Fast",
-    secondaryButtonLabel: "Speak to an Expert",
+    primaryButtonLabel: "Get certified fast",
+    secondaryButtonLabel: "Speak to an expert",
     secondaryButtonIcon: "phone" as const,
     buttonLink: "#",
   },
@@ -40,9 +40,9 @@ export const DEFAULT_PLANS = [
     ],
     addonFeatures: ["Premium", "Certification Tools"],
     highlighted: true,
-    bannerLabel: "Most Popular for Contracts",
-    primaryButtonLabel: "Book a Plus Readiness Call",
-    secondaryButtonLabel: "Get Pricing & Timescales",
+    bannerLabel: "Most popular for contracts",
+    primaryButtonLabel: "Book a Plus readiness call",
+    secondaryButtonLabel: "Get pricing & timescales",
     secondaryButtonIcon: "email" as const,
     buttonLink: "#",
   },
@@ -59,14 +59,14 @@ export const EMPLOYEE_TIERS = [
 // Addon descriptions (What's Included box content + Certification Tools)
 export const ADDON_DESCRIPTIONS = {
   "Certification Tools": {
-    label: "Certification Tools",
-    items: ["Training", "Vulnerability Scanning", "Phishing Simulator", "Threat dashboard", "Asset tracker"],
+    label: "Certification tools",
+    items: ["Training", "Vulnerability scanning", "Phishing simulator", "Threat dashboard", "Asset tracker"],
   },
   Premium: {
-    label: "What's Included:",
+    label: "What's included:",
     itemsByPlan: {
       "cyber-essentials": {
-        title: "Done-For-You Certification Support",
+        title: "Done-for-you certification support",
         recommended: true,
         description: "For busy directors who want it handled properly.",
         items: [
@@ -77,7 +77,7 @@ export const ADDON_DESCRIPTIONS = {
         ],
       },
       "cyber-essentials-plus": {
-        title: "Audit-Ready Done-For-You Package",
+        title: "Audit-ready done-for-you package",
         recommended: false,
         description: "Pre-test if your audit will confirm compliance before submission.",
         items: [

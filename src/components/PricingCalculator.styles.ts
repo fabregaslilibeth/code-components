@@ -5,12 +5,19 @@ const PRICE_YELLOW = "#facc15";
 const ADDON_BOX_BG = "#fefce8";
 const BANNER_ORANGE = "#ea580c";
 
+// Site type scale (Webflow variables cross the shadow root); fallbacks used outside Webflow.
+const FS_SMALL = "var(--_typography---font-size--text-small, 0.9375rem)";
+const FS_MAIN = "var(--_typography---font-size--text-main, 1.125rem)";
+const FS_H6 = "var(--_typography---font-size--h6, 1.125rem)";
+const FS_H4 = "var(--_typography---font-size--h4, 1.5rem)";
+const FS_H3 = "var(--_typography---font-size--h3, 2.125rem)";
+
 export const styles = {
   container: {
     maxWidth: "1200px",
     margin: "0 auto",
     padding: "1.5rem 1rem",
-    fontFamily: "'Montserrat', system-ui, -apple-system, sans-serif",
+    fontFamily: "inherit",
     backgroundColor: "#fff",
     textAlign: "left",
   } as CSSProperties,
@@ -29,8 +36,9 @@ export const styles = {
   } as CSSProperties,
 
   controlHeading: {
-    fontSize: "1rem",
-    fontWeight: "600",
+    fontSize: FS_H6,
+    fontWeight: "500",
+    lineHeight: 1.5,
     marginBottom: "0.75rem",
     color: "#001b41",
     textAlign: "center",
@@ -50,15 +58,17 @@ export const styles = {
     borderRadius: "9999px",
     border: "none",
     cursor: "pointer",
-    fontSize: "0.875rem",
-    fontWeight: "500",
+    font: "inherit",
+    fontSize: FS_MAIN,
+    fontWeight: "400",
     backgroundColor: isActive ? HEADER_BG : "transparent",
     color: isActive ? "#fff" : "#001b41",
     transition: "all 0.2s",
   }),
 
   savingsText: {
-    fontSize: "0.875rem",
+    fontSize: FS_SMALL,
+    lineHeight: 1.5,
     color: "#001b41",
     margin: 0,
     textAlign: "center",
@@ -66,8 +76,9 @@ export const styles = {
 
   select: {
     padding: "0.6rem 2rem 0.6rem 0.75rem",
-    fontSize: "0.875rem",
-    fontWeight: "500",
+    font: "inherit",
+    fontSize: FS_MAIN,
+    fontWeight: "400",
     color: "#001b41",
     backgroundColor: "#f3f4f6",
     border: "2px solid #e5e7eb",
@@ -107,8 +118,8 @@ export const styles = {
     right: "-6px",
     backgroundColor: BANNER_ORANGE,
     color: "#fff",
-    fontSize: "0.75rem",
-    fontWeight: "600",
+    fontSize: FS_SMALL,
+    fontWeight: "400",
     padding: "0.35rem 0.75rem",
     borderRadius: "0 12px 0 8px",
     zIndex: 2,
@@ -131,19 +142,21 @@ export const styles = {
   } as CSSProperties,
 
   planTitle: {
-    fontSize: "1.35rem",
-    fontWeight: "700",
+    fontSize: FS_H4,
+    fontWeight: "500",
+    lineHeight: 1.3,
     margin: 0,
     color: "#fff",
     textAlign: "left",
   } as CSSProperties,
 
   planSubtitle: {
-    fontSize: "0.875rem",
+    fontSize: FS_MAIN,
+    lineHeight: 1.5,
     color: "rgba(255,255,255,0.9)",
     marginTop: "0.5rem",
     marginBottom: 0,
-    fontWeight: "500",
+    fontWeight: "400",
     textAlign: "center",
   } as CSSProperties,
 
@@ -153,23 +166,26 @@ export const styles = {
   } as CSSProperties,
 
   priceAmount: {
-    fontSize: "1.75rem",
-    fontWeight: "700",
+    fontSize: FS_H3,
+    fontWeight: "500",
+    lineHeight: 1.2,
     color: PRICE_YELLOW,
     marginBottom: "0.15rem",
     textAlign: "right",
   } as CSSProperties,
 
   pricePOA: {
-    fontSize: "1.5rem",
-    fontWeight: "700",
+    fontSize: FS_H4,
+    fontWeight: "500",
+    lineHeight: 1.3,
     color: PRICE_YELLOW,
     marginBottom: "0.15rem",
     textAlign: "right",
   } as CSSProperties,
 
   priceSubtext: {
-    fontSize: "0.8rem",
+    fontSize: FS_SMALL,
+    lineHeight: 1.5,
     color: "rgba(255,255,255,0.9)",
     textAlign: "right",
   } as CSSProperties,
@@ -195,8 +211,9 @@ export const styles = {
   } as CSSProperties,
 
   guaranteeBannerText: {
-    fontSize: "0.85rem",
-    fontWeight: "600",
+    fontSize: FS_SMALL,
+    fontWeight: "400",
+    lineHeight: 1.5,
     color: "#374151",
     textAlign: "left",
     flex: 1,
@@ -204,11 +221,11 @@ export const styles = {
   } as CSSProperties,
 
   planDescription: {
-    fontSize: "0.9rem",
+    fontSize: FS_MAIN,
     color: "#374151",
     lineHeight: "1.5",
     marginBottom: "1rem",
-    fontWeight: "600",
+    fontWeight: "400",
     textAlign: "left",
   } as CSSProperties,
 
@@ -223,7 +240,8 @@ export const styles = {
     alignItems: "flex-start",
     gap: "0.5rem",
     marginBottom: "0.5rem",
-    fontSize: "0.875rem",
+    fontSize: FS_MAIN,
+    lineHeight: 1.5,
     color: "#374151",
     textAlign: "left",
   } as CSSProperties,
@@ -231,7 +249,7 @@ export const styles = {
   checkIcon: {
     color: "#16a34a",
     flexShrink: 0,
-    fontSize: "1rem",
+    fontSize: "1em",
     lineHeight: 1.2,
   } as CSSProperties,
 
@@ -265,26 +283,28 @@ export const styles = {
   } as CSSProperties,
 
   checkboxText: {
-    fontSize: "0.875rem",
+    fontSize: FS_MAIN,
+    lineHeight: 1.5,
     color: "#374151",
     flex: 1,
     textAlign: "left",
-    fontWeight: "600",
+    fontWeight: "400",
   } as CSSProperties,
 
   addonPrice: {
-    fontSize: "0.875rem",
+    fontSize: FS_MAIN,
+    lineHeight: 1.5,
     color: "#374151",
     marginLeft: "0.5rem",
-    fontWeight: "600",
+    fontWeight: "400",
   } as CSSProperties,
 
   addonToolsItems: {
     marginLeft: "2rem",
     marginBottom: "0.75rem",
-    fontSize: "0.8rem",
+    fontSize: FS_SMALL,
     color: "#6b7280",
-    lineHeight: 1.4,
+    lineHeight: 1.5,
     textAlign: "left",
   } as CSSProperties,
 
@@ -300,8 +320,9 @@ export const styles = {
     display: "flex",
     alignItems: "center",
     gap: "0.35rem",
-    fontSize: "0.95rem",
-    fontWeight: "700",
+    fontSize: FS_H6,
+    fontWeight: "500",
+    lineHeight: 1.5,
     color: "#374151",
     marginBottom: "0.15rem",
     textAlign: "left",
@@ -309,21 +330,22 @@ export const styles = {
 
   starIcon: {
     color: "#ea580c",
-    fontSize: "1rem",
+    fontSize: "1em",
   } as CSSProperties,
 
   addonDetailsRecommended: {
-    fontSize: "0.8rem",
+    fontSize: FS_SMALL,
+    lineHeight: 1.5,
     color: "#6b7280",
     marginBottom: "0.35rem",
     textAlign: "left",
   } as CSSProperties,
 
   addonDetailsDescription: {
-    fontSize: "0.8rem",
+    fontSize: FS_SMALL,
     color: "#6b7280",
     marginBottom: "0.5rem",
-    lineHeight: 1.4,
+    lineHeight: 1.5,
     textAlign: "left",
   } as CSSProperties,
 
@@ -338,7 +360,8 @@ export const styles = {
     alignItems: "flex-start",
     gap: "0.5rem",
     marginBottom: "0.35rem",
-    fontSize: "0.8rem",
+    fontSize: FS_SMALL,
+    lineHeight: 1.5,
     color: "#374151",
     textAlign: "left",
   } as CSSProperties,
@@ -346,13 +369,14 @@ export const styles = {
   addonDetails: {
     marginLeft: "2rem",
     marginBottom: "0.75rem",
-    fontSize: "0.875rem",
+    fontSize: FS_MAIN,
+    lineHeight: 1.5,
     color: "#001b41",
     textAlign: "left",
   } as CSSProperties,
 
   addonDetailsLabel: {
-    fontWeight: "600",
+    fontWeight: "400",
     color: "#001b41",
     marginBottom: "0.25rem",
     textAlign: "left",
@@ -375,8 +399,8 @@ export const styles = {
     border: "none",
     borderRadius: "8px",
     overflow: "hidden",
-    fontSize: "0.9rem",
-    fontWeight: "600",
+    fontSize: FS_MAIN,
+    fontWeight: "400",
     cursor: "pointer",
     display: "flex",
     alignItems: "center",
@@ -394,8 +418,8 @@ export const styles = {
     border: "2px solid #374151",
     borderRadius: "8px",
     overflow: "hidden",
-    fontSize: "0.9rem",
-    fontWeight: "600",
+    fontSize: FS_MAIN,
+    fontWeight: "400",
     cursor: "pointer",
     display: "flex",
     alignItems: "center",
@@ -409,9 +433,9 @@ export const styles = {
     marginTop: "1rem",
     paddingTop: "0.75rem",
     borderTop: "1px solid #e5e7eb",
-    fontSize: "0.7rem",
+    fontSize: FS_SMALL,
     color: "#9ca3af",
-    lineHeight: 1.4,
+    lineHeight: 1.5,
     fontStyle: "italic",
     textAlign: "left",
   } as CSSProperties,

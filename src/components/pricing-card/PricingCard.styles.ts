@@ -74,18 +74,15 @@ export const pricingCardCss = `
   }
 
   .pc-kicker {
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-size: var(--_typography---font-size--h6, 1.125rem);
+    font-weight: 500;
+    line-height: 1.5;
     color: var(--pc-dim);
   }
 
   .pc-badge {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    font-weight: 400;
     padding: 4px 10px;
     border-radius: 999px;
     white-space: nowrap;
@@ -108,15 +105,15 @@ export const pricingCardCss = `
   }
 
   .pc-band-label-text {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    font-weight: 400;
+    line-height: 1.5;
     color: var(--pc-dim);
   }
 
   .pc-help {
-    font-size: 11.5px;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    line-height: 1.5;
     color: var(--pc-accent);
     text-decoration: none;
     border-bottom: 1px dotted var(--pc-accent);
@@ -142,7 +139,7 @@ export const pricingCardCss = `
     gap: 2px;
     text-align: left;
     padding: 11px 12px;
-    font-family: inherit;
+    font: inherit;
     background: var(--pc-band-bg);
     border: 1px solid var(--pc-line);
     color: var(--pc-dim);
@@ -173,16 +170,15 @@ export const pricingCardCss = `
   }
 
   .pc-band-name {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
+    font-size: var(--_typography---font-size--h6, 1.125rem);
+    font-weight: 500;
+    line-height: 1.5;
     color: inherit;
   }
 
   .pc-band-sub {
-    font-size: 10.5px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    line-height: 1.5;
     opacity: 0.85;
   }
 
@@ -207,10 +203,9 @@ export const pricingCardCss = `
   }
 
   .pc-price {
-    font-size: 52px;
-    font-weight: 800;
-    letter-spacing: -0.045em;
-    line-height: 1;
+    font-size: var(--_typography---font-size--h2, 3rem);
+    font-weight: 700;
+    line-height: 1.2;
     color: var(--pc-head);
     font-variant-numeric: tabular-nums;
     transition: opacity 0.16s ease;
@@ -219,15 +214,15 @@ export const pricingCardCss = `
   .pc-price.pc-swap { opacity: 0.25; }
 
   .pc-price-suffix {
-    font-size: 13px;
-    font-weight: 600;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    font-weight: 400;
+    line-height: 1.5;
     color: var(--pc-dim);
-    letter-spacing: 0.02em;
   }
 
   .pc-note {
     margin: 9px 0 0;
-    font-size: 12.5px;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
     line-height: 1.5;
     color: var(--pc-dim);
   }
@@ -253,8 +248,8 @@ export const pricingCardCss = `
     display: flex;
     gap: 9px;
     align-items: flex-start;
-    font-size: 13px;
-    line-height: 1.45;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
+    line-height: 1.5;
     color: var(--pc-dim);
   }
 
@@ -267,7 +262,7 @@ export const pricingCardCss = `
 
   .pc-list-item strong {
     color: var(--pc-head);
-    font-weight: 600;
+    font-weight: 700;
   }
 
   /* ── actions ── */
@@ -279,11 +274,9 @@ export const pricingCardCss = `
     gap: 9px;
     width: 100%;
     padding: 15px 26px;
-    font-family: inherit;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font: inherit;
+    font-weight: 400;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
     text-decoration: none;
     text-align: center;
     border: none;
@@ -367,8 +360,8 @@ export const pricingCardCss = `
     display: block;
     margin-top: 11px;
     padding: 11px;
-    font-size: 12.5px;
-    font-weight: 600;
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
+    font-weight: 400;
     text-align: center;
     text-decoration: none;
     color: var(--pc-dim);
@@ -429,8 +422,8 @@ export const pricingCardCss = `
 
   .pc-fine {
     margin: 14px 0 0;
-    font-size: 11.5px;
-    line-height: 1.55;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    line-height: 1.5;
     text-align: center;
     color: var(--pc-faint);
   }
@@ -442,8 +435,8 @@ export const pricingCardCss = `
     gap: 10px;
     margin-top: 12px;
     padding: 13px 14px;
-    font-size: 11.5px;
-    line-height: 1.45;
+    font-size: var(--_typography---font-size--text-small, 0.9375rem);
+    line-height: 1.5;
     color: var(--pc-dim);
     background: var(--pc-surface-alt);
     border: 1px solid var(--pc-line);
@@ -459,7 +452,6 @@ export const pricingCardCss = `
   @media (max-width: 420px) {
     .pc-bands,
     .pc-bands.pc-bands-3 { grid-template-columns: 1fr; }
-    .pc-price { font-size: 44px; }
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -3,6 +3,7 @@ import { DEFAULT_PLANS, EMPLOYEE_TIERS, ADDON_DESCRIPTIONS } from "./PricingCalc
 import { getEmployeeTier, getBasePrice, getAddonPrice, formatPrice } from "./PricingCalculator.utils";
 import { styles } from "./PricingCalculator.styles";
 import { WaveLabel } from "./WaveLabel";
+import { HeadingTag, subHeadingTag } from "./headingTag";
 
 interface PricingPlan {
   id: string;
@@ -30,6 +31,8 @@ interface PricingCalculatorProps {
   savingsPercent?: number;
   cyberEssentialsLink?: string;
   cyberEssentialsPlusLink?: string;
+  /** Tag for the two control headings; plan titles render one level below. */
+  headingTag?: HeadingTag;
 }
 
 const CheckIcon = () => (
@@ -39,10 +42,10 @@ const StarIcon = () => (
   <span style={styles.starIcon} aria-hidden>★</span>
 );
 const PhoneIcon = () => (
-  <span style={{ fontSize: "1rem" }} aria-hidden>📞</span>
+  <span style={{ fontSize: "1em" }} aria-hidden>📞</span>
 );
 const EmailIcon = () => (
-  <span style={{ fontSize: "1rem" }} aria-hidden>✉</span>
+  <span style={{ fontSize: "1em" }} aria-hidden>✉</span>
 );
 
 export const PricingCalculator = ({
@@ -50,7 +53,10 @@ export const PricingCalculator = ({
   savingsPercent = 20,
   cyberEssentialsLink = "/contact",
   cyberEssentialsPlusLink = "/contact",
+  headingTag = "h2",
 }: PricingCalculatorProps) => {
+  const Heading = headingTag as React.ElementType;
+  const PlanHeading = subHeadingTag(headingTag) as React.ElementType;
   const buttonLinks: Record<string, string> = {
     "cyber-essentials": cyberEssentialsLink,
     "cyber-essentials-plus": cyberEssentialsPlusLink,
@@ -225,7 +231,7 @@ export const PricingCalculator = ({
       `}</style>
       <div style={styles.controlsWrapper}>
         <div style={styles.controlSection}>
-          <h2 style={styles.controlHeading}>How would you like to pay?</h2>
+          <Heading style={styles.controlHeading}>How would you like to pay?</Heading>
           <div style={styles.toggleWrapper}>
             <button
               onClick={() => setPaymentFrequency("annual")}
@@ -245,7 +251,7 @@ export const PricingCalculator = ({
           </p>
         </div>
         <div style={styles.controlSection}>
-          <h2 style={styles.controlHeading}>How many employees do you have?</h2>
+          <Heading style={styles.controlHeading}>How many employees do you have?</Heading>
           <select
             value={employeeCount}
             onChange={(e) => setEmployeeCount(Number(e.target.value))}
@@ -273,7 +279,7 @@ export const PricingCalculator = ({
               )}
               <div style={styles.planHeader}>
                 <div className="pricing-header-top-row" style={styles.planHeaderTopRow}>
-                  <h3 className="pricing-plan-title" style={styles.planTitle}>{plan.title}</h3>
+                  <PlanHeading className="pricing-plan-title" style={styles.planTitle}>{plan.title}</PlanHeading>
                   <div className="pricing-price-section" style={styles.priceSection}>
                     {price === "POA" ? (
                       <div className="pricing-price-poa" style={styles.pricePOA}>POA</div>
@@ -298,7 +304,7 @@ export const PricingCalculator = ({
                 {/* Yellow guarantee banner */}
                 <div style={styles.guaranteeBanner}>
                   <span style={styles.guaranteeBannerText}>
-                    100% done-for-you service – Money-back guarantee
+                    100% done-for-you service. Money-back guarantee
                   </span>
                 </div>
 
@@ -399,7 +405,7 @@ export const PricingCalculator = ({
                     style={styles.ctaButtonPrimary}
                   >
                     <CheckIcon />
-                    <WaveLabel label={plan.primaryButtonLabel ?? "Get Certified Fast"} prefix="pcalc-cta" />
+                    <WaveLabel label={plan.primaryButtonLabel ?? "Get certified fast"} prefix="pcalc-cta" />
                   </a>
                   <a
                     className="pricing-cta-secondary"
@@ -411,7 +417,7 @@ export const PricingCalculator = ({
                     ) : (
                       <PhoneIcon />
                     )}
-                    <WaveLabel label={plan.secondaryButtonLabel ?? "Speak to an Expert"} prefix="pcalc-alt" />
+                    <WaveLabel label={plan.secondaryButtonLabel ?? "Speak to an expert"} prefix="pcalc-alt" />
                   </a>
                 </div>
 

@@ -1,8 +1,16 @@
-import { CertificationPricing } from './CertificationPricing';
+import { CertificationPricing, CertificationPricingProps } from './CertificationPricing';
+import { HEADING_TAGS, toHeadingTag } from './headingTag';
 import { props } from '@webflow/data-types';
 import { declareComponent } from '@webflow/react';
 
-export default declareComponent(CertificationPricing, {
+const CertificationPricingWebflow = ({
+  headingTag,
+  ...rest
+}: Omit<CertificationPricingProps, 'headingTag'> & { headingTag?: string }) => (
+  <CertificationPricing {...rest} headingTag={toHeadingTag(headingTag, 'h3')} />
+);
+
+export default declareComponent(CertificationPricingWebflow, {
   name: 'Certification Pricing',
   description: 'Pricing comparison with Cyber Essentials / Cyber Essentials Plus toggle and three plan cards',
   group: 'Commerce',
@@ -26,6 +34,11 @@ export default declareComponent(CertificationPricing, {
     getStartedLabel: props.Text({
       name: 'Get started button label',
       defaultValue: 'Get started',
+    }),
+    headingTag: props.Variant({
+      name: 'Heading level',
+      defaultValue: 'h3',
+      options: HEADING_TAGS,
     }),
   },
 });
