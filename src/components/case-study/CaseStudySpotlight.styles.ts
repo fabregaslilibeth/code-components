@@ -111,9 +111,9 @@ export const caseStudySpotlightCss = `
   }
 
   .csp-root .csp-title {
-    font-size: var(--_typography---font-size--h3, 2.125rem);
+    font-size: var(--_typography---font-size--h4, 1.5rem);
     font-weight: 500;
-    line-height: 1.2;
+    line-height: 1.3;
     color: var(--csp-head);
     margin: 0 0 14px;
     overflow-wrap: anywhere;

@@ -38,11 +38,11 @@ export const S = {
   } as CSSProperties,
 
   headline: {
-    fontSize: 'var(--_typography---font-size--h3, 2.125rem)',
+    fontSize: 'var(--_typography---font-size--h4, 1.5rem)',
     fontWeight: 500,
     color: '#ffffff',
     margin: '0 0 0.1rem 0',
-    lineHeight: 1.2,
+    lineHeight: 1.3,
   } as CSSProperties,
 
   name: {
