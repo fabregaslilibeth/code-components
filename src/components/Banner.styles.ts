@@ -15,7 +15,6 @@ const BOX_BORDER = 'rgba(255, 255, 255, 0.12)';
 // Site type scale (Webflow variables cross the shadow root); fallbacks used outside Webflow.
 const FS_SMALL = 'var(--_typography---font-size--text-small, 0.9375rem)';
 const FS_MAIN = 'var(--_typography---font-size--text-main, 1.125rem)';
-const FS_LARGE = 'var(--_typography---font-size--text-large, 1.25rem)';
 const FS_H6 = 'var(--_typography---font-size--h6, 1.125rem)';
 const FS_H5 = 'var(--_typography---font-size--h5, 1.25rem)';
 const FS_H1 = 'var(--_typography---font-size--h1, 3.75rem)';
@@ -75,7 +74,7 @@ export const bannerStyles = {
   } as CSSProperties,
 
   subheadline: {
-    fontSize: FS_LARGE,
+    fontSize: FS_MAIN,
     lineHeight: 1.5,
     color: TEXT_MUTED,
     margin: '0 0 1.25rem 0',

@@ -80,7 +80,7 @@ export const bentoCss = `
   }
 
   .bento-root .bento-desc {
-    font-size: var(--_typography---font-size--text-large, 1.25rem);
+    font-size: var(--_typography---font-size--text-main, 1.125rem);
     line-height: 1.5;
     color: var(--b-txt-dim);
     margin: 20px 0 0;

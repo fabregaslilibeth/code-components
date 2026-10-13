@@ -61,7 +61,7 @@ export const pricingDetailsStyles = {
   } as CSSProperties,
 
   subtitle: {
-    fontSize: 'var(--_typography---font-size--text-large, 1.25rem)',
+    fontSize: 'var(--_typography---font-size--text-main, 1.125rem)',
     color: TEXT_MUTED,
     margin: '0 0 1rem 0',
     lineHeight: 1.5,
