@@ -7,7 +7,7 @@ const ExpertCtaWebflow = ({
   headingTag,
   ...rest
 }: Omit<ExpertCtaProps, 'headingTag'> & { headingTag?: string }) => (
-  <ExpertCta {...rest} headingTag={toHeadingTag(headingTag, 'h3')} />
+  <ExpertCta {...rest} headingTag={toHeadingTag(headingTag, 'h2')} />
 );
 
 export default declareComponent(ExpertCtaWebflow, {
@@ -23,7 +23,7 @@ export default declareComponent(ExpertCtaWebflow, {
       name: 'Headline',
       defaultValue: 'Ask our inhouse Power BI expert,',
     }),
-    headingTag: props.Variant({ name: 'Heading level', defaultValue: 'h3', options: HEADING_TAGS }),
+    headingTag: props.Variant({ name: 'Heading level', defaultValue: 'h2', options: HEADING_TAGS }),
     expertName: props.Text({
       name: 'Expert Name (large)',
       defaultValue: 'George',
