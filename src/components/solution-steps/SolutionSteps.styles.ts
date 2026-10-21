@@ -34,6 +34,8 @@ export const solutionStepsCss = `
   }
 
   .ss-root .ss-step {
+    position: relative;
+    isolation: isolate;
     width: 100%;
     height: 100%;
     display: flex;
@@ -75,5 +77,35 @@ export const solutionStepsCss = `
   /* icon stays top, text sits at the bottom when the card is taller than its content (bento tall tile) */
   .ss-root .ss-icon + * {
     margin-top: auto;
+  }
+
+  /* ── photo tile: same photo + navy veil + white text as the Bento photo cells ── */
+  .ss-root .ss-step--photo {
+    --ss-head: #ffffff;
+    --ss-dim: rgba(255, 255, 255, 0.82);
+    --ss-line-strong: rgba(255, 255, 255, 0.5);
+    --ss-cyan: #ffffff;
+    min-height: 240px;
+  }
+
+  .ss-root .ss-photo {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .ss-root .ss-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ss-root .ss-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 27, 65, 0.35) 0%, rgba(0, 27, 65, 0.88) 100%);
   }
 `;
