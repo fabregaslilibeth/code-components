@@ -36,6 +36,8 @@ export const solutionStepsCss = `
   .ss-root .ss-step {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
     background: var(--ss-panel);
     border: 1px solid var(--ss-line);
     padding: 26px 24px 28px;
@@ -68,5 +70,10 @@ export const solutionStepsCss = `
     color: var(--ss-dim);
     margin: 0;
     overflow-wrap: anywhere;
+  }
+
+  /* icon stays top, text sits at the bottom when the card is taller than its content (bento tall tile) */
+  .ss-root .ss-icon + * {
+    margin-top: auto;
   }
 `;
