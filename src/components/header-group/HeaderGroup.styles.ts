@@ -55,9 +55,8 @@ export const headerGroupCss = `
 
   .hg-root .hg-intro {
     font-size: var(--_typography---font-size--text-main, 1.125rem);
-    line-height: 1.5;
+    line-height: 1.7;
     margin: 20px 0 0;
-    max-width: 620px;
     overflow-wrap: anywhere;
     white-space: pre-line;
     opacity: 0.65;

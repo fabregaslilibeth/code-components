@@ -15,6 +15,7 @@ export interface HeaderGroupProps {
   introColor?: string;
   eyebrowColor?: string;
   maxWidth?: string;
+  introMaxWidth?: string;
 }
 
 export const HeaderGroup = ({
@@ -29,6 +30,7 @@ export const HeaderGroup = ({
   introColor,
   eyebrowColor,
   maxWidth = 'none',
+  introMaxWidth = 'none',
 }: HeaderGroupProps) => {
   const rootStyle: React.CSSProperties = { maxWidth };
   const Heading = headingTag as React.ElementType;
@@ -52,7 +54,7 @@ export const HeaderGroup = ({
       {intro && (
         <p
           className="hg-intro"
-          style={introColor ? { color: introColor, opacity: 1 } : { color: titleColor }}
+          style={{ maxWidth: introMaxWidth, ...(introColor ? { color: introColor, opacity: 1 } : { color: titleColor }) }}
         >
           {intro}
         </p>

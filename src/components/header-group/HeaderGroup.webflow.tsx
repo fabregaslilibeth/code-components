@@ -16,6 +16,7 @@ const HeaderGroupWebflow = ({
   introColor,
   eyebrowColor,
   maxWidth,
+  introMaxWidth,
 }: {
   eyebrow?: string;
   showEyebrow?: boolean;
@@ -28,6 +29,7 @@ const HeaderGroupWebflow = ({
   introColor?: string;
   eyebrowColor?: string;
   maxWidth?: string;
+  introMaxWidth?: string;
 }) => {
   const safeHeadingTag: HeaderGroupHeadingTag =
     HEADING_TAGS.find((t) => t === headingTag) || 'h3';
@@ -45,6 +47,7 @@ const HeaderGroupWebflow = ({
       introColor={introColor}
       eyebrowColor={eyebrowColor}
       maxWidth={maxWidth}
+      introMaxWidth={introMaxWidth}
     />
   );
 };
@@ -68,6 +71,7 @@ export default declareComponent(HeaderGroupWebflow, {
     intro: props.Text({ name: 'Intro paragraph', defaultValue: '' }),
     introColor: props.Text({ name: 'Intro colour (optional, overrides heading colour)', defaultValue: '' }),
     eyebrowColor: props.Text({ name: 'Eyebrow colour (optional, overrides default cyan)', defaultValue: '' }),
-    maxWidth: props.Text({ name: 'Max width', defaultValue: 'none', tooltip: 'CSS max-width for the whole group. Defaults to full width — set a value like "760px" to constrain it.' }),
+    maxWidth: props.Text({ name: 'Max width', defaultValue: 'none', tooltip: 'CSS max-width for the whole group. Defaults to full width. Set a value like "760px" to constrain it.' }),
+    introMaxWidth: props.Text({ name: 'Intro max width', defaultValue: 'none', tooltip: 'CSS max-width for the intro paragraph only. Defaults to full width. Set a value like "620px" to constrain it.' }),
   },
 });
