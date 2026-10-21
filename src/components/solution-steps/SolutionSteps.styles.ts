@@ -106,6 +106,7 @@ export const solutionStepsCss = `
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(0, 27, 65, 0.35) 0%, rgba(0, 27, 65, 0.88) 100%);
+    /* 0.55 top: lightest point where text still clears 4.5:1 on the live photos at 390px */
+    background: linear-gradient(180deg, rgba(0, 27, 65, 0.55) 0%, rgba(0, 27, 65, 0.9) 100%);
   }
 `;
