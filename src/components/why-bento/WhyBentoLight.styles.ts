@@ -33,8 +33,6 @@ export const whyBentoLightCss = `
   /* ── container ── */
   .wbl-root .wbl-container {
     width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
     min-width: 0;
   }
 
@@ -102,6 +100,11 @@ export const whyBentoLightCss = `
 
   .wbl-root .wbl-tile--photo {
     min-height: 186px;
+  }
+
+  /* the photo content layer carries the padding; tile padding on top doubled it */
+  .wbl-root .wbl-tile--big.wbl-tile--photo {
+    padding: 0;
   }
 
   /* ── corner grid bg (big tile) ── */
@@ -315,10 +318,6 @@ export const whyBentoLightCss = `
       color 0.7s var(--wbl-ease-out) 0.05s;
   }
 
-  .wbl-root .wbl-tile--big .wbl-tile-text {
-    max-width: 360px;
-  }
-
   .wbl-root .wbl-tile.is-visible:hover .wbl-tile-title {
     transform: translateX(6px);
     color: #032447;
@@ -479,7 +478,6 @@ export const whyBentoLightCss = `
 
   .wbl-root .wbl-tile--photo .wbl-tile-text {
     color: rgba(255, 255, 255, 0.85);
-    max-width: 440px;
   }
 
   .wbl-root .wbl-icon-custom svg {
@@ -510,10 +508,6 @@ export const whyBentoLightCss = `
   }
 
   @media (max-width: 480px) {
-    .wbl-root .wbl-container {
-      padding: 0 16px;
-    }
-
     .wbl-root .wbl-tile--default,
     .wbl-root .wbl-tile--big {
       padding: 24px 20px;

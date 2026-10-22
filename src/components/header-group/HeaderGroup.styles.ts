@@ -23,7 +23,7 @@ export const headerGroupCss = `
     font-weight: 500;
     line-height: 1.5;
     color: var(--hg-cyan);
-    margin: 0 0 22px;
+    margin: 0 0 var(--_spacing---space--2, 0.75rem);
   }
 
   .hg-root .hg-eyebrow-dot {
@@ -65,12 +65,6 @@ export const headerGroupCss = `
   @media (max-width: 860px) {
     .hg-root .hg-intro {
       margin-top: 16px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .hg-root .hg-eyebrow {
-      margin-bottom: 18px;
     }
   }
 `;
