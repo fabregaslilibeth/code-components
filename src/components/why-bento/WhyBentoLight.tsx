@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { WhyTile, DEFAULT_WHY_TILES } from './WhyBento.data';
 import { WhyBentoIcon } from './WhyBentoIcon';
+import { renderInlineLinks } from './inlineLinks';
 import { whyBentoLightCss } from './WhyBentoLight.styles';
 import type { HeadingTag } from '../headingTag';
 
@@ -109,7 +110,7 @@ const TileBody: React.FC<{ tile: WhyTile; headingTag: HeadingTag }> = ({ tile, h
   return (
     <div className="wbl-tile-body">
       <Heading className="wbl-tile-title">{tile.title}</Heading>
-      <p className="wbl-tile-text">{tile.body}</p>
+      <p className="wbl-tile-text">{renderInlineLinks(tile.body, 'wbl-tile-link')}</p>
     </div>
   );
 };

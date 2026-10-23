@@ -318,6 +318,23 @@ export const whyBentoLightCss = `
       color 0.7s var(--wbl-ease-out) 0.05s;
   }
 
+  /* Inline links in tile body text: inherit the text colour so they read on light and photo tiles. */
+  .wbl-root .wbl-tile-link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
+  }
+
+  .wbl-root .wbl-tile-link:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  .wbl-root .wbl-tile-link:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
   .wbl-root .wbl-tile.is-visible:hover .wbl-tile-title {
     transform: translateX(6px);
     color: #032447;
