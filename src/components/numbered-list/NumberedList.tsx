@@ -16,6 +16,8 @@ export interface NumberedListProps {
   activeIndex?: number;
   items?: NumberedListItem[];
   headingTag?: HeadingTag;
+  showNumbers?: boolean;
+  gap?: number;
 }
 
 const DEFAULT_ITEMS: NumberedListItem[] = [
@@ -32,19 +34,24 @@ export const NumberedList = ({
   activeIndex,
   items = DEFAULT_ITEMS,
   headingTag = 'h3',
+  showNumbers = true,
+  gap = 0,
 }: NumberedListProps) => {
   const safeItems = items.length > 0 ? items : DEFAULT_ITEMS;
   const Heading = headingTag as React.ElementType;
 
   return (
-    <div className={`nl-root nl-${theme}`}>
+    <div
+      className={`nl-root nl-${theme}${gap > 0 ? ' nl-root--gapped' : ''}${showNumbers ? '' : ' nl-root--nonum'}`}
+      style={gap > 0 ? ({ '--nl-gap': `${gap}rem` } as React.CSSProperties) : undefined}
+    >
       <style>{numberedListCss}</style>
       {safeItems.map((item, i) => {
         const num = String(i + 1).padStart(2, '0');
         const isActive = activeIndex === i;
         return (
           <div key={i} className={`nl-row${isActive ? ' nl-row--active' : ''}`}>
-            <span className="nl-num">{num}</span>
+            {showNumbers && <span className="nl-num">{num}</span>}
             <span className="nl-icon-wrap">
               <LucideIcon name={item.icon} size={20} strokeWidth={1.6} />
             </span>

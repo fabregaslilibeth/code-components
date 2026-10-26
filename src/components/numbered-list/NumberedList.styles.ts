@@ -17,7 +17,7 @@ export const numberedListCss = `
     --nl-icon-color:  #10C8E5;
     --nl-title:       #001b41;
     --nl-body:        rgba(0, 27, 65, 0.60);
-    --nl-row-hover:   rgba(16, 200, 229, 0.04);
+    --nl-row-hover:   color-mix(in srgb, var(--nl-cyan) 4%, var(--nl-bg));
     --nl-cyan:        #10C8E5;
   }
 
@@ -32,11 +32,13 @@ export const numberedListCss = `
     --nl-icon-color:  #10C8E5;
     --nl-title:       #ffffff;
     --nl-body:        rgba(221, 233, 249, 0.55);
-    --nl-row-hover:   rgba(16, 200, 229, 0.05);
+    --nl-row-hover:   color-mix(in srgb, var(--nl-cyan) 5%, var(--nl-bg));
     --nl-cyan:        #10C8E5;
   }
 
   .nl-root {
+    display: grid;
+    gap: var(--nl-gap, 0);
     width: 100%;
     font-family: inherit;
     background: var(--nl-bg);
@@ -53,12 +55,29 @@ export const numberedListCss = `
     gap: 0 20px;
     padding: 22px 28px;
     border-bottom: 1px solid var(--nl-border);
+    background: var(--nl-bg);
     transition: background 0.2s ease;
     cursor: default;
   }
 
   .nl-root .nl-row:last-child {
     border-bottom: none;
+  }
+
+  /* gap > 0: rows float apart, so each row carries its own outline */
+  .nl-root.nl-root--gapped {
+    background: transparent;
+    border: none;
+  }
+
+  .nl-root.nl-root--gapped .nl-row {
+    border: 1px solid var(--nl-border);
+    border-radius: 4px;
+  }
+
+  /* numbers hidden: drop the number column */
+  .nl-root.nl-root--nonum .nl-row {
+    grid-template-columns: 52px 1fr;
   }
 
   .nl-root .nl-row:hover {
@@ -135,6 +154,10 @@ export const numberedListCss = `
       grid-template-columns: 36px 40px 1fr;
       gap: 0 12px;
       padding: 18px 16px;
+    }
+
+    .nl-root.nl-root--nonum .nl-row {
+      grid-template-columns: 40px 1fr;
     }
 
     .nl-root .nl-icon-wrap {

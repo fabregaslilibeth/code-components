@@ -26,11 +26,15 @@ const NumberedListWebflow = ({
   activeIndex,
   items,
   headingTag,
+  showNumbers,
+  gap,
 }: {
   theme?: string;
   activeIndex?: string;
   items?: string;
   headingTag?: string;
+  showNumbers?: boolean;
+  gap?: number;
 }) => {
   const safeTheme: NumberedListTheme = theme === 'dark' ? 'dark' : 'light';
   const safeActive = activeIndex ? parseInt(activeIndex, 10) - 1 : undefined;
@@ -40,18 +44,22 @@ const NumberedListWebflow = ({
       activeIndex={isNaN(safeActive as number) ? undefined : safeActive}
       items={parseItems(items || DEFAULT_ITEMS_JSON)}
       headingTag={toHeadingTag(headingTag, 'h3')}
+      showNumbers={showNumbers !== false}
+      gap={typeof gap === 'number' && gap > 0 ? gap : 0}
     />
   );
 };
 
 export default declareComponent(NumberedListWebflow, {
   name: 'Numbered List',
-  description: 'Numbered rows with icon, title and body — light or dark theme',
+  description: 'Numbered rows with icon, title and body. Light or dark theme, numbers and row gap optional.',
   group: 'Content',
   props: {
     theme:       props.Variant({ name: 'Theme', defaultValue: 'light', options: ['light', 'dark'] }),
     activeIndex: props.Text({ name: 'Active row (1-based, optional)', defaultValue: '1' }),
     items:       props.Text({ name: 'Items (JSON array)',           defaultValue: DEFAULT_ITEMS_JSON }),
     headingTag:  props.Variant({ name: 'Heading level', defaultValue: 'h3', options: HEADING_TAGS }),
+    showNumbers: props.Boolean({ name: 'Show numbers', defaultValue: true }),
+    gap:         props.Number({ name: 'Row gap (rem)', defaultValue: 0, min: 0, max: 4, decimals: 2, tooltip: '0 keeps one joined panel. Above 0 the rows split into separate outlined cards.' }),
   },
 });
